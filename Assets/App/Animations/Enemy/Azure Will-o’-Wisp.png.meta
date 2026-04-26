@@ -1,0 +1,950 @@
+fileFormatVersion: 2
+guid: df443aee6febbe143be5749855c49823
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_0"
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1326
+        width: 315
+        height: 315
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77807e9e95d307a43a44ebe3da00544d
+      internalID: -1806680232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_1"
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 1326
+        width: 315
+        height: 315
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2da1d310d2e1284a8c429ea3707e75f
+      internalID: 888044758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_2"
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 1305
+        width: 606
+        height: 351
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 639e0684db7f8d049ac2c681524e465e
+      internalID: -1706151789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_3"
+      rect:
+        serializedVersion: 2
+        x: 1265
+        y: 1449
+        width: 107
+        height: 204
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e303b24d587d8a047a9f42b1de0b6573
+      internalID: -1640670707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_4"
+      rect:
+        serializedVersion: 2
+        x: 1374
+        y: 1449
+        width: 107
+        height: 204
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17bab864b0aff7f48ab7f213d887d880
+      internalID: -642271597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_5"
+      rect:
+        serializedVersion: 2
+        x: 1483
+        y: 1449
+        width: 92
+        height: 197
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9efde226e8c514468ece2f268c4a7cd
+      internalID: -220089796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_6"
+      rect:
+        serializedVersion: 2
+        x: 1577
+        y: 1449
+        width: 92
+        height: 196
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c143637e3249c364dadbecd4a6566438
+      internalID: -973373892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_7"
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 1367
+        width: 117
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a0e8707788a747468c564d21ec405a2
+      internalID: -848399179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_8"
+      rect:
+        serializedVersion: 2
+        x: 1331
+        y: 1352
+        width: 85
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 785463bed2472444e8437fe60ffe9131
+      internalID: 1065259584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_9"
+      rect:
+        serializedVersion: 2
+        x: 1349
+        y: 1059
+        width: 548
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 838247b0958c9a0469cea483f736304f
+      internalID: 493064480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_10"
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 673
+        width: 433
+        height: 583
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60ad4105526f74c4c8c56d3b614b6741
+      internalID: -85534831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_11"
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 1238
+        width: 71
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59cc595c6db847b41bd07e045bb6fbaf
+      internalID: -364071529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_12"
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 655
+        width: 428
+        height: 590
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d561eeb2ec72ef549a0785d020971541
+      internalID: -1281501640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_13"
+      rect:
+        serializedVersion: 2
+        x: 723
+        y: 1223
+        width: 64
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb64a8c556cdb8a4399fe8dddddd1e5f
+      internalID: -259252684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_14"
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 1232
+        width: 136
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c72ea3cba0fe32140b8d2447beb79816
+      internalID: -1468892467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_15"
+      rect:
+        serializedVersion: 2
+        x: 1066
+        y: 1232
+        width: 136
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37cff766301274441b0a5e90656c4a95
+      internalID: -1613813081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_16"
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 1232
+        width: 110
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb03ae9c0c79f3348913da408617f599
+      internalID: -1838805525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_17"
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 632
+        width: 366
+        height: 598
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa04cb8db004db548b568bbda34e57ea
+      internalID: -1412143862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_18"
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1129
+        width: 49
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cde8a7e85ba65d645b1788de6e490bdd
+      internalID: -1963640874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_19"
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1052
+        width: 37
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dad749008b3a4147851caec98328d9b
+      internalID: -1494877090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_20"
+      rect:
+        serializedVersion: 2
+        x: 1455
+        y: 968
+        width: 145
+        height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb81cde8ef6c72243b06257e4777f794
+      internalID: 420949478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_21"
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 628
+        width: 37
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02ebca1d470d89b47959c912f3fa400a
+      internalID: 1028657544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_22"
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 586
+        width: 46
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c09e6a1bed6733446803cf0abe06059f
+      internalID: 972311751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_23"
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 596
+        width: 35
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdc561740f4cd4c46bf8c02d50d7d1ee
+      internalID: 1039287828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_24"
+      rect:
+        serializedVersion: 2
+        x: 1331
+        y: 551
+        width: 569
+        height: 415
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7210db253de60145b785adfdcc15834
+      internalID: -99941673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_25"
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 2
+        width: 379
+        height: 556
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2088215f219236479ff5069735e6003
+      internalID: 373890749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_26"
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 477
+        width: 85
+        height: 99
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b048a4b7a3d6db844b6d32483acfd8af
+      internalID: 1583781602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_27"
+      rect:
+        serializedVersion: 2
+        x: 730
+        y: 407
+        width: 99
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 278f7ed4ec1b59e4080687bb75f1c5a0
+      internalID: 1925478771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_28"
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 2
+        width: 413
+        height: 520
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fadbddba3989a5f45a939441e4313ec0
+      internalID: 1946170207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_29"
+      rect:
+        serializedVersion: 2
+        x: 1112
+        y: 466
+        width: 137
+        height: 103
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de09272409110904dbee45fbf8b4da05
+      internalID: 2011623319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_30"
+      rect:
+        serializedVersion: 2
+        x: 1464
+        y: 485
+        width: 112
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: debd55184ae6b644493a74e26aa6f93c
+      internalID: 489305247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_31"
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 2
+        width: 376
+        height: 472
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9fc25b62789ba7418aa39f7f23452ca
+      internalID: 809648782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_32"
+      rect:
+        serializedVersion: 2
+        x: 1251
+        y: 2
+        width: 50
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d226df510b197b6458f676c7f91cb350
+      internalID: 401790527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_33"
+      rect:
+        serializedVersion: 2
+        x: 1331
+        y: 61
+        width: 592
+        height: 422
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83e727c2dfa6a7948ac611c666004869
+      internalID: 1405744851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Azure Will-o\u2019-Wisp_34"
+      rect:
+        serializedVersion: 2
+        x: 1480
+        y: 2
+        width: 88
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c6f1d6b371430d43aa8610710c0f184
+      internalID: -1063286363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: fcd813275c9cd414da103520931a7dec
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      "Azure Will-o\u2019-Wisp_0": -1806680232
+      "Azure Will-o\u2019-Wisp_1": 888044758
+      "Azure Will-o\u2019-Wisp_10": -85534831
+      "Azure Will-o\u2019-Wisp_11": -364071529
+      "Azure Will-o\u2019-Wisp_12": -1281501640
+      "Azure Will-o\u2019-Wisp_13": -259252684
+      "Azure Will-o\u2019-Wisp_14": -1468892467
+      "Azure Will-o\u2019-Wisp_15": -1613813081
+      "Azure Will-o\u2019-Wisp_16": -1838805525
+      "Azure Will-o\u2019-Wisp_17": -1412143862
+      "Azure Will-o\u2019-Wisp_18": -1963640874
+      "Azure Will-o\u2019-Wisp_19": -1494877090
+      "Azure Will-o\u2019-Wisp_2": -1706151789
+      "Azure Will-o\u2019-Wisp_20": 420949478
+      "Azure Will-o\u2019-Wisp_21": 1028657544
+      "Azure Will-o\u2019-Wisp_22": 972311751
+      "Azure Will-o\u2019-Wisp_23": 1039287828
+      "Azure Will-o\u2019-Wisp_24": -99941673
+      "Azure Will-o\u2019-Wisp_25": 373890749
+      "Azure Will-o\u2019-Wisp_26": 1583781602
+      "Azure Will-o\u2019-Wisp_27": 1925478771
+      "Azure Will-o\u2019-Wisp_28": 1946170207
+      "Azure Will-o\u2019-Wisp_29": 2011623319
+      "Azure Will-o\u2019-Wisp_3": -1640670707
+      "Azure Will-o\u2019-Wisp_30": 489305247
+      "Azure Will-o\u2019-Wisp_31": 809648782
+      "Azure Will-o\u2019-Wisp_32": 401790527
+      "Azure Will-o\u2019-Wisp_33": 1405744851
+      "Azure Will-o\u2019-Wisp_34": -1063286363
+      "Azure Will-o\u2019-Wisp_4": -642271597
+      "Azure Will-o\u2019-Wisp_5": -220089796
+      "Azure Will-o\u2019-Wisp_6": -973373892
+      "Azure Will-o\u2019-Wisp_7": -848399179
+      "Azure Will-o\u2019-Wisp_8": 1065259584
+      "Azure Will-o\u2019-Wisp_9": 493064480
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
