@@ -236,6 +236,7 @@ public class Enemy : MonoBehaviour
 
     public async void StopMoving()
     {
+        FindAnyObjectByType<Screen_UI>().UpdateScoreInUI(maxHealth);
         IsEnable = false;
         enemyBody.SetActive(false);
         animator.SetBool("IsDead", true);
@@ -243,5 +244,6 @@ public class Enemy : MonoBehaviour
         spriteRenderer.sprite = null;
         gameObject.SetActive(false);
     }
+
 
 }

@@ -4,6 +4,7 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
@@ -115,6 +116,8 @@ public class Player : MonoBehaviour
             }
 
             bulletMovement.StartMoving(direction);
+
+            FindAnyObjectByType<Screen_UI>().UpdateBulletsInUI(0);//Edit Later 
         }
 
     }

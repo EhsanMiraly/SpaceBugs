@@ -1,0 +1,7 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/App/UI/USS/Base_StyleSheet.uss?fileID=7433441132597879392&amp;guid=6671879e9ba4b3d41ad17ad19289bdbf&amp;type=3#Base_StyleSheet"/>
+    <ui:VisualElement name="VisualElement" style="width: 100%; height: 100%;">
+        <ui:Label text="Score: 999" name="Score_Label" class="Text_StyleSheet" style="width: 10%; height: 10%;"/>
+        <ui:Label text="Bullets: 9" name="Bullets_Label" class="Text_StyleSheet" style="width: 10%; height: 10%;"/>
+    </ui:VisualElement>
+</ui:UXML>
