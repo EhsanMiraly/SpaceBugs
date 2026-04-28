@@ -1,35 +1,28 @@
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private EnemyData_SO enemyData;
+    EnemyEventManager enemyEventManager;
+
     [SerializeField] private LayerMask layerMask;
     private GameObject enemyBody;
     private SpriteRenderer spriteRenderer;
 
     Animator animator;
 
-    private float rayDistance = 0.05f;
-    private float rayDistanceFromOrigin = 0.52f;
-    private float rayDistanceFromSide = 0.48f;
-
-    int moveSpeed = 1;
-
     bool[] movableDirections = new bool[3] { true, true, true };//0=Left 1=Down 2=Right
     bool[] activeDirection = new bool[3] { false, true, false };//0=Left 1=Down 2=Right
 
     public bool IsEnable { get; private set; } = false;
 
-    private int timeBetweenChecks = 2;
     private float lastTimeCheckedMovableDirections;
 
-    private int maxHealth = 3;
-    private int currentHealth;
 
     private void Awake()
     {
+        transform.localScale = new Vector3(enemyData.Size, enemyData.Size, 1);
         enemyBody = transform.GetChild(1).gameObject;
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -46,7 +39,7 @@ public class Enemy : MonoBehaviour
             ChooseNextMoveDirection();
             lastTimeCheckedMovableDirections = Time.time;
         }
-        if (lastTimeCheckedMovableDirections + timeBetweenChecks < Time.time)
+        if (lastTimeCheckedMovableDirections + enemyData.TimeBetweenChangingDirection < Time.time)
         {
             FindMovableDirections();
             ChooseNextMoveDirection();
@@ -88,32 +81,32 @@ public class Enemy : MonoBehaviour
     {
         movableDirections = new bool[3] { true, true, true };
 
-        Vector2 leftOrigin = new Vector2(transform.position.x - rayDistanceFromOrigin, transform.position.y);
-        Vector2 downOrigin = new Vector2(transform.position.x, transform.position.y - rayDistanceFromOrigin);
-        Vector2 rightOrigin = new Vector2(transform.position.x + rayDistanceFromOrigin, transform.position.y);
+        Vector2 leftOrigin = new Vector2(transform.position.x - enemyData.RayDistanceFromOrigin, transform.position.y);
+        Vector2 downOrigin = new Vector2(transform.position.x, transform.position.y - enemyData.RayDistanceFromOrigin);
+        Vector2 rightOrigin = new Vector2(transform.position.x + enemyData.RayDistanceFromOrigin, transform.position.y);
 
-        RaycastHit2D leftRayUp = Physics2D.Raycast(leftOrigin + new Vector2(0, rayDistanceFromSide),
-                                                    new Vector2(-1, 0), rayDistance, layerMask);
-        RaycastHit2D leftRayDown = Physics2D.Raycast(leftOrigin + new Vector2(0, -rayDistanceFromSide),
-                                                    new Vector2(-1, 0), rayDistance, layerMask);
+        RaycastHit2D leftRayUp = Physics2D.Raycast(leftOrigin + new Vector2(0, enemyData.RayDistanceFromSide),
+                                                    new Vector2(-1, 0), enemyData.RayDistance, layerMask);
+        RaycastHit2D leftRayDown = Physics2D.Raycast(leftOrigin + new Vector2(0, -enemyData.RayDistanceFromSide),
+                                                    new Vector2(-1, 0), enemyData.RayDistance, layerMask);
         if (leftRayUp.collider != null || leftRayDown.collider != null)
         {
             movableDirections[0] = false;
         }
 
-        RaycastHit2D downRayLeft = Physics2D.Raycast(downOrigin + new Vector2(-rayDistanceFromSide, 0),
-                                                    new Vector2(0, -1), rayDistance, layerMask);
-        RaycastHit2D downRayRight = Physics2D.Raycast(downOrigin + new Vector2(rayDistanceFromSide, 0),
-                                                    new Vector2(0, -1), rayDistance, layerMask);
+        RaycastHit2D downRayLeft = Physics2D.Raycast(downOrigin + new Vector2(-enemyData.RayDistanceFromSide, 0),
+                                                    new Vector2(0, -1), enemyData.RayDistance, layerMask);
+        RaycastHit2D downRayRight = Physics2D.Raycast(downOrigin + new Vector2(enemyData.RayDistanceFromSide, 0),
+                                                    new Vector2(0, -1), enemyData.RayDistance, layerMask);
         if (downRayLeft.collider != null || downRayRight.collider != null)
         {
             movableDirections[1] = false;
         }
 
-        RaycastHit2D rightRayUp = Physics2D.Raycast(rightOrigin + new Vector2(0, rayDistanceFromSide),
-                                                    new Vector2(1, 0), rayDistance, layerMask);
-        RaycastHit2D rightRayDown = Physics2D.Raycast(rightOrigin + new Vector2(0, -rayDistanceFromSide),
-                                                    new Vector2(1, 0), rayDistance, layerMask);
+        RaycastHit2D rightRayUp = Physics2D.Raycast(rightOrigin + new Vector2(0, enemyData.RayDistanceFromSide),
+                                                    new Vector2(1, 0), enemyData.RayDistance, layerMask);
+        RaycastHit2D rightRayDown = Physics2D.Raycast(rightOrigin + new Vector2(0, -enemyData.RayDistanceFromSide),
+                                                    new Vector2(1, 0), enemyData.RayDistance, layerMask);
         if (rightRayUp.collider != null || rightRayDown.collider != null)
         {
             movableDirections[2] = false;
@@ -122,46 +115,46 @@ public class Enemy : MonoBehaviour
 #if UNITY_EDITOR
         if (movableDirections[0])
         {
-            Debug.DrawRay(leftOrigin + new Vector2(0, rayDistanceFromSide),
+            Debug.DrawRay(leftOrigin + new Vector2(0, enemyData.RayDistanceFromSide),
                             new Vector2(-1, 0), Color.green, Time.deltaTime);
-            Debug.DrawRay(leftOrigin + new Vector2(0, -rayDistanceFromSide),
+            Debug.DrawRay(leftOrigin + new Vector2(0, -enemyData.RayDistanceFromSide),
                             new Vector2(-1, 0), Color.green, Time.deltaTime);
         }
         else
         {
-            Debug.DrawRay(leftOrigin + new Vector2(0, rayDistanceFromSide),
+            Debug.DrawRay(leftOrigin + new Vector2(0, enemyData.RayDistanceFromSide),
                             new Vector2(-1, 0), Color.red, Time.deltaTime);
-            Debug.DrawRay(leftOrigin + new Vector2(0, -rayDistanceFromSide),
+            Debug.DrawRay(leftOrigin + new Vector2(0, -enemyData.RayDistanceFromSide),
                             new Vector2(-1, 0), Color.red, Time.deltaTime);
         }
 
         if (movableDirections[1])
         {
-            Debug.DrawRay(downOrigin + new Vector2(-rayDistanceFromSide, 0),
+            Debug.DrawRay(downOrigin + new Vector2(-enemyData.RayDistanceFromSide, 0),
                             new Vector2(0, -1), Color.green, Time.deltaTime);
-            Debug.DrawRay(downOrigin + new Vector2(rayDistanceFromSide, 0),
+            Debug.DrawRay(downOrigin + new Vector2(enemyData.RayDistanceFromSide, 0),
                             new Vector2(0, -1), Color.green, Time.deltaTime);
         }
         else
         {
-            Debug.DrawRay(downOrigin + new Vector2(-rayDistanceFromSide, 0),
+            Debug.DrawRay(downOrigin + new Vector2(-enemyData.RayDistanceFromSide, 0),
                             new Vector2(0, -1), Color.red, Time.deltaTime);
-            Debug.DrawRay(downOrigin + new Vector2(rayDistanceFromSide, 0),
+            Debug.DrawRay(downOrigin + new Vector2(enemyData.RayDistanceFromSide, 0),
                             new Vector2(0, -1), Color.red, Time.deltaTime);
         }
 
         if (movableDirections[2])
         {
-            Debug.DrawRay(rightOrigin + new Vector2(0, rayDistanceFromSide),
+            Debug.DrawRay(rightOrigin + new Vector2(0, enemyData.RayDistanceFromSide),
                             new Vector2(1, 0), Color.green, Time.deltaTime);
-            Debug.DrawRay(rightOrigin + new Vector2(0, -rayDistanceFromSide),
+            Debug.DrawRay(rightOrigin + new Vector2(0, -enemyData.RayDistanceFromSide),
                             new Vector2(1, 0), Color.green, Time.deltaTime);
         }
         else
         {
-            Debug.DrawRay(rightOrigin + new Vector2(0, rayDistanceFromSide),
+            Debug.DrawRay(rightOrigin + new Vector2(0, enemyData.RayDistanceFromSide),
                             new Vector2(1, 0), Color.red, Time.deltaTime);
-            Debug.DrawRay(rightOrigin + new Vector2(0, -rayDistanceFromSide),
+            Debug.DrawRay(rightOrigin + new Vector2(0, -enemyData.RayDistanceFromSide),
                             new Vector2(1, 0), Color.red, Time.deltaTime);
         }
 #endif
@@ -197,15 +190,15 @@ public class Enemy : MonoBehaviour
     {
         if (activeDirection[0])
         {
-            transform.Translate(-moveSpeed * Time.deltaTime, 0f, 0f);
+            transform.Translate(-enemyData.MoveSpeed * Time.deltaTime, 0f, 0f);
         }
         else if (activeDirection[1])
         {
-            transform.Translate(0f, -moveSpeed * Time.deltaTime, 0f);
+            transform.Translate(0f, -enemyData.MoveSpeed * Time.deltaTime, 0f);
         }
         else if (activeDirection[2])
         {
-            transform.Translate(moveSpeed * Time.deltaTime, 0f, 0f);
+            transform.Translate(enemyData.MoveSpeed * Time.deltaTime, 0f, 0f);
         }
 
     }
@@ -214,9 +207,9 @@ public class Enemy : MonoBehaviour
     {
         if (IsEnable && other.gameObject.tag == "Bullet")
         {
-            currentHealth--;
-            GetComponentInChildren<Enemy_UI>().UpdateUI(maxHealth, currentHealth);
-            if (currentHealth == 0)
+            enemyData.CurrentHealth--;
+            GetComponentInChildren<Enemy_UI>().UpdateUI(enemyData.MaxHealth, enemyData.CurrentHealth);
+            if (enemyData.CurrentHealth <= 0)
             {
                 StopMoving();
             }
@@ -229,14 +222,19 @@ public class Enemy : MonoBehaviour
         spriteRenderer.sprite = null;
         gameObject.SetActive(true);
         enemyBody.SetActive(true);
-        currentHealth = maxHealth;
-        GetComponentInChildren<Enemy_UI>().UpdateUI(maxHealth, currentHealth);
+        enemyData.CurrentHealth = enemyData.MaxHealth;
+        GetComponentInChildren<Enemy_UI>().UpdateUI(enemyData.MaxHealth, enemyData.CurrentHealth);
         IsEnable = true;
+
+        if (enemyEventManager == null)
+        {
+            enemyEventManager = GetComponentInParent<EnemyEventManager>();
+        }
     }
 
     public async void StopMoving()
     {
-        FindAnyObjectByType<Screen_UI>().UpdateScoreInUI(maxHealth);
+        enemyEventManager.OnEnemyDied?.Invoke(enemyData);
         IsEnable = false;
         enemyBody.SetActive(false);
         animator.SetBool("IsDead", true);

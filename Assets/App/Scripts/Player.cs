@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
 using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Animations;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
+
 
 public class Player : MonoBehaviour
 {
