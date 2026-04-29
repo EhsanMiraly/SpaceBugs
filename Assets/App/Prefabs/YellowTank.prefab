@@ -147,6 +147,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4314424372620564674}
+  - component: {fileID: 8836527143092273578}
   m_Layer: 0
   m_Name: PointOfShoot
   m_TagString: Untagged
@@ -169,6 +170,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4764389804042975292}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8836527143092273578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907877261679352620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a2597b117125141960645aa66a3ee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletsPool
+  bulletPrefab: {fileID: 4823997178080694358, guid: 726e53a9ec76e034b856d6af639876ff, type: 3}
 --- !u!1 &3606790528678123899
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +226,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3395188375514951766}
   - component: {fileID: 9046765697738742087}
-  - component: {fileID: 4442401347645934495}
   - component: {fileID: 4411655381776358899}
   m_Layer: 0
   m_Name: YellowTank
@@ -250,22 +263,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639b03fc095f4244caa25d1aac1bb474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  bulletsPool: {fileID: 4442401347645934495}
+  bulletsPool: {fileID: 8836527143092273578}
   barrel: {fileID: 3606790528678123899}
   pointOfShoot: {fileID: 1907877261679352620}
---- !u!114 &4442401347645934495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7303307742906770803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0a2597b117125141960645aa66a3ee7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BulletsPool
-  bulletPrefab: {fileID: 4823997178080694358, guid: 726e53a9ec76e034b856d6af639876ff, type: 3}
 --- !u!114 &4411655381776358899
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,9 +4,10 @@ using UnityEngine.UIElements;
 public class Screen_UI : MonoBehaviour
 {
     [SerializeField] EnemyEventManager enemyEventManager;
+    [SerializeField] BulletEventManager bulletEventManager;
 
     int score = 0;
-    int bullets = 1;
+    int bullets = 3;
 
     UIDocument uIDocument;
     VisualElement root;
@@ -17,6 +18,9 @@ public class Screen_UI : MonoBehaviour
     private void Awake()
     {
         enemyEventManager.OnEnemyDied.AddListener(OnUpdateScoreInUI);
+        bulletEventManager.OnBulletDestroyed.AddListener(OnUpdateBulletsInUIPlus);
+        bulletEventManager.OnBulletShot.AddListener(OnUpdateBulletsInUIMinus);
+
 
         uIDocument = GetComponent<UIDocument>();
         root = uIDocument.rootVisualElement;
@@ -25,7 +29,7 @@ public class Screen_UI : MonoBehaviour
         bullets_Label = root.Q<Label>("Bullets_Label");
 
         score_Label.text = "Score: " + score;
-        bullets_Label.text = "Bullets: " + 1;
+        bullets_Label.text = "Bullets: " + bullets;
     }
 
     public void OnUpdateScoreInUI(EnemyData_SO enemyData_SO)
@@ -34,9 +38,14 @@ public class Screen_UI : MonoBehaviour
         score_Label.text = "Score: " + this.score;
     }
 
-    public void UpdateBulletsInUI(int bullets)
+    public void OnUpdateBulletsInUIMinus()
     {
-        this.bullets = bullets;
+        bullets--;
+        bullets_Label.text = "Bullets: " + this.bullets;
+    }
+    public void OnUpdateBulletsInUIPlus()
+    {
+        bullets++;
         bullets_Label.text = "Bullets: " + this.bullets;
     }
 

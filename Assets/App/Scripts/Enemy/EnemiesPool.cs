@@ -1,66 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
-public class EnemiesPool : MonoBehaviour
-{
-    [SerializeField] GameObject enemyPrefab;
-
-    private List<GameObject> enemiesPool;
-    private int maxEnemiesInPool = 10;
-    private int currentEnemiesInPool = 0;
-
-
-    private void Awake()
-    {
-        enemiesPool = new List<GameObject>();
-
-    }
-
-    public bool CanGetEnemy(int index = 0) // 0 for now
-    {
-        for (int i = 0; i < enemiesPool.Count; i++)
-        {
-            if (!enemiesPool[i].GetComponent<Enemy>().IsEnable)
-            {
-                return true;
-            }
-        }
-
-        if (currentEnemiesInPool < maxEnemiesInPool)
-        {
-            return true;
-        }
-
-        return false;
-    }
-
-    public GameObject GetEnemy(int index = 0)
-    {
-        for (int i = 0; i < enemiesPool.Count; i++)
-        {
-            if (!enemiesPool[i].GetComponent<Enemy>().IsEnable)
-            {
-                return enemiesPool[i];
-            }
-        }
-        return AddEnemyToPool(index);
-    }
-
-    private GameObject AddEnemyToPool(int index)
-    {
-        GameObject enemy = Instantiate(enemyPrefab);
-        enemiesPool.Add(enemy);
-        currentEnemiesInPool++;
-        return enemy;
-    }
-}
-
-*/
-
-
-
-
 
 public class EnemiesPool : MonoBehaviour
 {
@@ -88,18 +28,15 @@ public class EnemiesPool : MonoBehaviour
         {
             if (!enemiesPool[index][i].GetComponent<Enemy>().IsEnable)
             {
-                Debug.Log("A" + true);
                 return true;
             }
         }
 
         if (currentEnemiesInPool[index] < maxEnemiesInPool[index])
         {
-            Debug.Log("B" + true);
             return true;
         }
 
-        Debug.Log("C" + false);
         return false;
     }
 

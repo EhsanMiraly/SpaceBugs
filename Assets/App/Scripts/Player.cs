@@ -81,6 +81,7 @@ public class Player : MonoBehaviour
             bullet = bulletsPool.GetBullet();
             bullet.transform.position = pointOfShoot.transform.position;
             bullet.transform.rotation = Quaternion.identity;
+            //bullet.transform.parent = pointOfShoot.transform;
 
             bulletMovement = bullet.GetComponent<Bullet>();
         }
@@ -112,8 +113,6 @@ public class Player : MonoBehaviour
             }
 
             bulletMovement.StartMoving(direction);
-
-            FindAnyObjectByType<Screen_UI>().UpdateBulletsInUI(0);//Edit Later 
         }
 
     }

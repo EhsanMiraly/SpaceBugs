@@ -6,7 +6,7 @@ public class BulletsPool : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
 
     private List<GameObject> bulletsPool;
-    private int maxBulletsInPool = 1;
+    private int maxBulletsInPool = 3;
     private int currentBulletsInPool = 0;
 
     private void Awake()

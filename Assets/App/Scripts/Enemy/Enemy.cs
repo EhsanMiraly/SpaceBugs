@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     bool[] activeDirection = new bool[3] { false, true, false };//0=Left 1=Down 2=Right
 
     public bool IsEnable { get; private set; } = false;
+    public bool CanMove { get; private set; } = false;
 
     private float lastTimeCheckedMovableDirections;
 
@@ -30,7 +31,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (IsEnable)
+        if (CanMove)
         {
             Move();
         }
@@ -218,6 +219,11 @@ public class Enemy : MonoBehaviour
 
     public void StartMoving()
     {
+        if (enemyEventManager == null)
+        {
+            enemyEventManager = FindAnyObjectByType<EnemyEventManager>();
+        }
+
         animator.SetBool("IsDead", false);
         spriteRenderer.sprite = null;
         gameObject.SetActive(true);
@@ -225,21 +231,18 @@ public class Enemy : MonoBehaviour
         enemyData.CurrentHealth = enemyData.MaxHealth;
         GetComponentInChildren<Enemy_UI>().UpdateUI(enemyData.MaxHealth, enemyData.CurrentHealth);
         IsEnable = true;
-
-        if (enemyEventManager == null)
-        {
-            enemyEventManager = GetComponentInParent<EnemyEventManager>();
-        }
+        CanMove = true;
     }
 
     public async void StopMoving()
     {
         enemyEventManager.OnEnemyDied?.Invoke(enemyData);
-        IsEnable = false;
+        CanMove = false;
         enemyBody.SetActive(false);
         animator.SetBool("IsDead", true);
         await Awaitable.WaitForSecondsAsync(0.75f);
         spriteRenderer.sprite = null;
+        IsEnable = false;
         gameObject.SetActive(false);
     }
 

@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    BulletEventManager bulletEventManager;
+
     private Rigidbody2D rb2D;
     private float speed = 10f;
     public bool IsEnable { get; private set; }
+
 
     void OnEnable()
     {
@@ -38,6 +41,12 @@ public class Bullet : MonoBehaviour
 
     public void StartMoving(Vector2 direction)
     {
+        if (bulletEventManager == null)
+        {
+            bulletEventManager = FindAnyObjectByType<BulletEventManager>();
+        }
+
+        bulletEventManager.OnBulletShot?.Invoke();
         gameObject.SetActive(true);
         rb2D.linearVelocity = direction.normalized * speed;
         IsEnable = true;
@@ -45,6 +54,7 @@ public class Bullet : MonoBehaviour
 
     public void StopMoving()
     {
+        bulletEventManager.OnBulletDestroyed?.Invoke();
         IsEnable = false;
         rb2D.linearVelocity = Vector2.zero;
         gameObject.SetActive(false);
