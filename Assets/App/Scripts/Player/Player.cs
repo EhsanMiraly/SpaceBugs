@@ -8,12 +8,6 @@ public class Player : MonoBehaviour
     [SerializeField] BulletsPool bulletsPool;
 
     Vector2 moveDirection;
-    int moveSpeed = 10;
-
-    string currentRotateDirection = "UP";
-    const string left = "Left";
-    const string up = "UP";
-    const string right = "Right";
 
     [SerializeField] GameObject barrel;
     [SerializeField] GameObject pointOfShoot;
@@ -26,7 +20,7 @@ public class Player : MonoBehaviour
 
     void MoveYellowTank()
     {
-        transform.Translate(moveDirection.x * moveSpeed * Time.deltaTime, 0f, 0f);
+        transform.Translate(moveDirection.x * PlayerData.MoveSpeed * Time.deltaTime, 0f, 0f);
         float x = (float)math.clamp(transform.position.x, -11.5, 11.5);
         transform.position = new Vector3(x, transform.position.y, transform.position.z);
     }
@@ -40,33 +34,33 @@ public class Player : MonoBehaviour
     {
         Vector2 rotateDirection = inputValue.Get<Vector2>();
 
-        if (currentRotateDirection == left)
+        if (PlayerData.CurrentRotateDirection == PlayerData.Left)
         {
             if (rotateDirection.x == 1)
             {
                 barrel.transform.Rotate(0f, 0f, -45f);
-                currentRotateDirection = up;
+                PlayerData.CurrentRotateDirection = PlayerData.Up;
             }
         }
-        else if (currentRotateDirection == up)
+        else if (PlayerData.CurrentRotateDirection == PlayerData.Up)
         {
             if (rotateDirection.x == -1)
             {
                 barrel.transform.Rotate(0f, 0f, 45f);
-                currentRotateDirection = left;
+                PlayerData.CurrentRotateDirection = PlayerData.Left;
             }
             else if (rotateDirection.x == 1)
             {
                 barrel.transform.Rotate(0f, 0f, -45f);
-                currentRotateDirection = right;
+                PlayerData.CurrentRotateDirection = PlayerData.Right;
             }
         }
-        else if (currentRotateDirection == right)
+        else if (PlayerData.CurrentRotateDirection == PlayerData.Right)
         {
             if (rotateDirection.x == -1)
             {
                 barrel.transform.Rotate(0f, 0f, 45f);
-                currentRotateDirection = up;
+                PlayerData.CurrentRotateDirection = PlayerData.Up;
             }
         }
     }
@@ -81,7 +75,6 @@ public class Player : MonoBehaviour
             bullet = bulletsPool.GetBullet();
             bullet.transform.position = pointOfShoot.transform.position;
             bullet.transform.rotation = Quaternion.identity;
-            //bullet.transform.parent = pointOfShoot.transform;
 
             bulletMovement = bullet.GetComponent<Bullet>();
         }
@@ -96,17 +89,17 @@ public class Player : MonoBehaviour
         {
             Vector2 direction = Vector2.zero;
 
-            if (currentRotateDirection == left)
+            if (PlayerData.CurrentRotateDirection == PlayerData.Left)
             {
                 direction = new Vector2(-1, 1);
                 bullet.transform.Rotate(0, 0, 135);
             }
-            else if (currentRotateDirection == up)
+            else if (PlayerData.CurrentRotateDirection == PlayerData.Up)
             {
                 direction = new Vector2(0, 1);
                 bullet.transform.Rotate(0, 0, 90);
             }
-            else if (currentRotateDirection == right)
+            else if (PlayerData.CurrentRotateDirection == PlayerData.Right)
             {
                 direction = new Vector2(1, 1);
                 bullet.transform.Rotate(0, 0, 45);

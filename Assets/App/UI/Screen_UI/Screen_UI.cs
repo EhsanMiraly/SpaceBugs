@@ -3,9 +3,6 @@ using UnityEngine.UIElements;
 
 public class Screen_UI : MonoBehaviour
 {
-    [SerializeField] EnemyEventManager enemyEventManager;
-    [SerializeField] BulletEventManager bulletEventManager;
-
     int score = 0;
     int bullets = 3;
 
@@ -17,9 +14,10 @@ public class Screen_UI : MonoBehaviour
 
     private void Awake()
     {
-        enemyEventManager.OnEnemyDied.AddListener(OnUpdateScoreInUI);
-        bulletEventManager.OnBulletDestroyed.AddListener(OnUpdateBulletsInUIPlus);
-        bulletEventManager.OnBulletShot.AddListener(OnUpdateBulletsInUIMinus);
+        EnemyEventManager.OnEnemyDied_Event += OnUpdateScoreInUI;
+        BulletEventManager.OnBulletShot_Event += OnUpdateBulletsInUIMinus;
+        BulletEventManager.OnBulletDestroyed_Event += OnUpdateBulletsInUIPlus;
+
 
 
         uIDocument = GetComponent<UIDocument>();
@@ -32,18 +30,19 @@ public class Screen_UI : MonoBehaviour
         bullets_Label.text = "Bullets: " + bullets;
     }
 
-    public void OnUpdateScoreInUI(EnemyData_SO enemyData_SO)
+
+    public void OnUpdateScoreInUI(object sender, EnemyData_EventArgs e)
     {
-        this.score += enemyData_SO.MaxHealth;
+        this.score += e.EnemyData.MaxHealth;
         score_Label.text = "Score: " + this.score;
     }
 
-    public void OnUpdateBulletsInUIMinus()
+    public void OnUpdateBulletsInUIMinus(object sender, Bullet_EventArgs e)
     {
         bullets--;
         bullets_Label.text = "Bullets: " + this.bullets;
     }
-    public void OnUpdateBulletsInUIPlus()
+    public void OnUpdateBulletsInUIPlus(object sender, Bullet_EventArgs e)
     {
         bullets++;
         bullets_Label.text = "Bullets: " + this.bullets;

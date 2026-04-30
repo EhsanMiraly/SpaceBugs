@@ -1387,21 +1387,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc8b5016131f3cb4381b4f99623902ce, type: 3}
---- !u!4 &1812814172177111036
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8351423099721219185}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1931038405261167930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1425,21 +1410,6 @@ MonoBehaviour:
   m_PivotReferenceSize: 0
   m_Pivot: 0
   m_WorldSpaceCollider: {fileID: 0}
---- !u!114 &5006083803176663853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8351423099721219185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b7483adc91498b4b88b5f5a8f008253, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyEventManager
-  OnEnemyDied:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &5183437863500220134
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,44 +1455,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 771a7df88449b8c43b71180b96233f34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Screen_UI
-  enemyEventManager: {fileID: 5006083803176663853}
-  bulletEventManager: {fileID: 7494715840898252135}
---- !u!114 &7494715840898252135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8351423099721219185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0df8ee3463ff649458a1a2441b8134b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BulletEventManager
-  OnBulletShot:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBulletDestroyed:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!1 &8351423099721219185
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1812814172177111036}
-  - component: {fileID: 7494715840898252135}
-  - component: {fileID: 5006083803176663853}
-  m_Layer: 0
-  m_Name: EventManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1530,6 +1462,5 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 5945713535379718052}
-  - {fileID: 1812814172177111036}
   - {fileID: 277618209}
   - {fileID: 1963713584}

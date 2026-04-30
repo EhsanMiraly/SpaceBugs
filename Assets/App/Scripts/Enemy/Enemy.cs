@@ -4,7 +4,6 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private EnemyData_SO enemyData;
-    EnemyEventManager enemyEventManager;
 
     [SerializeField] private LayerMask layerMask;
     private GameObject enemyBody;
@@ -15,8 +14,8 @@ public class Enemy : MonoBehaviour
     bool[] movableDirections = new bool[3] { true, true, true };//0=Left 1=Down 2=Right
     bool[] activeDirection = new bool[3] { false, true, false };//0=Left 1=Down 2=Right
 
-    public bool IsEnable { get; private set; } = false;
-    public bool CanMove { get; private set; } = false;
+    public bool IsEnable { get; private set; } = false; //For Pool
+    public bool CanMove { get; private set; } = false; //For Here
 
     private float lastTimeCheckedMovableDirections;
 
@@ -206,7 +205,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (IsEnable && other.gameObject.tag == "Bullet")
+        if (CanMove && other.gameObject.tag == "Bullet")
         {
             enemyData.CurrentHealth--;
             GetComponentInChildren<Enemy_UI>().UpdateUI(enemyData.MaxHealth, enemyData.CurrentHealth);
@@ -219,11 +218,6 @@ public class Enemy : MonoBehaviour
 
     public void StartMoving()
     {
-        if (enemyEventManager == null)
-        {
-            enemyEventManager = FindAnyObjectByType<EnemyEventManager>();
-        }
-
         animator.SetBool("IsDead", false);
         spriteRenderer.sprite = null;
         gameObject.SetActive(true);
@@ -236,7 +230,7 @@ public class Enemy : MonoBehaviour
 
     public async void StopMoving()
     {
-        enemyEventManager.OnEnemyDied?.Invoke(enemyData);
+        EnemyEventManager.InvokeOnEnemyDied(this.gameObject, enemyData);
         CanMove = false;
         enemyBody.SetActive(false);
         animator.SetBool("IsDead", true);
