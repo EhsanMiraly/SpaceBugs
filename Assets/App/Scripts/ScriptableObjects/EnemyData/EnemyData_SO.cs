@@ -3,6 +3,18 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EnemyData", menuName = "ScriptableObjects/EnemyData")]
 public class EnemyData_SO : ScriptableObject
 {
+    [Range(1, 100f)]
+    [SerializeField] private int respawnPossibility;
+    public int RespawnPossibility => respawnPossibility;
+
+    [Range(1, 10)]
+    [SerializeField] private int maxInPool;
+    public int MaxInPool => maxInPool;
+
+
+    [SerializeField] private Color color;
+    public Color Color => color;
+
     [Range(0.1f, 1f)]
     [SerializeField] private float size;
     public float Size => size;

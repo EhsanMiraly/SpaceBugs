@@ -1,18 +1,27 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
 public class EnemyGenerator : MonoBehaviour
 {
-    [SerializeField] bool isPlaying = true;
+    private bool isPlaying = true;
 
-    EnemiesPool enemiesPool;
+    [SerializeField] GameObject enemyPrefab;
+    [SerializeField] List<EnemyData_SO> enemysData;
 
-    private int enemyGenerationRate = 5;
+    List<Pool<Enemy>> enemyPoolsList;
+
+    private int enemyGenerationRate = 5; // Later Based On LevelData_SO
 
 
     private void Awake()
     {
-        enemiesPool = GetComponent<EnemiesPool>();
+        enemyPoolsList = new List<Pool<Enemy>>();
+        foreach (EnemyData_SO enemyData in enemysData)
+        {
+            enemyPoolsList.Add(new Pool<Enemy>(enemyPrefab, enemyData.MaxInPool));
+        }
     }
 
     async void Start()
@@ -20,16 +29,43 @@ public class EnemyGenerator : MonoBehaviour
         while (isPlaying)
         {
             await Awaitable.WaitForSecondsAsync(enemyGenerationRate);
-            if (enemiesPool.CanGetEnemy(0))
+            //Add While for Full randomEnemyDataIndex
+            int randomEnemyDataIndex = RandomEnemyDataIndex();
+
+            if (enemyPoolsList[randomEnemyDataIndex].CanGetGameObject())
             {
                 float x = Random.Range(-11f, 11f);
-                GameObject enemy = enemiesPool.GetEnemy(0);
+                GameObject enemy = enemyPoolsList[randomEnemyDataIndex].GetGameObject();
+                enemy.GetComponent<Enemy>().EnemyData = enemysData[randomEnemyDataIndex];
                 enemy.transform.position = transform.position + new Vector3(x, 0f, 0f);
-                //enemy.transform.position += new Vector3(x, 0f, 0f);
                 enemy.transform.rotation = Quaternion.identity;
                 enemy.transform.parent = this.transform;
                 enemy.GetComponent<Enemy>().StartMoving();
             }
         }
     }
+
+    public int RandomEnemyDataIndex()
+    {
+        int totalWeight = 0;
+        foreach (EnemyData_SO enemyData in enemysData)
+        {
+            totalWeight += enemyData.RespawnPossibility;
+        }
+
+        int randomNumber = Random.Range(0, totalWeight);
+
+        int cumulative = 0;
+        for (int i = 0; i < enemysData.Count; i++)
+        {
+            cumulative += enemysData[i].RespawnPossibility;
+            if (randomNumber < cumulative)
+            {
+                return i;
+            }
+        }
+
+        return enemysData.Count - 1;
+    }
+
 }

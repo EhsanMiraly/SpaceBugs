@@ -1,11 +1,11 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IObjectInPool
 {
     private Rigidbody2D rb2D;
     private float speed = 10f;
-    public bool IsEnable { get; private set; }
+    public bool IsEnable { get; set; }
 
 
     void OnEnable()

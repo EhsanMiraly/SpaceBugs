@@ -5,13 +5,20 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] BulletsPool bulletsPool;
+
+    [SerializeField] GameObject bulletPrefab;
+    Pool<Bullet> bulletsPool;
 
     Vector2 moveDirection;
 
     [SerializeField] GameObject barrel;
     [SerializeField] GameObject pointOfShoot;
 
+
+    private void Awake()
+    {
+        bulletsPool = new Pool<Bullet>(bulletPrefab, 3);
+    }
 
     void Update()
     {
@@ -70,9 +77,9 @@ public class Player : MonoBehaviour
         GameObject bullet;
         Bullet bulletMovement;
 
-        if (bulletsPool.CanGetBullet())
+        if (bulletsPool.CanGetGameObject())
         {
-            bullet = bulletsPool.GetBullet();
+            bullet = bulletsPool.GetGameObject();
             bullet.transform.position = pointOfShoot.transform.position;
             bullet.transform.rotation = Quaternion.identity;
 
