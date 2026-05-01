@@ -1,6 +1,22 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/App/UI/USS/Base_StyleSheet.uss?fileID=7433441132597879392&amp;guid=6671879e9ba4b3d41ad17ad19289bdbf&amp;type=3#Base_StyleSheet"/>
-    <ui:VisualElement name="VisualElement" style="width: 100%; height: 100%;">
+    <ui:VisualElement name="Screen" picking-mode="Ignore" class="MatchParent" style="position: absolute;">
+        <ui:VisualElement name="EmptySpace_VisualElement" picking-mode="Ignore" class="EmptySpaceAboveButtons"/>
+        <ui:VisualElement name="ButtonsHolder_VisualElement" picking-mode="Ignore" class="ButtonsHolder" style="justify-content: space-between;">
+            <ui:VisualElement name="MoveButtonsHolder_VisualElement" picking-mode="Ignore" class="MoveButtonsHolder">
+                <ui:VisualElement name="MoveLeft_VisualElement" class="MoveButtons" style="background-image: url(&quot;project://database/Assets/App/UI/Word_UI/UnityDefaultRuntimeTheme.tss?fileID=-1008301579157283121&amp;guid=b45215283c0f92a4aa7c51003cff7f37&amp;type=3#arrow-left@2x&quot;); background-size: 150% 150%;"/>
+                <ui:VisualElement name="MoveRight_VisualElement" class="MoveButtons" style="background-image: url(&quot;project://database/Assets/App/UI/Word_UI/UnityDefaultRuntimeTheme.tss?fileID=-1087164816274819069&amp;guid=b45215283c0f92a4aa7c51003cff7f37&amp;type=3#arrow-right@2x&quot;); background-size: 150% 150%;"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="TurnAndShootButtonsHolder_VisualElement" picking-mode="Ignore" class="TurnAndShootButtonsHolder">
+                <ui:VisualElement name="Shoot_VisualElement" class="ShootButton" style="background-image: url(&quot;project://database/Assets/App/Animations/Dragon%20Warrior%20Files/Effects/particlel.png?fileID=2800000&amp;guid=ca17161ee20736d4282c05c6c94bfd61&amp;type=3#particlel&quot;); background-size: 100% 100%;"/>
+                <ui:VisualElement name="TurnButtonsHolder_VisualElement" picking-mode="Ignore" class="TurnButtonsHolder" style="justify-content: space-between; align-items: flex-end;">
+                    <ui:VisualElement name="TurnLeft_VisualElement" class="TurnButtons" style="background-image: url(&quot;project://database/Assets/App/UI/Word_UI/UnityDefaultRuntimeTheme.tss?fileID=-1008301579157283121&amp;guid=b45215283c0f92a4aa7c51003cff7f37&amp;type=3#arrow-left@2x&quot;); background-size: 150% 150%;"/>
+                    <ui:VisualElement name="TurnRight_VisualElement" class="TurnButtons" style="background-image: url(&quot;project://database/Assets/App/UI/Word_UI/UnityDefaultRuntimeTheme.tss?fileID=-1087164816274819069&amp;guid=b45215283c0f92a4aa7c51003cff7f37&amp;type=3#arrow-right@2x&quot;); background-size: 150% 150%;"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="VisualElement" picking-mode="Ignore" style="width: 100%; height: 100%;">
         <ui:Label text="Score: 999" name="Score_Label" class="Text_StyleSheet" style="width: 10%; height: 10%;"/>
         <ui:Label text="Bullets: 9" name="Bullets_Label" class="Text_StyleSheet" style="width: 10%; height: 10%;"/>
     </ui:VisualElement>

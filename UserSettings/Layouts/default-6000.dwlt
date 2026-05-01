@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 118
+  controlID: 119
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -222,8 +222,8 @@ MonoBehaviour:
     y: 0
     width: 284.80005
     height: 496.8
-  m_MinSize: {x: 202, y: 226}
-  m_MaxSize: {x: 4002, y: 4026}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -275,8 +275,8 @@ MonoBehaviour:
     y: 0
     width: 315.19995
     height: 716.8
-  m_MinSize: {x: 276, y: 76}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
@@ -1412,7 +1412,7 @@ MonoBehaviour:
     m_DynamicPanelBehavior: 0
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 0
+  m_LastSelectedObjectID: 48942
 --- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1549,13 +1549,9 @@ MonoBehaviour:
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -38000
-      - m_Data: -19728
       - m_Data: -1380
       - m_Data: -1364
       - m_Data: -1360
-      - m_Data: 49974
-      - m_Data: 49992
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1630,7 +1626,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/App/Scripts/ScriptableObjects/EnemyData
+    - Assets/App/UI
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1640,27 +1636,28 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/App/Scripts/ScriptableObjects/EnemyData
+  - Assets/App/UI
   m_LastFoldersGridSize: 96
   m_LastProjectPath: D:\UnityProjects\SpaceBugs
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 130}
+    scrollPos: {x: 0, y: 210}
     m_SelectedIDs:
-    - m_Data: 50624
+    - m_Data: 50598
     m_LastClickedID:
-      m_Data: 50624
+      m_Data: 50598
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 50276
-    - m_Data: 50568
-    - m_Data: 50574
-    - m_Data: 50576
-    - m_Data: 50584
-    - m_Data: 50588
+    - m_Data: 50286
+    - m_Data: 50288
+    - m_Data: 50290
     - m_Data: 50590
+    - m_Data: 50596
+    - m_Data: 50598
+    - m_Data: 52790
+    - m_Data: 53474
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1694,7 +1691,9 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 50276
+    - m_Data: 50286
+    - m_Data: 50288
+    - m_Data: 50290
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

@@ -211,8 +211,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3395188375514951766}
-  - component: {fileID: 9046765697738742087}
-  - component: {fileID: 4411655381776358899}
+  - component: {fileID: 940398318437378928}
   m_Layer: 0
   m_Name: YellowTank
   m_TagString: Player
@@ -237,7 +236,7 @@ Transform:
   - {fileID: 4764389804042975292}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9046765697738742087
+--- !u!114 &940398318437378928
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -246,42 +245,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7303307742906770803}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 639b03fc095f4244caa25d1aac1bb474, type: 3}
+  m_Script: {fileID: 11500000, guid: 58939e46c92897b44858790f92a0f198, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController_FromUI
   bulletPrefab: {fileID: 4823997178080694358, guid: 726e53a9ec76e034b856d6af639876ff, type: 3}
   barrel: {fileID: 3606790528678123899}
   pointOfShoot: {fileID: 1907877261679352620}
---- !u!114 &4411655381776358899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7303307742906770803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: 032f72f0dcb94f747bfa91de152bd47b, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1 &7786336828283219308
 GameObject:
   m_ObjectHideFlags: 0
