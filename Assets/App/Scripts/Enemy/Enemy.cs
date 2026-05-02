@@ -17,9 +17,8 @@ public class Enemy : MonoBehaviour, IObjectInPool
     bool[] movableDirections = new bool[3] { true, true, true };//0=Left 1=Down 2=Right
     bool[] activeDirection = new bool[3] { false, true, false };//0=Left 1=Down 2=Right
 
-    //public bool IsEnable { get; private set; } = false; //For Pool
     public bool CanMove { get; private set; } = false; //For Here
-    public bool IsEnable { get; set; }
+    public bool IsEnable { get; set; } //For Pool
 
     private float lastTimeCheckedMovableDirections;
 
@@ -210,15 +209,26 @@ public class Enemy : MonoBehaviour, IObjectInPool
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (CanMove && other.gameObject.tag == "Bullet")
+        if (CanMove)
         {
-            EnemyData.CurrentHealth--;
-            enemyEventManager.InvokeOnEnemyGotHit(this.gameObject, EnemyData);
-            if (EnemyData.CurrentHealth <= 0)
+            if (other.gameObject.tag == "Bullet")
             {
+                EnemyData.CurrentHealth--;
+                enemyEventManager.InvokeOnEnemyGotHit(this.gameObject, EnemyData);
+                if (EnemyData.CurrentHealth <= 0)
+                {
+                    EnemyEventManager.InvokeOnEnemyDied(this.gameObject, EnemyData);
+                    StopMoving();
+                }
+            }
+            else if (other.gameObject.tag == "EndOfLine")
+            {
+                PlayerData.CurrentHealth -= EnemyData.CurrentHealth;
+                EnemyEventManager.InvokeOnEnemyPassedLine(this.gameObject, EnemyData);
                 StopMoving();
             }
         }
+
     }
 
     public void StartMoving()
@@ -242,7 +252,6 @@ public class Enemy : MonoBehaviour, IObjectInPool
 
     public async void StopMoving()
     {
-        EnemyEventManager.InvokeOnEnemyDied(this.gameObject, EnemyData);
         CanMove = false;
         enemyBody.SetActive(false);
         animator.SetBool("IsDead", true);
@@ -251,6 +260,5 @@ public class Enemy : MonoBehaviour, IObjectInPool
         IsEnable = false;
         gameObject.SetActive(false);
     }
-
 
 }

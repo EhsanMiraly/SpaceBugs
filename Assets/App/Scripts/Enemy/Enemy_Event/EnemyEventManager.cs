@@ -16,5 +16,11 @@ public class EnemyEventManager
         OnEnemyDied_Event?.Invoke(sender, new EnemyData_EventArgs(enemyData));
     }
 
+    public static event EventHandler<EnemyData_EventArgs> OnEnemyPassedLine_Event;
+    public static void InvokeOnEnemyPassedLine(GameObject sender, EnemyData_SO enemyData)
+    {
+        OnEnemyPassedLine_Event?.Invoke(sender, new EnemyData_EventArgs(enemyData));
+    }
+
 }
 

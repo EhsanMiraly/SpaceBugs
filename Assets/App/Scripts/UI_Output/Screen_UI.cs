@@ -4,9 +4,6 @@ using UnityEngine.UIElements;
 
 public class Screen_UI : MonoBehaviour
 {
-    int score = 0;
-    int bullets = 3;
-
     UIDocument uIDocument;
     VisualElement root;
 
@@ -19,9 +16,10 @@ public class Screen_UI : MonoBehaviour
     private void Awake()
     {
         EnemyEventManager.OnEnemyDied_Event += OnUpdateScoreInUI;
+        EnemyEventManager.OnEnemyPassedLine_Event += OnUpdatePlayerHealthInUI;
+
         BulletEventManager.OnBulletShot_Event += OnUpdateBulletsInUIMinus;
         BulletEventManager.OnBulletDestroyed_Event += OnUpdateBulletsInUIPlus;
-
 
 
         uIDocument = GetComponent<UIDocument>();
@@ -32,43 +30,47 @@ public class Screen_UI : MonoBehaviour
         score_Label = root.Q<Label>("Score_Label");
         bullets_Label = root.Q<Label>("Bullets_Label");
 
+        InitialPlayerHealthUI();
 
-        score_Label.text = "Score: " + score;
-        bullets_Label.text = "Bullets: " + bullets;
+        score_Label.text = "Score: " + PlayerData.Score;
+        bullets_Label.text = "Bullets: " + PlayerData.CurrentBullets;
     }
 
-    private void Start()
+    public void InitialPlayerHealthUI()
     {
-        Debug.Log(playerHealthBackground_VisualElement.style.width.value.value);
-        OnUpdatePlayerHealthInUI(this, new EventArgs());//Delete Later
+        int x = (Screen.width / 100) * 20;
+        int y = (Screen.height / 100) * 5;
+
+        playerHealthBackground_VisualElement.style.width = x;
+        playerHealthBackground_VisualElement.style.height = y;
+
+        playerHealthForeground_VisualElement.style.width = x;
+        playerHealthForeground_VisualElement.style.height = y;
+    }
+
+    public void OnUpdatePlayerHealthInUI(object sender, EnemyData_EventArgs e)
+    {
+        int x = (int)((playerHealthBackground_VisualElement.style.width.value.value / PlayerData.MaxHealth)
+                    * PlayerData.CurrentHealth);
+        playerHealthForeground_VisualElement.style.width = x;
     }
 
 
     public void OnUpdateScoreInUI(object sender, EnemyData_EventArgs e)
     {
-        this.score += e.EnemyData.MaxHealth;
-        score_Label.text = "Score: " + this.score;
+        PlayerData.Score += e.EnemyData.MaxHealth;
+        score_Label.text = "Score: " + PlayerData.Score;
     }
 
     public void OnUpdateBulletsInUIMinus(object sender, Bullet_EventArgs e)
     {
-        bullets--;
-        bullets_Label.text = "Bullets: " + this.bullets;
+        PlayerData.CurrentBullets--;
+        bullets_Label.text = "Bullets: " + PlayerData.CurrentBullets;
     }
     public void OnUpdateBulletsInUIPlus(object sender, Bullet_EventArgs e)
     {
-        bullets++;
-        bullets_Label.text = "Bullets: " + this.bullets;
-    }
-
-    public void OnUpdatePlayerHealthInUI(object sender, EventArgs e)//PlayerData_EventArgs
-    {
-        int maxHealth = 10;//Delete Later
-        int currentHealth = 8;//Delete Later
-        Debug.Log(playerHealthBackground_VisualElement.style.width);
-        int x = (int)(playerHealthBackground_VisualElement.style.width.value.value / maxHealth) * currentHealth;
-        Debug.Log(x);
-        playerHealthForeground_VisualElement.style.width = x;
+        PlayerData.CurrentBullets++;
+        bullets_Label.text = "Bullets: " + PlayerData.CurrentBullets;
     }
 
 }
