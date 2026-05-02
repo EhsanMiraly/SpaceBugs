@@ -4,20 +4,23 @@
         <ui:VisualElement name="EmptySpace_VisualElement" picking-mode="Ignore" class="EmptySpaceAboveButtons"/>
         <ui:VisualElement name="ButtonsHolder_VisualElement" picking-mode="Ignore" class="ButtonsHolder" style="justify-content: space-between;">
             <ui:VisualElement name="MoveButtonsHolder_VisualElement" picking-mode="Ignore" class="MoveButtonsHolder">
-                <ui:VisualElement name="MoveLeft_VisualElement" class="MoveButtons" style="background-image: url(&quot;project://database/Assets/App/UI/Word_UI/UnityDefaultRuntimeTheme.tss?fileID=-1008301579157283121&amp;guid=b45215283c0f92a4aa7c51003cff7f37&amp;type=3#arrow-left@2x&quot;); background-size: 150% 150%;"/>
-                <ui:VisualElement name="MoveRight_VisualElement" class="MoveButtons" style="background-image: url(&quot;project://database/Assets/App/UI/Word_UI/UnityDefaultRuntimeTheme.tss?fileID=-1087164816274819069&amp;guid=b45215283c0f92a4aa7c51003cff7f37&amp;type=3#arrow-right@2x&quot;); background-size: 150% 150%;"/>
+                <ui:VisualElement name="MoveLeft_VisualElement" class="MoveButtons" style="background-image: url(&quot;project://database/Assets/App/Icons/Picto_Icons/White/White_Right_256.png?fileID=2800000&amp;guid=c89ce4d258808884a995ba1fb6f15b1b&amp;type=3#White_Right_256&quot;); scale: -1 1;"/>
+                <ui:VisualElement name="MoveRight_VisualElement" class="MoveButtons" style="background-image: url(&quot;project://database/Assets/App/Icons/Picto_Icons/White/White_Right_256.png?fileID=2800000&amp;guid=c89ce4d258808884a995ba1fb6f15b1b&amp;type=3#White_Right_256&quot;);"/>
             </ui:VisualElement>
             <ui:VisualElement name="TurnAndShootButtonsHolder_VisualElement" picking-mode="Ignore" class="TurnAndShootButtonsHolder">
-                <ui:VisualElement name="Shoot_VisualElement" class="ShootButton" style="background-image: url(&quot;project://database/Assets/App/Animations/Dragon%20Warrior%20Files/Effects/particlel.png?fileID=2800000&amp;guid=ca17161ee20736d4282c05c6c94bfd61&amp;type=3#particlel&quot;); background-size: 100% 100%;"/>
-                <ui:VisualElement name="TurnButtonsHolder_VisualElement" picking-mode="Ignore" class="TurnButtonsHolder" style="justify-content: space-between; align-items: flex-end;">
-                    <ui:VisualElement name="TurnLeft_VisualElement" class="TurnButtons" style="background-image: url(&quot;project://database/Assets/App/UI/Word_UI/UnityDefaultRuntimeTheme.tss?fileID=-1008301579157283121&amp;guid=b45215283c0f92a4aa7c51003cff7f37&amp;type=3#arrow-left@2x&quot;); background-size: 150% 150%;"/>
-                    <ui:VisualElement name="TurnRight_VisualElement" class="TurnButtons" style="background-image: url(&quot;project://database/Assets/App/UI/Word_UI/UnityDefaultRuntimeTheme.tss?fileID=-1087164816274819069&amp;guid=b45215283c0f92a4aa7c51003cff7f37&amp;type=3#arrow-right@2x&quot;); background-size: 150% 150%;"/>
+                <ui:VisualElement name="Shoot_VisualElement" class="ShootButton" style="background-image: url(&quot;project://database/Assets/App/Icons/Picto_Icons/White/Bullet_256.png?fileID=2800000&amp;guid=543cb2a9d84026d4dbd1f7f9add54329&amp;type=3#Bullet_256&quot;);"/>
+                <ui:VisualElement name="TurnButtonsHolder_VisualElement" picking-mode="Ignore" class="TurnButtonsHolder">
+                    <ui:VisualElement name="TurnLeft_VisualElement" class="TurnButtons" style="background-image: url(&quot;project://database/Assets/App/Icons/Picto_Icons/White/Turn_Left_256.png?fileID=2800000&amp;guid=3474c432d17e3b246963711a723beeed&amp;type=3#Turn_Left_256&quot;);"/>
+                    <ui:VisualElement name="TurnRight_VisualElement" class="TurnButtons" style="background-image: url(&quot;project://database/Assets/App/Icons/Picto_Icons/White/Turn_Left_256.png?fileID=2800000&amp;guid=3474c432d17e3b246963711a723beeed&amp;type=3#Turn_Left_256&quot;); scale: -1 1;"/>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement name="VisualElement" picking-mode="Ignore" style="width: 100%; height: 100%;">
-        <ui:Label text="Score: 999" name="Score_Label" class="Text_StyleSheet" style="width: 10%; height: 10%;"/>
-        <ui:Label text="Bullets: 9" name="Bullets_Label" class="Text_StyleSheet" style="width: 10%; height: 10%;"/>
+    <ui:VisualElement name="VisualElement" picking-mode="Ignore" class="MatchParent" style="position: absolute;">
+        <ui:VisualElement name="PlayerHealthBackground_VisualElement" style="width: 30%; height: 5%; background-color: rgb(255, 0, 0); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px;">
+            <ui:VisualElement name="PlayerHealthForeground_VisualElement" class="MatchParent" style="background-color: rgb(0, 255, 39); width: 50%; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px;"/>
+        </ui:VisualElement>
+        <ui:Label text="Score: 999" name="Score_Label" class="Text_StyleSheet" style="width: 10%; height: 5%;"/>
+        <ui:Label text="Bullets: 9" name="Bullets_Label" class="Text_StyleSheet" style="width: 10%; height: 5%;"/>
     </ui:VisualElement>
 </ui:UXML>
