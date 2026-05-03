@@ -1,9 +1,12 @@
 using System;
 using Unity.Mathematics;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class Player_Controller : MonoBehaviour
 {
+    Animator animator;
+
     [SerializeField] GameObject bulletPrefab;
     Pool<Bullet> bulletsPool;
 
@@ -15,6 +18,8 @@ public class Player_Controller : MonoBehaviour
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
+
         UI_Input_EventManager.OnMove_Event += OnMove;
         UI_Input_EventManager.OnRotate_Event += OnRotate;
         UI_Input_EventManager.OnFire_Event += OnFire;
@@ -38,6 +43,23 @@ public class Player_Controller : MonoBehaviour
     public void OnMove(object o, PlayerMoveInput_EventArgs e)
     {
         moveDirection = e.MoveDirection;
+
+        if (moveDirection == -1)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+            SetAnimation("WalkingLeft");
+        }
+        else if (moveDirection == 1)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+            SetAnimation("WalkingLeft");
+        }
+        else
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+            SetAnimation("Up");
+        }
+
     }
 
     public void OnRotate(object o, PlayerRotateInput_EventArgs e)
@@ -52,11 +74,13 @@ public class Player_Controller : MonoBehaviour
             {
                 barrel.transform.Rotate(0f, 0f, 45f);
                 PlayerData.CurrentRotateDirection = PlayerData.Left;
+                SetAnimation("Left");
             }
             else if (PlayerData.CurrentRotateDirection == PlayerData.Right)
             {
                 barrel.transform.Rotate(0f, 0f, 45f);
                 PlayerData.CurrentRotateDirection = PlayerData.Up;
+                SetAnimation("Up");
             }
         }
         else if (e.RotateDirection == PlayerData.Right)
@@ -65,11 +89,13 @@ public class Player_Controller : MonoBehaviour
             {
                 barrel.transform.Rotate(0f, 0f, -45f);
                 PlayerData.CurrentRotateDirection = PlayerData.Up;
+                SetAnimation("Up");
             }
             else if (PlayerData.CurrentRotateDirection == PlayerData.Up)
             {
                 barrel.transform.Rotate(0f, 0f, -45f);
                 PlayerData.CurrentRotateDirection = PlayerData.Right;
+                SetAnimation("Right");
             }
             else if (PlayerData.CurrentRotateDirection == PlayerData.Right)
             {
@@ -116,5 +142,18 @@ public class Player_Controller : MonoBehaviour
         }
 
         bulletMovement.StartMoving(direction);
+    }
+
+    public void SetAnimation(string animation)
+    {
+        //Deactive All
+        animator.SetBool("Up", false);
+        animator.SetBool("Right", false);
+        animator.SetBool("Left", false);
+        animator.SetBool("WalkingLeft", false);
+        animator.SetBool("WalkingRight", false);
+
+        //Active This
+        animator.SetBool(animation, true);
     }
 }
