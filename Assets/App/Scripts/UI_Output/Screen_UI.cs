@@ -48,15 +48,21 @@ public class Screen_UI : MonoBehaviour
         playerHealthBackground_VisualElement.style.width = x;
         playerHealthBackground_VisualElement.style.height = y;
 
-        playerHealthForeground_VisualElement.style.width = x;
-        playerHealthForeground_VisualElement.style.height = y;
+        playerHealthForeground_VisualElement.style.width = Length.Percent(100);
+        playerHealthForeground_VisualElement.style.height = Length.Percent(100);
     }
 
     public void OnUpdatePlayerHealthInUI(object sender, EnemyData_EventArgs e)
     {
-        int x = (int)((playerHealthBackground_VisualElement.style.width.value.value / PlayerData.MaxHealth)
+        /*
+        //Got Simpler in one Line
+        float x = ((playerHealthBackground_VisualElement.style.width.value.value / PlayerData.MaxHealth)
                     * PlayerData.CurrentHealth);
-        playerHealthForeground_VisualElement.style.width = x;
+        x = (x / playerHealthBackground_VisualElement.style.width.value.value) * 100;
+        */
+        float x = (100 * PlayerData.CurrentHealth) / PlayerData.MaxHealth;
+
+        playerHealthForeground_VisualElement.style.width = Length.Percent(x);
     }
 
 

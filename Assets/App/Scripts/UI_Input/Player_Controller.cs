@@ -14,6 +14,7 @@ public class Player_Controller : MonoBehaviour
 
     [SerializeField] GameObject barrel;
     [SerializeField] GameObject pointOfShoot;
+    Sprite spriteFire;
 
 
     private void Awake()
@@ -26,6 +27,9 @@ public class Player_Controller : MonoBehaviour
 
 
         bulletsPool = new Pool<Bullet>(bulletPrefab, PlayerData.MaxBullets);
+
+        spriteFire = pointOfShoot.GetComponent<SpriteRenderer>().sprite;
+        pointOfShoot.GetComponent<SpriteRenderer>().sprite = null;
     }
 
     void Update()
@@ -113,7 +117,7 @@ public class Player_Controller : MonoBehaviour
 
     }
 
-    public void OnFire(object o, EventArgs e)
+    public async void OnFire(object o, EventArgs e)
     {
         GameObject bullet;
         Bullet bulletMovement;
@@ -150,6 +154,10 @@ public class Player_Controller : MonoBehaviour
         }
 
         bulletMovement.StartMoving(direction);
+
+        pointOfShoot.GetComponent<SpriteRenderer>().sprite = spriteFire;
+        await Awaitable.WaitForSecondsAsync(0.1f);
+        pointOfShoot.GetComponent<SpriteRenderer>().sprite = null;
     }
 
     public void SetAnimation(string animation)
