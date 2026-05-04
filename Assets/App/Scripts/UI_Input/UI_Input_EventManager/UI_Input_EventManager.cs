@@ -21,4 +21,10 @@ public class UI_Input_EventManager
         OnFire_Event?.Invoke(o, e);
     }
 
+    public static event EventHandler<PlayerFireInput_EventArgs> OnCanFire_Event;
+    public static void InvokeOnCanFire(object o, PlayerFireInput_EventArgs e)
+    {
+        OnCanFire_Event?.Invoke(o, e);
+    }
+
 }

@@ -18,10 +18,17 @@ public class UI_Input_Controller : MonoBehaviour
     VisualElement shoot_VisualElement;
 
 
+
     private void Awake()
     {
+        UI_Input_EventManager.OnCanFire_Event += SetShoot_VisualElement;
         ConnectUI();
         RegisterEventsOnUI();
+    }
+
+    public void SetShoot_VisualElement(object o, PlayerFireInput_EventArgs e)
+    {
+        shoot_VisualElement.SetEnabled(e.Fire);
     }
 
     public void ConnectUI()
@@ -40,26 +47,67 @@ public class UI_Input_Controller : MonoBehaviour
 
     public void RegisterEventsOnUI()
     {
-        //Move
+        #region Moving Left
+
         moveLeft_VisualElement.RegisterCallback<PointerDownEvent>(evt =>
         {
             UI_Input_EventManager.InvokeOnMove(this, new PlayerMoveInput_EventArgs(-1));
+            shoot_VisualElement.SetEnabled(false);
+            SetTurnState(false);
+        });
+
+        moveLeft_VisualElement.RegisterCallback<PointerLeaveEvent>(evt =>
+        {
+            UI_Input_EventManager.InvokeOnMove(this, new PlayerMoveInput_EventArgs(0));
+            if (PlayerData.CurrentBullets > 0)
+            {
+                shoot_VisualElement.SetEnabled(true);
+            }
+            SetTurnState(true);
         });
 
         moveLeft_VisualElement.RegisterCallback<PointerUpEvent>(evt =>
         {
             UI_Input_EventManager.InvokeOnMove(this, new PlayerMoveInput_EventArgs(0));
+            if (PlayerData.CurrentBullets > 0)
+            {
+                shoot_VisualElement.SetEnabled(true);
+            }
+            SetTurnState(true);
         });
+
+        #endregion
+
+        #region Moving Right
 
         moveRight_VisualElement.RegisterCallback<PointerDownEvent>(vt =>
         {
             UI_Input_EventManager.InvokeOnMove(this, new PlayerMoveInput_EventArgs(1));
+            shoot_VisualElement.SetEnabled(false);
+            SetTurnState(false);
+        });
+
+        moveRight_VisualElement.RegisterCallback<PointerLeaveEvent>(vt =>
+        {
+            UI_Input_EventManager.InvokeOnMove(this, new PlayerMoveInput_EventArgs(0));
+            if (PlayerData.CurrentBullets > 0)
+            {
+                shoot_VisualElement.SetEnabled(true);
+            }
+            SetTurnState(true);
         });
 
         moveRight_VisualElement.RegisterCallback<PointerUpEvent>(vt =>
         {
             UI_Input_EventManager.InvokeOnMove(this, new PlayerMoveInput_EventArgs(0));
+            if (PlayerData.CurrentBullets > 0)
+            {
+                shoot_VisualElement.SetEnabled(true);
+            }
+            SetTurnState(true);
         });
+
+        #endregion
 
         //Turn
         turnLeft_VisualElement.RegisterCallback<ClickEvent>(evt =>
@@ -78,6 +126,13 @@ public class UI_Input_Controller : MonoBehaviour
             UI_Input_EventManager.InvokeOnFire(this, new PlayerFireInput_EventArgs(true));
         });
 
+    }
+
+
+    private void SetTurnState(bool state)
+    {
+        turnLeft_VisualElement.SetEnabled(state);
+        turnRight_VisualElement.SetEnabled(state);
     }
 
 }

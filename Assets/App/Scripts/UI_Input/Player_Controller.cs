@@ -25,7 +25,7 @@ public class Player_Controller : MonoBehaviour
         UI_Input_EventManager.OnFire_Event += OnFire;
 
 
-        bulletsPool = new Pool<Bullet>(bulletPrefab, 3);
+        bulletsPool = new Pool<Bullet>(bulletPrefab, PlayerData.MaxBullets);
     }
 
     void Update()
@@ -46,18 +46,26 @@ public class Player_Controller : MonoBehaviour
 
         if (moveDirection == -1)
         {
-            transform.localScale = new Vector3(1, 1, 1);
             SetAnimation("WalkingLeft");
         }
         else if (moveDirection == 1)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
-            SetAnimation("WalkingLeft");
+            SetAnimation("WalkingRight");
         }
         else
         {
-            transform.localScale = new Vector3(1, 1, 1);
-            SetAnimation("Up");
+            if (PlayerData.CurrentRotateDirection == PlayerData.Left)
+            {
+                SetAnimation("Left");
+            }
+            else if (PlayerData.CurrentRotateDirection == PlayerData.Up)
+            {
+                SetAnimation("Up");
+            }
+            else if (PlayerData.CurrentRotateDirection == PlayerData.Right)
+            {
+                SetAnimation("Right");
+            }
         }
 
     }

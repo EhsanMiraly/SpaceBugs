@@ -40,7 +40,6 @@ public class Bullet : MonoBehaviour, IObjectInPool
 
     public void StartMoving(Vector2 direction)
     {
-        BulletEventManager.InvokeOnBulletShot(this.gameObject, true);
         gameObject.SetActive(true);
         rb2D.linearVelocity = direction.normalized * speed;
         IsEnable = true;

@@ -13,12 +13,16 @@ public class Screen_UI : MonoBehaviour
     Label score_Label;
     Label bullets_Label;
 
+    private int movingState;
+
     private void Awake()
     {
+        UI_Input_EventManager.OnMove_Event += OnMoveState;
+
         EnemyEventManager.OnEnemyDied_Event += OnUpdateScoreInUI;
         EnemyEventManager.OnEnemyPassedLine_Event += OnUpdatePlayerHealthInUI;
 
-        BulletEventManager.OnBulletShot_Event += OnUpdateBulletsInUIMinus;
+        UI_Input_EventManager.OnFire_Event += OnUpdateBulletsInUIMinus;
         BulletEventManager.OnBulletDestroyed_Event += OnUpdateBulletsInUIPlus;
 
 
@@ -62,15 +66,32 @@ public class Screen_UI : MonoBehaviour
         score_Label.text = "Score: " + PlayerData.Score;
     }
 
-    public void OnUpdateBulletsInUIMinus(object sender, Bullet_EventArgs e)
+    public void OnUpdateBulletsInUIMinus(object sender, PlayerFireInput_EventArgs e)
     {
         PlayerData.CurrentBullets--;
         bullets_Label.text = "Bullets: " + PlayerData.CurrentBullets;
+
+        if (PlayerData.CurrentBullets <= 0)
+        {
+            UI_Input_EventManager.InvokeOnCanFire(this, new PlayerFireInput_EventArgs(false));
+        }
     }
     public void OnUpdateBulletsInUIPlus(object sender, Bullet_EventArgs e)
     {
         PlayerData.CurrentBullets++;
         bullets_Label.text = "Bullets: " + PlayerData.CurrentBullets;
+
+        if (PlayerData.CurrentBullets > 0 && movingState == 0)
+        {
+            UI_Input_EventManager.InvokeOnCanFire(this, new PlayerFireInput_EventArgs(true));
+        }
+    }
+
+
+
+    public void OnMoveState(object o, PlayerMoveInput_EventArgs e)
+    {
+        movingState = e.MoveDirection;
     }
 
 }
