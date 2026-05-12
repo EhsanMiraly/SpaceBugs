@@ -1,38 +1,22 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/App/UI/USS/General_StyleSheet.uss?fileID=7433441132597879392&amp;guid=d603ac97df9052843a91e1762731bdc9&amp;type=3#General_StyleSheet"/>
     <Style src="project://database/Assets/App/UI/USS/ScrollView_StyleSheet.uss?fileID=7433441132597879392&amp;guid=06c512750cdfe9045b5851b1e3c773ab&amp;type=3#ScrollView_StyleSheet"/>
+    <Style src="project://database/Assets/App/UI/USS/Base_StyleSheet.uss?fileID=7433441132597879392&amp;guid=6671879e9ba4b3d41ad17ad19289bdbf&amp;type=3#Base_StyleSheet"/>
+    <Style src="project://database/Assets/App/UI/USS/Level_Template_StyleSheet.uss?fileID=7433441132597879392&amp;guid=e6a3013f070eb9f45aa132dbfc282944&amp;type=3#Level_Template_StyleSheet"/>
     <ui:VisualElement name="Menu_VisualElement" class="Menu" style="border-top-left-radius: 32px; border-top-right-radius: 32px; border-bottom-right-radius: 32px; border-bottom-left-radius: 32px; border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; border-left-color: rgb(0, 0, 255); border-right-color: rgb(0, 0, 255); border-top-color: rgb(0, 0, 255); border-bottom-color: rgb(0, 0, 255);"/>
-    <ui:VisualElement name="PageHolder_VisualElement" picking-mode="Ignore" class="MatchParent PageBackground" style="position: absolute; display: flex;">
-        <ui:VisualElement name="MainPage_VisualElement" picking-mode="Ignore" class="MatchParent" style="position: absolute; display: none;">
+    <ui:VisualElement name="PageHolder_VisualElement" class="MatchParent PageBackground" style="position: absolute; display: none;">
+        <ui:VisualElement name="MainPage_VisualElement" class="MatchParent" style="position: absolute; display: none;">
             <ui:VisualElement name="ButtonsHolder_VisualElement" picking-mode="Ignore" class="MainPageButtonsHolder" style="border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-bottom-left-radius: 0;">
+                <ui:Button text="Resume" name="Resume_Button" class="MainPageButtons"/>
                 <ui:Button text="Levels" name="Levels_Button" class="MainPageButtons"/>
                 <ui:Button text="Settings" name="Settings_Button" class="MainPageButtons"/>
                 <ui:Button text="Exit" name="Exit_Button" class="MainPageButtons"/>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="LevelsPage_VisualElement" picking-mode="Ignore" class="MatchParent" style="position: absolute;">
-            <ui:VisualElement name="LevelsHolder_VisualElement" picking-mode="Ignore" class="MatchParent LevelsHolder" style="position: absolute;">
-                <ui:VisualElement style="background-color: rgb(255, 0, 0); width: 200px; height: 200px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;"/>
-                <ui:VisualElement style="background-color: rgb(255, 0, 0); width: 200px; height: 200px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;"/>
-                <ui:VisualElement style="background-color: rgb(255, 0, 0); width: 200px; height: 200px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;"/>
-                <ui:VisualElement style="background-color: rgb(255, 0, 0); width: 200px; height: 200px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;"/>
-                <ui:VisualElement style="background-color: rgb(255, 0, 0); width: 200px; height: 200px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;"/>
-                <ui:VisualElement style="background-color: rgb(255, 0, 0); width: 200px; height: 200px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;"/>
-                <ui:VisualElement style="background-color: rgb(255, 0, 0); width: 200px; height: 200px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;"/>
-                <ui:VisualElement style="background-color: rgb(255, 0, 0); width: 200px; height: 200px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;"/>
-                <ui:VisualElement style="background-color: rgb(255, 0, 0); width: 200px; height: 200px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;"/>
-                <ui:VisualElement style="background-color: rgb(255, 0, 0); width: 200px; height: 200px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;"/>
-                <ui:VisualElement style="background-color: rgb(255, 0, 0); width: 200px; height: 200px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;"/>
-                <ui:VisualElement style="background-color: rgb(255, 0, 0); width: 200px; height: 200px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;"/>
-                <ui:VisualElement style="background-color: rgb(255, 0, 0); width: 200px; height: 200px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;"/>
-                <ui:VisualElement style="background-color: rgb(255, 0, 0); width: 200px; height: 200px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;"/>
-                <ui:VisualElement style="background-color: rgb(255, 0, 0); width: 200px; height: 200px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;"/>
-                <ui:VisualElement style="background-color: rgb(255, 0, 0); width: 200px; height: 200px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;"/>
-                <ui:VisualElement style="background-color: rgb(255, 0, 0); width: 200px; height: 200px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;"/>
-                <ui:VisualElement style="background-color: rgb(255, 0, 0); width: 200px; height: 200px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;"/>
-            </ui:VisualElement>
+        <ui:VisualElement name="LevelsPage_VisualElement" class="MatchParent" style="position: absolute; display: none;">
+            <ui:VisualElement name="LevelsHolder_VisualElement" picking-mode="Ignore" class="MatchParent LevelsHolder" style="position: absolute;"/>
         </ui:VisualElement>
-        <ui:VisualElement name="SettingsPage_VisualElement" picking-mode="Ignore" class="MatchParent" style="position: absolute; display: none;">
+        <ui:VisualElement name="SettingsPage_VisualElement" class="MatchParent" style="position: absolute; display: none;">
             <ui:VisualElement name="Settings_VisualElement" class="MatchParent">
                 <ui:ScrollView name="Settings_ScrollView" style="display: none;">
                     <ui:VisualElement style="width: 132px; height: 123px; background-color: rgb(255, 255, 255);"/>

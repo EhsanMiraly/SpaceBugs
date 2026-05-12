@@ -1,9 +1,9 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EnemyData", menuName = "ScriptableObjects/EnemyData")]
+[CreateAssetMenu(fileName = "EnemyData_00", menuName = "ScriptableObjects/EnemyData")]
 public class EnemyData_SO : ScriptableObject
 {
-    [Range(1, 100f)]
+    [Range(1, 100)]
     [SerializeField] private int respawnPossibility;
     public int RespawnPossibility => respawnPossibility;
 

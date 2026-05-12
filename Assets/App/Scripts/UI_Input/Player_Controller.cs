@@ -19,14 +19,53 @@ public class Player_Controller : MonoBehaviour
 
     private void Awake()
     {
+        //Time.timeScale = 0f;
+
         animator = GetComponent<Animator>();
+
+        bulletsPool = new Pool<Bullet>(bulletPrefab, PlayerData.MaxBullets);
 
         UI_Input_EventManager.OnMove_Event += OnMove;
         UI_Input_EventManager.OnRotate_Event += OnRotate;
         UI_Input_EventManager.OnFire_Event += OnFire;
 
+        GameState_EventManager.OnStartLevel_Event +=
+            (object g, GameState_EventArgs gameState_EventArgs) =>
+            {
+                PlayerData.IsPlaying = gameState_EventArgs.IsPlaying;
+                PlayerData.IsPaused = gameState_EventArgs.IsPaused;
+                PlayerData.CurrentLevelNumber = gameState_EventArgs.LevelNumber;
+                PlayerData.CurrentLevelID = gameState_EventArgs.LevelID;
+            };
 
-        bulletsPool = new Pool<Bullet>(bulletPrefab, PlayerData.MaxBullets);
+        GameState_EventManager.OnPauseLevel_Event +=
+            (object g, GameState_EventArgs gameState_EventArgs) =>
+            {
+                PlayerData.IsPlaying = gameState_EventArgs.IsPlaying;
+                PlayerData.IsPaused = gameState_EventArgs.IsPaused;
+                PlayerData.CurrentLevelNumber = gameState_EventArgs.LevelNumber;
+                //PlayerData.CurrentLevelID = gameState_EventArgs.LevelID;
+            };
+
+        GameState_EventManager.OnResumeLevel_Event +=
+            (object g, GameState_EventArgs gameState_EventArgs) =>
+            {
+                PlayerData.IsPlaying = gameState_EventArgs.IsPlaying;
+                PlayerData.IsPaused = gameState_EventArgs.IsPaused;
+                PlayerData.CurrentLevelNumber = gameState_EventArgs.LevelNumber;
+                //PlayerData.CurrentLevelID = gameState_EventArgs.LevelID;
+            };
+
+        GameState_EventManager.OnStopLevel_Event +=
+            (object g, GameState_EventArgs gameState_EventArgs) =>
+            {
+                PlayerData.IsPlaying = gameState_EventArgs.IsPlaying;
+                PlayerData.IsPaused = gameState_EventArgs.IsPaused;
+                PlayerData.CurrentLevelNumber = gameState_EventArgs.LevelNumber;
+                PlayerData.CurrentLevelID = "";
+            };
+
+
 
         spriteFire = pointOfShoot.GetComponent<SpriteRenderer>().sprite;
         pointOfShoot.GetComponent<SpriteRenderer>().sprite = null;
@@ -34,10 +73,10 @@ public class Player_Controller : MonoBehaviour
 
     void Update()
     {
-        MoveYellowTank();
+        MovePlayer();
     }
 
-    void MoveYellowTank()
+    void MovePlayer()
     {
         transform.Translate(moveDirection * PlayerData.MoveSpeed * Time.deltaTime, 0f, 0f);
         float x = (float)math.clamp(transform.position.x, -11.5, 11.5);

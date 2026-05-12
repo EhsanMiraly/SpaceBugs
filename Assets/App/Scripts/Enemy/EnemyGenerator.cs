@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class EnemyGenerator : MonoBehaviour
 {
-    private bool isPlaying = true;
+    bool timeToMakeEnemy = false;
 
     [SerializeField] GameObject enemyPrefab;
-    [SerializeField] List<EnemyData_SO> enemysData;
+    [SerializeField] List<EnemyData_SO> enemysData; //Delete This???
+    [SerializeField] List<LevelData_SO> levelsData;
 
     List<Pool<Enemy>> enemyPoolsList;
 
@@ -22,30 +23,86 @@ public class EnemyGenerator : MonoBehaviour
         {
             enemyPoolsList.Add(new Pool<Enemy>(enemyPrefab, enemyData.MaxInPool));
         }
+
+        GameState_EventManager.OnStartLevel_Event += GenerateEnemys;
     }
 
-    async void Start()
+    private async void GenerateEnemys(object o, GameState_EventArgs gameState_EventArgs)
     {
-        while (isPlaying)
-        {
-            await Awaitable.WaitForSecondsAsync(enemyGenerationRate);
-            //Add While for Full randomEnemyDataIndex
-            int randomEnemyDataIndex = RandomEnemyDataIndex();
+        PlayerData.IsPlaying = gameState_EventArgs.IsPlaying;
+        PlayerData.IsPaused = gameState_EventArgs.IsPaused;
+        PlayerData.CurrentLevelNumber = gameState_EventArgs.LevelNumber;
+        PlayerData.CurrentLevelID = gameState_EventArgs.LevelID;
 
-            if (enemyPoolsList[randomEnemyDataIndex].CanGetGameObject())
+        while (PlayerData.IsPlaying && PlayerData.CurrentLevelID == gameState_EventArgs.LevelID)
+        {
+            await Awaitable.WaitForSecondsAsync(1f);
+            if (!PlayerData.IsPaused)
             {
-                float x = Random.Range(-11f, 11f);
-                GameObject enemy = enemyPoolsList[randomEnemyDataIndex].GetGameObject();
-                enemy.GetComponent<Enemy>().EnemyData = enemysData[randomEnemyDataIndex];
-                enemy.transform.position = transform.position + new Vector3(x, 0f, 0f);
-                enemy.transform.rotation = Quaternion.identity;
-                enemy.transform.parent = this.transform;
-                enemy.GetComponent<Enemy>().StartMoving();
+                //Generate Based On Level Number
+                int randomEnemyDataIndex = RandomEnemyDataIndex();
+
+                if (enemyPoolsList[randomEnemyDataIndex].CanGetGameObject())
+                {
+                    float x = Random.Range(-11f, 11f);
+                    GameObject enemy = enemyPoolsList[randomEnemyDataIndex].GetGameObject();
+                    enemy.GetComponent<Enemy>().EnemyData = enemysData[randomEnemyDataIndex];
+                    enemy.transform.position = transform.position + new Vector3(x, 0f, 0f);
+                    enemy.transform.rotation = Quaternion.identity;
+                    enemy.transform.parent = this.transform;
+                    enemy.GetComponent<Enemy>().StartMoving();
+                }
+
+                await Awaitable.WaitForSecondsAsync(enemyGenerationRate);
             }
         }
     }
 
+
+
+
+    private void GenerateOneEnemy()
+    {
+        //Generate Based On Level Number
+        int randomEnemyDataIndex = RandomEnemyDataIndex();
+
+        if (enemyPoolsList[randomEnemyDataIndex].CanGetGameObject())
+        {
+            float x = Random.Range(-11f, 11f);
+            GameObject enemy = enemyPoolsList[randomEnemyDataIndex].GetGameObject();
+            enemy.GetComponent<Enemy>().EnemyData = enemysData[randomEnemyDataIndex];
+            enemy.transform.position = transform.position + new Vector3(x, 0f, 0f);
+            enemy.transform.rotation = Quaternion.identity;
+            enemy.transform.parent = this.transform;
+            enemy.GetComponent<Enemy>().StartMoving();
+        }
+    }
+
     public int RandomEnemyDataIndex()
+    {
+        int totalWeight = 0;
+        foreach (int possibility in levelsData[PlayerData.CurrentLevelNumber - 1].EnemiesRespawnPossibility)
+        {
+            totalWeight += possibility;
+        }
+
+        int randomNumber = Random.Range(0, totalWeight);
+
+        int cumulative = 0;
+        for (int i = 0; i < levelsData[PlayerData.CurrentLevelNumber - 1].EnemiesRespawnPossibility.Count; i++)
+        {
+            cumulative += levelsData[PlayerData.CurrentLevelNumber - 1].EnemiesRespawnPossibility[i];
+            if (randomNumber < cumulative)
+            {
+                return i;
+            }
+        }
+
+        return levelsData[PlayerData.CurrentLevelNumber - 1].EnemiesRespawnPossibility.Count - 1;
+    }
+
+
+    public int RandomEnemyDataIndex2()
     {
         int totalWeight = 0;
         foreach (EnemyData_SO enemyData in enemysData)
@@ -67,5 +124,4 @@ public class EnemyGenerator : MonoBehaviour
 
         return enemysData.Count - 1;
     }
-
 }

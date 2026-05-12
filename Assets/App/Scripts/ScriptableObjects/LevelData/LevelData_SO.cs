@@ -1,0 +1,26 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "LevelData_00", menuName = "ScriptableObjects/LevelData")]
+public class LevelData_SO : ScriptableObject
+{
+    [Range(1, 1000)]
+    [SerializeField] private int pointsNeeded;
+    public int PointsNeeded => pointsNeeded;
+
+
+    [Range(1, 10)]
+    [SerializeField] private int enemyGenerationRate;
+    public int EnemyGenerationRate => enemyGenerationRate;
+
+
+    [SerializeField] private List<EnemyData_SO> enemies;
+    public List<EnemyData_SO> Enemies => enemies;
+
+
+    //Delete????
+    [SerializeField] private List<int> enemiesRespawnPossibility;
+    public List<int> EnemiesRespawnPossibility => enemiesRespawnPossibility;
+
+
+}

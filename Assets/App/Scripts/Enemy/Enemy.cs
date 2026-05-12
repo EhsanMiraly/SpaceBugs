@@ -34,20 +34,23 @@ public class Enemy : MonoBehaviour, IObjectInPool
 
     private void Update()
     {
-        if (CanMove)
+        if (PlayerData.IsPlaying && !PlayerData.IsPaused)
         {
-            Move();
-        }
-        if (IsTimeToChangeDirection())
-        {
-            ChooseNextMoveDirection();
-            lastTimeCheckedMovableDirections = Time.time;
-        }
-        if (lastTimeCheckedMovableDirections + EnemyData.TimeBetweenChangingDirection < Time.time)
-        {
-            FindMovableDirections();
-            ChooseNextMoveDirection();
-            lastTimeCheckedMovableDirections = Time.time;
+            if (CanMove)
+            {
+                Move();
+            }
+            if (IsTimeToChangeDirection())
+            {
+                ChooseNextMoveDirection();
+                lastTimeCheckedMovableDirections = Time.time;
+            }
+            if (lastTimeCheckedMovableDirections + EnemyData.TimeBetweenChangingDirection < Time.time)
+            {
+                FindMovableDirections();
+                ChooseNextMoveDirection();
+                lastTimeCheckedMovableDirections = Time.time;
+            }
         }
     }
 
