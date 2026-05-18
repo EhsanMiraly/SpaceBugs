@@ -29,56 +29,6 @@ public class Player_Controller : MonoBehaviour
         UI_Input_EventManager.OnRotate_Event += OnRotate;
         UI_Input_EventManager.OnFire_Event += OnFire;
 
-        GameState_EventManager.OnStartLevel_Event +=
-            (object g, GameState_EventArgs gameState_EventArgs) =>
-            {
-                //SceneManager.LoadScene("BaseScene");
-
-                PlayerData.IsPlaying = gameState_EventArgs.IsPlaying;
-                PlayerData.IsPaused = gameState_EventArgs.IsPaused;
-                PlayerData.CurrentLevelNumber = gameState_EventArgs.LevelNumber;
-                PlayerData.CurrentLevelID = gameState_EventArgs.LevelID;
-
-                if (PlayerData.CurrentLevelNumber < 10)
-                {
-                    SceneManager.LoadScene("Level0" + PlayerData.CurrentLevelNumber,
-                    LoadSceneMode.Additive);
-                }
-                else
-                {
-                    SceneManager.LoadScene("Level" + PlayerData.CurrentLevelNumber,
-                    LoadSceneMode.Additive);
-                }
-
-            };
-
-        GameState_EventManager.OnPauseLevel_Event +=
-            (object g, GameState_EventArgs gameState_EventArgs) =>
-            {
-                PlayerData.IsPlaying = gameState_EventArgs.IsPlaying;
-                PlayerData.IsPaused = gameState_EventArgs.IsPaused;
-                PlayerData.CurrentLevelNumber = gameState_EventArgs.LevelNumber;
-                //PlayerData.CurrentLevelID = gameState_EventArgs.LevelID;
-            };
-
-        GameState_EventManager.OnResumeLevel_Event +=
-            (object g, GameState_EventArgs gameState_EventArgs) =>
-            {
-                PlayerData.IsPlaying = gameState_EventArgs.IsPlaying;
-                PlayerData.IsPaused = gameState_EventArgs.IsPaused;
-                PlayerData.CurrentLevelNumber = gameState_EventArgs.LevelNumber;
-                //PlayerData.CurrentLevelID = gameState_EventArgs.LevelID;
-            };
-
-        GameState_EventManager.OnStopLevel_Event +=
-            (object g, GameState_EventArgs gameState_EventArgs) =>
-            {
-                PlayerData.IsPlaying = gameState_EventArgs.IsPlaying;
-                PlayerData.IsPaused = gameState_EventArgs.IsPaused;
-                PlayerData.CurrentLevelNumber = gameState_EventArgs.LevelNumber;
-                PlayerData.CurrentLevelID = "";
-            };
-
         spriteFire = pointOfShoot.GetComponent<SpriteRenderer>().sprite;
         pointOfShoot.GetComponent<SpriteRenderer>().sprite = null;
     }

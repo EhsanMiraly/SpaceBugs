@@ -1,10 +1,10 @@
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 public class GameInitializer : MonoBehaviour
 {
     [SerializeField] private GameObject _loading_UI;
+    [SerializeField] private GameObject _gameManager;
     [SerializeField] private Camera _camera;
     [SerializeField] private Light2D _light;
     [SerializeField] private GameObject _menu;
@@ -31,30 +31,36 @@ public class GameInitializer : MonoBehaviour
         Loading_UI loading_UI = _loading_UI.GetComponent<Loading_UI>();
         loading_UI.Initialize();
 
-        _camera = Instantiate(_camera);
+        _gameManager = Instantiate(_gameManager);///Edit
+        _gameManager.GetComponent<GameManager>().Initialize();
         loading_UI.SetProgress(10);
 
-        _light = Instantiate(_light);
+        _camera = Instantiate(_camera);
         loading_UI.SetProgress(20);
+
+        _light = Instantiate(_light);
+        loading_UI.SetProgress(30);
 
         _menu = Instantiate(_menu);
         _menu.GetComponent<MenuController>().Initialize();
-        loading_UI.SetProgress(30);
+        loading_UI.SetProgress(40);
 
         _screen_UI = Instantiate(_screen_UI);
         _screen_UI.GetComponent<Screen_UI>().Initialize();
-        loading_UI.SetProgress(40);
+        loading_UI.SetProgress(50);
 
         _baseWalls = Instantiate(_baseWalls);
-        loading_UI.SetProgress(50);
+        loading_UI.SetProgress(60);
 
         _player = Instantiate(_player);
         _player.GetComponent<Player_Controller>().Initialize();
-        loading_UI.SetProgress(60);
+        loading_UI.SetProgress(70);
 
+        /*
         _enemyGenerator = Instantiate(_enemyGenerator);
         _enemyGenerator.GetComponent<EnemyGenerator>().Initialize();
-        loading_UI.SetProgress(70);
+        loading_UI.SetProgress(80);
+        */
 
 
         //_bullet = Instantiate(_bullet);

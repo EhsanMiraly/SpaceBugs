@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: LevelData_01
   m_EditorClassIdentifier: Assembly-CSharp::LevelData_SO
   pointsNeeded: 10
+  enemyGenerationRate: 5
   enemies:
   - {fileID: 11400000, guid: 3b6b3f6027d69164183eeafd6fdcbf07, type: 2}
-  enemiesRespawnPossibility: 64000000

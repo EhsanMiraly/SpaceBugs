@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5952252583996600167
+--- !u!1 &4034255631303973193
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,43 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3809670827777122286}
-  - component: {fileID: 8610404073288907517}
+  - component: {fileID: 4905759640182102581}
+  - component: {fileID: 8169375845267738431}
   m_Layer: 0
-  m_Name: EnemyGenerator
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3809670827777122286
+--- !u!4 &4905759640182102581
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5952252583996600167}
+  m_GameObject: {fileID: 4034255631303973193}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.5, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8610404073288907517
+--- !u!114 &8169375845267738431
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5952252583996600167}
+  m_GameObject: {fileID: 4034255631303973193}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afbc3ac932f1e0445bc8393b04e6072f, type: 3}
+  m_Script: {fileID: 11500000, guid: efb4137366e5fb84a85b9dd5fedf7bf8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyGenerator
-  enemyPrefab: {fileID: 4082316859805085188, guid: 80240df7b97f1e34ba1bf740d5e3222b, type: 3}
-  levelsData:
-  - {fileID: 11400000, guid: 2daa8700d19b6cd46816ea099958c229, type: 2}
-  - {fileID: 11400000, guid: 297d4a13901ea1148b17d2109066526c, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager

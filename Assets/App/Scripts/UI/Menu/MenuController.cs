@@ -85,8 +85,7 @@ public class MenuController : MonoBehaviour
         string name = visualElement.Q<Button>().name;
         int levelNumber = int.Parse(name);
 
-        GameState_EventManager.InvokeOnStartLevel(this,
-        new GameState_EventArgs(true, false, levelNumber));
+        GameState_EventManager.InvokeOnStartLevel(this, new GameState_EventArgs(levelNumber));
 
         menu_VisualElement.style.display = DisplayStyle.Flex;
         pageHolder_VisualElement.style.display = DisplayStyle.None;
@@ -100,15 +99,13 @@ public class MenuController : MonoBehaviour
         {
             menu_VisualElement.style.display = DisplayStyle.Flex;
             pageHolder_VisualElement.style.display = DisplayStyle.None;
-            GameState_EventManager.InvokeOnResumeLevel(this,
-            new GameState_EventArgs(true, false, PlayerData.CurrentLevelNumber));
+            GameState_EventManager.InvokeOnResumeLevel(this, new GameState_EventArgs(GameData.CurrentLevelNumber));
         });
 
         levels_Button.RegisterCallback<ClickEvent>(clickEvent =>
         {
             SwitchPage(levelsPage_VisualElement);
-            GameState_EventManager.InvokeOnStopLevel(this,
-            new GameState_EventArgs(false, true, 0));
+            GameState_EventManager.InvokeOnStopLevel(this, new GameState_EventArgs(0));
         });
 
         settings_Button.RegisterCallback<ClickEvent>(clickEvent => SwitchPage(settingsPage_VisualElement));
@@ -131,8 +128,7 @@ public class MenuController : MonoBehaviour
         menu_VisualElement.style.display = DisplayStyle.None;
         pageHolder_VisualElement.style.display = DisplayStyle.Flex;
 
-        GameState_EventManager.InvokeOnPauseLevel(this,
-        new GameState_EventArgs(true, true, PlayerData.CurrentLevelNumber));
+        GameState_EventManager.InvokeOnPauseLevel(this, new GameState_EventArgs(GameData.CurrentLevelNumber));
 
         resume_Button.style.display = DisplayStyle.Flex;
         SwitchPage(mainPage_VisualElement);//Change Later?
