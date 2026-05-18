@@ -1,17 +1,21 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/App/UI/USS/Base_StyleSheet.uss?fileID=7433441132597879392&amp;guid=6671879e9ba4b3d41ad17ad19289bdbf&amp;type=3#Base_StyleSheet"/>
+    <Style src="project://database/Assets/App/UI/USS/General_StyleSheet.uss?fileID=7433441132597879392&amp;guid=d603ac97df9052843a91e1762731bdc9&amp;type=3#General_StyleSheet"/>
+    <Style src="project://database/Assets/App/UI/USS/Level_Template_StyleSheet.uss?fileID=7433441132597879392&amp;guid=e6a3013f070eb9f45aa132dbfc282944&amp;type=3#Level_Template_StyleSheet"/>
+    <Style src="project://database/Assets/App/UI/USS/ScrollView_StyleSheet.uss?fileID=7433441132597879392&amp;guid=06c512750cdfe9045b5851b1e3c773ab&amp;type=3#ScrollView_StyleSheet"/>
+    <Style src="project://database/Assets/App/UI/USS/Slider_StyleSheet.uss?fileID=7433441132597879392&amp;guid=062c436bcb28cf046be77dfd2fb48149&amp;type=3#Slider_StyleSheet"/>
     <ui:VisualElement name="Screen" picking-mode="Ignore" class="MatchParent" style="position: absolute;">
         <ui:VisualElement name="EmptySpace_VisualElement" picking-mode="Ignore" class="EmptySpaceAboveButtons"/>
         <ui:VisualElement name="ButtonsHolder_VisualElement" picking-mode="Ignore" class="ButtonsHolder" style="justify-content: space-between;">
             <ui:VisualElement name="MoveButtonsHolder_VisualElement" picking-mode="Ignore" class="MoveButtonsHolder">
-                <ui:VisualElement name="MoveLeft_VisualElement" class="MoveButtons" style="background-image: url(&quot;project://database/Assets/App/Icons/Picto_Icons/White/White_Right_256.png?fileID=2800000&amp;guid=c89ce4d258808884a995ba1fb6f15b1b&amp;type=3#White_Right_256&quot;); scale: -1 1;"/>
-                <ui:VisualElement name="MoveRight_VisualElement" class="MoveButtons" style="background-image: url(&quot;project://database/Assets/App/Icons/Picto_Icons/White/White_Right_256.png?fileID=2800000&amp;guid=c89ce4d258808884a995ba1fb6f15b1b&amp;type=3#White_Right_256&quot;);"/>
+                <ui:VisualElement name="MoveLeft_VisualElement" class="MoveButtons" style="background-image: url(&quot;project://database/Assets/App/Sprites/Icons/Picto_Icons/White/White_Right_256.png?fileID=2800000&amp;guid=c89ce4d258808884a995ba1fb6f15b1b&amp;type=3#White_Right_256&quot;); scale: -1 1;"/>
+                <ui:VisualElement name="MoveRight_VisualElement" class="MoveButtons" style="background-image: url(&quot;project://database/Assets/App/Sprites/Icons/Picto_Icons/White/White_Right_256.png?fileID=2800000&amp;guid=c89ce4d258808884a995ba1fb6f15b1b&amp;type=3#White_Right_256&quot;);"/>
             </ui:VisualElement>
             <ui:VisualElement name="TurnAndShootButtonsHolder_VisualElement" picking-mode="Ignore" class="TurnAndShootButtonsHolder">
-                <ui:VisualElement name="Shoot_VisualElement" class="ShootButton" style="background-image: url(&quot;project://database/Assets/App/Icons/Picto_Icons/White/Bullet_256.png?fileID=2800000&amp;guid=543cb2a9d84026d4dbd1f7f9add54329&amp;type=3#Bullet_256&quot;);"/>
+                <ui:VisualElement name="Shoot_VisualElement" class="ShootButton" style="background-image: url(&quot;project://database/Assets/App/Sprites/Icons/Picto_Icons/White/Bullet_256.png?fileID=2800000&amp;guid=543cb2a9d84026d4dbd1f7f9add54329&amp;type=3#Bullet_256&quot;);"/>
                 <ui:VisualElement name="TurnButtonsHolder_VisualElement" picking-mode="Ignore" class="TurnButtonsHolder">
-                    <ui:VisualElement name="TurnLeft_VisualElement" class="TurnButtons" style="background-image: url(&quot;project://database/Assets/App/Icons/Picto_Icons/White/Turn_Left_256.png?fileID=2800000&amp;guid=3474c432d17e3b246963711a723beeed&amp;type=3#Turn_Left_256&quot;);"/>
-                    <ui:VisualElement name="TurnRight_VisualElement" class="TurnButtons" style="background-image: url(&quot;project://database/Assets/App/Icons/Picto_Icons/White/Turn_Left_256.png?fileID=2800000&amp;guid=3474c432d17e3b246963711a723beeed&amp;type=3#Turn_Left_256&quot;); scale: -1 1;"/>
+                    <ui:VisualElement name="TurnLeft_VisualElement" class="TurnButtons" style="background-image: url(&quot;project://database/Assets/App/Sprites/Icons/Picto_Icons/White/Turn_Left_256.png?fileID=2800000&amp;guid=3474c432d17e3b246963711a723beeed&amp;type=3#Turn_Left_256&quot;);"/>
+                    <ui:VisualElement name="TurnRight_VisualElement" class="TurnButtons" style="background-image: url(&quot;project://database/Assets/App/Sprites/Icons/Picto_Icons/White/Turn_Left_256.png?fileID=2800000&amp;guid=3474c432d17e3b246963711a723beeed&amp;type=3#Turn_Left_256&quot;); scale: -1 1;"/>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

@@ -1,8 +1,6 @@
 :root {
 }
 
-
-
 .LevelNumber_Button {
     border-top-left-radius: 32px;
     border-top-right-radius: 32px;
@@ -28,3 +26,5 @@
     font-size: 200%;
     -unity-text-align: middle-center;
 }
+
+

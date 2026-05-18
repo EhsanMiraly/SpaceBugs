@@ -28,12 +28,14 @@ public class MenuController : MonoBehaviour
     VisualElement settingsPage_VisualElement;
 
 
-    private void Awake()
+    public void Initialize()
     {
         ConnectUI();
         AddFunctionality();
-        InitialUI();
+        InitialPage();
     }
+
+
 
     private void ConnectUI()
     {
@@ -77,6 +79,19 @@ public class MenuController : MonoBehaviour
 
     }
 
+    private void OnLevelSelected(ClickEvent clickEvent)
+    {
+        VisualElement visualElement = clickEvent.currentTarget as VisualElement;
+        string name = visualElement.Q<Button>().name;
+        int levelNumber = int.Parse(name);
+
+        GameState_EventManager.InvokeOnStartLevel(this,
+        new GameState_EventArgs(true, false, levelNumber));
+
+        menu_VisualElement.style.display = DisplayStyle.Flex;
+        pageHolder_VisualElement.style.display = DisplayStyle.None;
+    }
+
     private void AddFunctionality()
     {
         menu_VisualElement.RegisterCallback<ClickEvent>(OnMenuSelected);
@@ -100,20 +115,7 @@ public class MenuController : MonoBehaviour
         exit_Button.RegisterCallback<ClickEvent>(clickEvent => Application.Quit());
     }
 
-    private void OnLevelSelected(ClickEvent clickEvent)
-    {
-        VisualElement visualElement = clickEvent.currentTarget as VisualElement;
-        string name = visualElement.Q<Button>().name;
-        int levelNumber = int.Parse(name);
-
-        GameState_EventManager.InvokeOnStartLevel(this,
-        new GameState_EventArgs(true, false, levelNumber));
-
-        menu_VisualElement.style.display = DisplayStyle.Flex;
-        pageHolder_VisualElement.style.display = DisplayStyle.None;
-    }
-
-    private void InitialUI()
+    private void InitialPage()
     {
         menu_VisualElement.style.display = DisplayStyle.None;
 

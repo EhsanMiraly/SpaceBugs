@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class EnemyGenerator : MonoBehaviour
 {
-    bool timeToMakeEnemy = false;
-
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] List<EnemyData_SO> enemysData; //Delete This???
     [SerializeField] List<LevelData_SO> levelsData;
@@ -16,7 +14,7 @@ public class EnemyGenerator : MonoBehaviour
     private int enemyGenerationRate = 5; // Later Based On LevelData_SO
 
 
-    private void Awake()
+    public void Initialize()
     {
         enemyPoolsList = new List<Pool<Enemy>>();
         foreach (EnemyData_SO enemyData in enemysData)

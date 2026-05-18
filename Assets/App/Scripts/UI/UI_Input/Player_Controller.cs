@@ -1,7 +1,9 @@
 using System;
 using Unity.Mathematics;
 using UnityEditor.Animations;
+using UnityEditor.Build.Content;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player_Controller : MonoBehaviour
 {
@@ -17,10 +19,8 @@ public class Player_Controller : MonoBehaviour
     Sprite spriteFire;
 
 
-    private void Awake()
+    public void Initialize()
     {
-        //Time.timeScale = 0f;
-
         animator = GetComponent<Animator>();
 
         bulletsPool = new Pool<Bullet>(bulletPrefab, PlayerData.MaxBullets);
@@ -32,10 +32,24 @@ public class Player_Controller : MonoBehaviour
         GameState_EventManager.OnStartLevel_Event +=
             (object g, GameState_EventArgs gameState_EventArgs) =>
             {
+                //SceneManager.LoadScene("BaseScene");
+
                 PlayerData.IsPlaying = gameState_EventArgs.IsPlaying;
                 PlayerData.IsPaused = gameState_EventArgs.IsPaused;
                 PlayerData.CurrentLevelNumber = gameState_EventArgs.LevelNumber;
                 PlayerData.CurrentLevelID = gameState_EventArgs.LevelID;
+
+                if (PlayerData.CurrentLevelNumber < 10)
+                {
+                    SceneManager.LoadScene("Level0" + PlayerData.CurrentLevelNumber,
+                    LoadSceneMode.Additive);
+                }
+                else
+                {
+                    SceneManager.LoadScene("Level" + PlayerData.CurrentLevelNumber,
+                    LoadSceneMode.Additive);
+                }
+
             };
 
         GameState_EventManager.OnPauseLevel_Event +=
@@ -65,11 +79,11 @@ public class Player_Controller : MonoBehaviour
                 PlayerData.CurrentLevelID = "";
             };
 
-
-
         spriteFire = pointOfShoot.GetComponent<SpriteRenderer>().sprite;
         pointOfShoot.GetComponent<SpriteRenderer>().sprite = null;
     }
+
+
 
     void Update()
     {

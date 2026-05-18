@@ -1,0 +1,13 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/App/UI/USS/Base_StyleSheet.uss?fileID=7433441132597879392&amp;guid=6671879e9ba4b3d41ad17ad19289bdbf&amp;type=3#Base_StyleSheet"/>
+    <Style src="project://database/Assets/App/UI/USS/General_StyleSheet.uss?fileID=7433441132597879392&amp;guid=d603ac97df9052843a91e1762731bdc9&amp;type=3#General_StyleSheet"/>
+    <Style src="project://database/Assets/App/UI/USS/Level_Template_StyleSheet.uss?fileID=7433441132597879392&amp;guid=e6a3013f070eb9f45aa132dbfc282944&amp;type=3#Level_Template_StyleSheet"/>
+    <Style src="project://database/Assets/App/UI/USS/ScrollView_StyleSheet.uss?fileID=7433441132597879392&amp;guid=06c512750cdfe9045b5851b1e3c773ab&amp;type=3#ScrollView_StyleSheet"/>
+    <Style src="project://database/Assets/App/UI/USS/Slider_StyleSheet.uss?fileID=7433441132597879392&amp;guid=062c436bcb28cf046be77dfd2fb48149&amp;type=3#Slider_StyleSheet"/>
+    <ui:VisualElement name="Background_VisualElement" class="MatchParent PageBackground AlignContentMiddle">
+        <ui:Label text="Loading ..." name="Loading_Label" class="Loading_Label"/>
+        <ui:VisualElement name="SliderBackground_VisualElement" class="SliderBackground">
+            <ui:VisualElement name="SliderForeground_VisualElement" class="SliderForeground"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

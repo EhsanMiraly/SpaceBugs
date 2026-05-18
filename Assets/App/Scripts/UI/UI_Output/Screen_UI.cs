@@ -15,17 +15,16 @@ public class Screen_UI : MonoBehaviour
 
     private int movingState;
 
-    private void Awake()
+
+    public void Initialize()
     {
-        UI_Input_EventManager.OnMove_Event += OnMoveState;
+        ConnectUI();
+        ConnectToEvents();
+        InitialPlayerHealthUI();
+    }
 
-        EnemyEventManager.OnEnemyDied_Event += OnUpdateScoreInUI;
-        EnemyEventManager.OnEnemyPassedLine_Event += OnUpdatePlayerHealthInUI;
-
-        UI_Input_EventManager.OnFire_Event += OnUpdateBulletsInUIMinus;
-        BulletEventManager.OnBulletDestroyed_Event += OnUpdateBulletsInUIPlus;
-
-
+    private void ConnectUI()
+    {
         uIDocument = GetComponent<UIDocument>();
         root = uIDocument.rootVisualElement;
 
@@ -34,10 +33,19 @@ public class Screen_UI : MonoBehaviour
         score_Label = root.Q<Label>("Score_Label");
         bullets_Label = root.Q<Label>("Bullets_Label");
 
-        InitialPlayerHealthUI();
-
         score_Label.text = "Score: " + PlayerData.Score;
         bullets_Label.text = "Bullets: " + PlayerData.CurrentBullets;
+    }
+
+    private void ConnectToEvents()
+    {
+        UI_Input_EventManager.OnMove_Event += OnMoveState;
+        UI_Input_EventManager.OnFire_Event += OnUpdateBulletsInUIMinus;
+
+        EnemyEventManager.OnEnemyDied_Event += OnUpdateScoreInUI;
+        EnemyEventManager.OnEnemyPassedLine_Event += OnUpdatePlayerHealthInUI;
+
+        BulletEventManager.OnBulletDestroyed_Event += OnUpdateBulletsInUIPlus;
     }
 
     public void InitialPlayerHealthUI()

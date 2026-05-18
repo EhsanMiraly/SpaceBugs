@@ -7,11 +7,6 @@
     -unity-text-align: middle-left;
 }
 
-.MatchParent {
-    width: 100%;
-    height: 100%;
-}
-
 .EmptySpaceAboveButtons {
     width: 100%;
     height: 70%;
@@ -98,6 +93,13 @@
     border-bottom-right-radius: 256px;
     border-bottom-left-radius: 256px;
     background-color: rgba(0, 233, 255, 0.2);
+}
+
+
+
+.AlignContentMiddle {
+    align-items: center;
+    justify-content: center;
 }
 
 
