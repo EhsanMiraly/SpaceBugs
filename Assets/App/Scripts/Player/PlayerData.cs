@@ -16,4 +16,12 @@ public class PlayerData
     public static string Left => "Left";
     public static string Up => "UP";
     public static string Right => "Right";
+
+    public static void ResetPlayerData()
+    {
+        CurrentHealth = MaxHealth;
+        Score = 0;
+        CurrentBullets = MaxBullets;
+        CurrentRotateDirection = Up;
+    }
 }

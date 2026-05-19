@@ -163,9 +163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6253dc80f43c71646acb1e014673689d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelInitiator
-  _loading_UI: {fileID: 2478597591449032707, guid: 2dc52cda3798ccb48a2e0ae2b66535d0, type: 3}
   _enemyGenerator: {fileID: 5952252583996600167, guid: ddab8d6b4b3930f44b88b08cf57bb2e4, type: 3}
   _walls: {fileID: 229806524273997438, guid: 9f91d1eb4642df6489b7c615f257385d, type: 3}
+  _player: {fileID: 8344368465705328900, guid: 960a3cea4e4fb9745a57387162016d2b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

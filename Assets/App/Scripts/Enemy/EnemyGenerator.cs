@@ -23,11 +23,23 @@ public class EnemyGenerator : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        enemyPoolsList = null;
+        currentLevelData = null;
+    }
+
     public async void GenerateEnemys()
     {
-        while (true)
+        while (GameData.IsPlaying)
         {
             int randomEnemyDataIndex = RandomEnemyDataIndex();
+            if (randomEnemyDataIndex == -1)
+            {
+                break;
+                //await Awaitable.WaitForSecondsAsync(0.1f);
+                //continue;
+            }
 
             if (enemyPoolsList[randomEnemyDataIndex].CanGetGameObject())
             {
@@ -37,6 +49,7 @@ public class EnemyGenerator : MonoBehaviour
                 enemy.transform.position = transform.position + new Vector3(x, 0f, 0f);
                 enemy.transform.rotation = Quaternion.identity;
                 enemy.transform.parent = this.transform;
+                enemy.GetComponent<Enemy>().Initialize();
                 enemy.GetComponent<Enemy>().StartMoving();
 
                 await Awaitable.WaitForSecondsAsync(currentLevelData.EnemyGenerationRate);
@@ -51,6 +64,11 @@ public class EnemyGenerator : MonoBehaviour
 
     public int RandomEnemyDataIndex()
     {
+        if (currentLevelData == null)
+        {
+            return -1;
+        }
+
         int totalWeight = 0;
         foreach (EnemyData_SO enemyData_SO in currentLevelData.Enemies)
         {

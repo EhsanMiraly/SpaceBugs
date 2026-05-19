@@ -3,21 +3,11 @@ using UnityEngine.UIElements;
 
 public class Enemy_UI : MonoBehaviour
 {
-    //EnemyEventManager enemyEventManager;
-    Enemy enemy;
-
     UIDocument uiDocument;
     VisualElement root;
 
     VisualElement health_VisualElement;
 
-
-    private void Awake()
-    {
-        enemy = GetComponentInParent<Enemy>();
-
-        enemy.enemyEventManager.OnEnemyGotHit_Event += OnUpdateUI;
-    }
 
     public void OnUpdateUI(object sender, EnemyData_EventArgs e)
     {

@@ -11,7 +11,7 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private GameObject _baseWalls;
 
 
-    [SerializeField] private GameObject _player;
+
     [SerializeField] private GameObject _bullet;
     [SerializeField] private GameObject _enemy;
     [SerializeField] private GameObject _enemyGenerator;
@@ -49,25 +49,12 @@ public class GameInitializer : MonoBehaviour
             _baseWalls = Instantiate(_baseWalls);
             loadingPage_UI.SetProgress(60);
 
-            _player = Instantiate(_player);
-            _player.GetComponent<Player_Controller>().Initialize();
-            loadingPage_UI.SetProgress(70);
+
 
             loadingPage_UI.SetProgress(100);
 
-            await Awaitable.WaitForSecondsAsync(10f);
+            await Awaitable.WaitForSecondsAsync(1f);
         }
-
-        /*
-        _enemyGenerator = Instantiate(_enemyGenerator);
-        _enemyGenerator.GetComponent<EnemyGenerator>().Initialize();
-        loading_UI.SetProgress(80);
-        */
-
-
-        //_bullet = Instantiate(_bullet);
-        //_enemy = Instantiate(_enemy);
-
 
     }
 

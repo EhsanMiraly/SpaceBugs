@@ -13,33 +13,31 @@ public class ScenesManager : MonoBehaviour
             (object g, GameState_EventArgs gameState_EventArgs) =>
             {
                 GameData.CurrentLevelNumber = gameState_EventArgs.LevelNumber;
+                GameData.IsPlaying = true;
                 Time.timeScale = 1;
             };
 
         GameState_EventManager.OnPauseLevel_Event +=
             (object g, GameState_EventArgs gameState_EventArgs) =>
             {
-                GameData.CurrentLevelNumber = gameState_EventArgs.LevelNumber;
                 Time.timeScale = 0;
             };
 
         GameState_EventManager.OnResumeLevel_Event +=
             (object g, GameState_EventArgs gameState_EventArgs) =>
             {
-                GameData.CurrentLevelNumber = gameState_EventArgs.LevelNumber;
                 Time.timeScale = 1;
             };
 
         GameState_EventManager.OnStopLevel_Event +=
             (object g, GameState_EventArgs gameState_EventArgs) =>
             {
-                GameData.CurrentLevelNumber = gameState_EventArgs.LevelNumber;
-                Time.timeScale = 0;
+                GameData.ResetGameData();
             };
 
     }
 
-    public void OnLevelStarted(object o, GameState_EventArgs gameState_EventArgs)
+    public async void OnLevelStarted(object o, GameState_EventArgs gameState_EventArgs)
     {
         string sceneName = "";
         if (gameState_EventArgs.LevelNumber < 10)
@@ -52,7 +50,7 @@ public class ScenesManager : MonoBehaviour
         }
 
         GameData.currentLevelName = sceneName;
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+        await SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
     }
 
 
@@ -61,7 +59,6 @@ public class ScenesManager : MonoBehaviour
         if (SceneManager.GetSceneByName(GameData.currentLevelName).isLoaded)
         {
             await SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName(GameData.currentLevelName));
-            GameData.currentLevelName = "";
         }
     }
 }

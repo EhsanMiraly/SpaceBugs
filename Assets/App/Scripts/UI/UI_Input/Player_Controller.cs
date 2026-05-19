@@ -33,6 +33,13 @@ public class Player_Controller : MonoBehaviour
         pointOfShoot.GetComponent<SpriteRenderer>().sprite = null;
     }
 
+    private void OnDisable()
+    {
+        UI_Input_EventManager.OnMove_Event -= OnMove;
+        UI_Input_EventManager.OnRotate_Event -= OnRotate;
+        UI_Input_EventManager.OnFire_Event -= OnFire;
+    }
+
 
 
     void Update()
@@ -165,6 +172,10 @@ public class Player_Controller : MonoBehaviour
 
     public void SetAnimation(string animation)
     {
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>();
+        }
         //Deactive All
         animator.SetBool("Up", false);
         animator.SetBool("Right", false);

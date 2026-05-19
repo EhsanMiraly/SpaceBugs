@@ -23,13 +23,15 @@ public class Enemy : MonoBehaviour, IObjectInPool
     private float lastTimeCheckedMovableDirections;
 
 
-    private void Awake()
+    public void Initialize()
     {
         enemyEventManager = new EnemyEventManager();
 
         enemyBody = transform.GetChild(1).gameObject;
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+
+        enemyEventManager.OnEnemyGotHit_Event += GetComponentInChildren<Enemy_UI>().OnUpdateUI;
     }
 
     private void Update()
@@ -256,7 +258,10 @@ public class Enemy : MonoBehaviour, IObjectInPool
         enemyBody.SetActive(false);
         animator.SetBool("IsDead", true);
         await Awaitable.WaitForSecondsAsync(0.75f);
-        spriteRenderer.sprite = null;
+        if (spriteRenderer.sprite != null)
+        {
+            spriteRenderer.sprite = null;
+        }
         IsEnable = false;
         gameObject.SetActive(false);
     }

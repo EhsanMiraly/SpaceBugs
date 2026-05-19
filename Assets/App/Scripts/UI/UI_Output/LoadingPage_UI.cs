@@ -7,7 +7,7 @@ public class LoadingPage_UI : IDisposable
 {
     GameObject parent;
 
-    VisualTreeAsset loading_Template;
+    VisualTreeAsset loadingPage_UI_Template;
 
     UIDocument uIDocument;
     VisualElement root;
@@ -22,11 +22,11 @@ public class LoadingPage_UI : IDisposable
         parent.name = "LoadingPage_UI";
         parent.layer = LayerMask.NameToLayer("UI");
 
-        loading_Template = Resources.Load<VisualTreeAsset>("UI/Loading_Template");
+        loadingPage_UI_Template = Resources.Load<VisualTreeAsset>("UI/LoadingPage_UI_Template");
 
         uIDocument = parent.AddComponent<UIDocument>();
-        uIDocument.panelSettings = Resources.Load<PanelSettings>("UI/Screen_PanelSettings");
-        uIDocument.visualTreeAsset = loading_Template;
+        uIDocument.panelSettings = Resources.Load<PanelSettings>("UI/LoadingPage_UI_PanelSettings");
+        uIDocument.visualTreeAsset = loadingPage_UI_Template;
         uIDocument.sortingOrder = 100;
 
         root = uIDocument.rootVisualElement;
@@ -48,7 +48,7 @@ public class LoadingPage_UI : IDisposable
         {
             UnityEngine.Object.Destroy(parent);
             parent = null;
-            loading_Template = null;
+            loadingPage_UI_Template = null;
             uIDocument = null;
             root = null;
             sliderForeground_VisualElement = null;
