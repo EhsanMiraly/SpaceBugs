@@ -3,7 +3,6 @@ using UnityEngine.Rendering.Universal;
 
 public class GameInitializer : MonoBehaviour
 {
-    [SerializeField] private GameObject _loading_UI;
     [SerializeField] private GameObject _scenesManager;
     [SerializeField] private Camera _camera;
     [SerializeField] private Light2D _light;
@@ -27,34 +26,37 @@ public class GameInitializer : MonoBehaviour
 
     private async void InstantiateGameObjects()
     {
-        _loading_UI = Instantiate(_loading_UI);
-        Loading_UI loading_UI = _loading_UI.GetComponent<Loading_UI>();
-        loading_UI.Initialize();
+        using (LoadingPage_UI loadingPage_UI = new LoadingPage_UI(new GameObject()))
+        {
+            _scenesManager = Instantiate(_scenesManager);
+            _scenesManager.GetComponent<ScenesManager>().Initialize();
+            loadingPage_UI.SetProgress(10);
 
-        _scenesManager = Instantiate(_scenesManager);///Edit
-        _scenesManager.GetComponent<ScenesManager>().Initialize();
-        loading_UI.SetProgress(10);
+            _camera = Instantiate(_camera);
+            loadingPage_UI.SetProgress(20);
 
-        _camera = Instantiate(_camera);
-        loading_UI.SetProgress(20);
+            _light = Instantiate(_light);
+            loadingPage_UI.SetProgress(30);
 
-        _light = Instantiate(_light);
-        loading_UI.SetProgress(30);
+            _menu = Instantiate(_menu);
+            _menu.GetComponent<MenuController>().Initialize();
+            loadingPage_UI.SetProgress(40);
 
-        _menu = Instantiate(_menu);
-        _menu.GetComponent<MenuController>().Initialize();
-        loading_UI.SetProgress(40);
+            _screen_UI = Instantiate(_screen_UI);
+            _screen_UI.GetComponent<Screen_UI>().Initialize();
+            loadingPage_UI.SetProgress(50);
 
-        _screen_UI = Instantiate(_screen_UI);
-        _screen_UI.GetComponent<Screen_UI>().Initialize();
-        loading_UI.SetProgress(50);
+            _baseWalls = Instantiate(_baseWalls);
+            loadingPage_UI.SetProgress(60);
 
-        _baseWalls = Instantiate(_baseWalls);
-        loading_UI.SetProgress(60);
+            _player = Instantiate(_player);
+            _player.GetComponent<Player_Controller>().Initialize();
+            loadingPage_UI.SetProgress(70);
 
-        _player = Instantiate(_player);
-        _player.GetComponent<Player_Controller>().Initialize();
-        loading_UI.SetProgress(70);
+            loadingPage_UI.SetProgress(100);
+
+            await Awaitable.WaitForSecondsAsync(10f);
+        }
 
         /*
         _enemyGenerator = Instantiate(_enemyGenerator);
@@ -66,12 +68,7 @@ public class GameInitializer : MonoBehaviour
         //_bullet = Instantiate(_bullet);
         //_enemy = Instantiate(_enemy);
 
-        loading_UI.SetProgress(100);
 
-        await Awaitable.WaitForSecondsAsync(1f);
-
-        Destroy(loading_UI);
-        Destroy(_loading_UI.gameObject);
     }
 
 }

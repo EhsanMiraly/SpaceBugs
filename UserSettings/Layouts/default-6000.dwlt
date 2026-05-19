@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SceneView
+  m_Name: GameView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -194,15 +194,15 @@ MonoBehaviour:
     height: 496.8
   m_MinSize: {x: 201, y: 226}
   m_MaxSize: {x: 4001, y: 4026}
-  m_ActualView: {fileID: 14}
+  m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 14}
   - {fileID: 15}
   - {fileID: 16}
   - {fileID: 17}
   - {fileID: 18}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1340,7 +1340,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -1412,7 +1412,7 @@ MonoBehaviour:
     m_DynamicPanelBehavior: 0
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 52882
+  m_LastSelectedObjectID: 0
 --- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1668,28 +1668,11 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: []
+      m_SelectedIDs:
+      - m_Data: 59804
       m_LastClickedID:
-        m_Data: 0
+        m_Data: 59804
       m_ExpandedIDs:
-      - m_Data: -44030
-      - m_Data: -39756
-      - m_Data: -39010
-      - m_Data: -36982
-      - m_Data: -36266
-      - m_Data: -34284
-      - m_Data: -34256
-      - m_Data: -32922
-      - m_Data: -32544
-      - m_Data: -31830
-      - m_Data: -30848
-      - m_Data: -29754
-      - m_Data: -29488
-      - m_Data: -24468
-      - m_Data: -22992
-      - m_Data: -21788
-      - m_Data: -19210
-      - m_Data: -18242
       - m_Data: -1364
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -1782,18 +1765,19 @@ MonoBehaviour:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 130}
+    scrollPos: {x: 0, y: 175}
     m_SelectedIDs:
-    - m_Data: 60778
+    - m_Data: 60774
     m_LastClickedID:
-      m_Data: 60778
+      m_Data: 60774
     m_ExpandedIDs:
     - m_Data: 0
     - m_Data: 60450
     - m_Data: 60452
     - m_Data: 60454
-    - m_Data: 60766
+    - m_Data: 60778
     - m_Data: 60782
+    - m_Data: 60784
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1856,8 +1840,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: []
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs:
+    - m_Data: 59804
+    m_LastClickedInstanceID: 59804
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 50342
