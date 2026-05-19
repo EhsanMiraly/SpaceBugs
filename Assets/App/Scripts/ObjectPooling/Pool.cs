@@ -21,6 +21,13 @@ public class Pool<T> where T : IObjectInPool
     {
         for (int i = 0; i < PoolList.Count; i++)
         {
+
+            if (PoolList[i] == null)
+            {
+                return false;
+            }
+
+
             if (!PoolList[i].GetComponent<T>().IsEnable)
             {
                 return true;

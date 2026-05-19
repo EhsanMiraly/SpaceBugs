@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelInitiator : MonoBehaviour
 {
@@ -13,14 +14,17 @@ public class LevelInitiator : MonoBehaviour
         Loading_UI loading_UI = _loading_UI.GetComponent<Loading_UI>();
         loading_UI.Initialize();
 
-        _walls = Instantiate(_walls);
-        loading_UI.SetProgress(10);
-
-        _enemyGenerator = Instantiate(_enemyGenerator);
-        while (GameData.CurrentLevelNumber == 0)
+        while (GameData.CurrentLevelNumber == 0 || GameData.currentLevelName == "")
         {
             await Awaitable.WaitForSecondsAsync(0.1f);
         }
+
+        _walls = Instantiate(_walls);
+        SceneManager.MoveGameObjectToScene(_walls, SceneManager.GetSceneByName(GameData.currentLevelName));
+        loading_UI.SetProgress(10);
+
+        _enemyGenerator = Instantiate(_enemyGenerator);
+        SceneManager.MoveGameObjectToScene(_enemyGenerator, SceneManager.GetSceneByName(GameData.currentLevelName));
         _enemyGenerator.GetComponent<EnemyGenerator>().Initialize();
         loading_UI.SetProgress(20);
 
@@ -30,6 +34,7 @@ public class LevelInitiator : MonoBehaviour
         Destroy(_loading_UI.gameObject);
 
         await Awaitable.WaitForSecondsAsync(3f);
-        _enemyGenerator.GetComponent<EnemyGenerator>().GenerateEnemys();
+        if (_enemyGenerator != null)
+            _enemyGenerator.GetComponent<EnemyGenerator>().GenerateEnemys();
     }
 }

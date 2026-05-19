@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 2019109431}
   - component: {fileID: 2019109432}
   m_Layer: 0
-  m_Name: LevelInitiator
+  m_Name: Level0Initiator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

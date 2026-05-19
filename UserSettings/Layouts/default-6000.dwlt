@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 92
+  controlID: 17
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 112}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 43
+  controlID: 18
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 44
+  controlID: 19
   draggingID: 0
 --- !u!114 &8
 MonoBehaviour:
@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -248,14 +248,14 @@ MonoBehaviour:
     y: 496.8
     width: 1240
     height: 220
-  m_MinSize: {x: 101, y: 126}
-  m_MaxSize: {x: 4001, y: 4026}
-  m_ActualView: {fileID: 13}
+  m_MinSize: {x: 231, y: 276}
+  m_MaxSize: {x: 10001, y: 10026}
+  m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
   - {fileID: 13}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1181,9 +1181,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -0.9747704, y: -2.0769887, z: -0.088273056}
+    m_Target: {x: 0.9748482, y: 2.6229668, z: -0.088273056}
     speed: 2
-    m_Value: {x: -0.9747704, y: -2.0769887, z: -0.088273056}
+    m_Value: {x: 0.9748482, y: 2.6229668, z: -0.088273056}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1412,7 +1412,7 @@ MonoBehaviour:
     m_DynamicPanelBehavior: 0
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 0
+  m_LastSelectedObjectID: 52882
 --- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1672,19 +1672,24 @@ MonoBehaviour:
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -26918
-      - m_Data: -26746
-      - m_Data: -26574
-      - m_Data: -22942
-      - m_Data: -21182
-      - m_Data: -16630
-      - m_Data: -16574
-      - m_Data: -15168
-      - m_Data: -13146
-      - m_Data: -12602
-      - m_Data: -9564
-      - m_Data: -9532
-      - m_Data: -5674
+      - m_Data: -44030
+      - m_Data: -39756
+      - m_Data: -39010
+      - m_Data: -36982
+      - m_Data: -36266
+      - m_Data: -34284
+      - m_Data: -34256
+      - m_Data: -32922
+      - m_Data: -32544
+      - m_Data: -31830
+      - m_Data: -30848
+      - m_Data: -29754
+      - m_Data: -29488
+      - m_Data: -24468
+      - m_Data: -22992
+      - m_Data: -21788
+      - m_Data: -19210
+      - m_Data: -18242
       - m_Data: -1364
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -1760,7 +1765,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/App/Scripts/Scenes
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1770,28 +1775,25 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/App/Scripts/Scenes
   m_LastFoldersGridSize: 96
   m_LastProjectPath: D:\UnityProjects\SpaceBugs
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 306}
+    scrollPos: {x: 0, y: 130}
     m_SelectedIDs:
-    - m_Data: 60774
+    - m_Data: 60778
     m_LastClickedID:
-      m_Data: 60774
+      m_Data: 60778
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 60438
-    - m_Data: 60440
-    - m_Data: 60442
-    - m_Data: 60752
-    - m_Data: 60764
+    - m_Data: 60450
+    - m_Data: 60452
+    - m_Data: 60454
     - m_Data: 60766
-    - m_Data: 60778
-    - m_Data: 60828
+    - m_Data: 60782
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1825,9 +1827,9 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 60438
-    - m_Data: 60440
-    - m_Data: 60442
+    - m_Data: 60450
+    - m_Data: 60452
+    - m_Data: 60454
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

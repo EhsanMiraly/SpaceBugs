@@ -4,7 +4,7 @@ using UnityEngine.Rendering.Universal;
 public class GameInitializer : MonoBehaviour
 {
     [SerializeField] private GameObject _loading_UI;
-    [SerializeField] private GameObject _gameManager;
+    [SerializeField] private GameObject _scenesManager;
     [SerializeField] private Camera _camera;
     [SerializeField] private Light2D _light;
     [SerializeField] private GameObject _menu;
@@ -31,8 +31,8 @@ public class GameInitializer : MonoBehaviour
         Loading_UI loading_UI = _loading_UI.GetComponent<Loading_UI>();
         loading_UI.Initialize();
 
-        _gameManager = Instantiate(_gameManager);///Edit
-        _gameManager.GetComponent<GameManager>().Initialize();
+        _scenesManager = Instantiate(_scenesManager);///Edit
+        _scenesManager.GetComponent<ScenesManager>().Initialize();
         loading_UI.SetProgress(10);
 
         _camera = Instantiate(_camera);

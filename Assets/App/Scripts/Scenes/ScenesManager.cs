@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class ScenesManager : MonoBehaviour
 {
 
     public void Initialize()
     {
-        GameState_EventManager.OnStartLevel_Event += OnLevelChanged;
-        GameState_EventManager.OnStopLevel_Event += OnExitLevel;
+        GameState_EventManager.OnStartLevel_Event += OnLevelStarted;
+        GameState_EventManager.OnStopLevel_Event += OnStopLevel;
 
         GameState_EventManager.OnStartLevel_Event +=
             (object g, GameState_EventArgs gameState_EventArgs) =>
@@ -39,14 +39,8 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public async void OnLevelChanged(object o, GameState_EventArgs gameState_EventArgs)
+    public void OnLevelStarted(object o, GameState_EventArgs gameState_EventArgs)
     {
-        if (GameData.currentLevel.isLoaded)
-        {
-            //Debug.Log("I Am Active");
-            await SceneManager.UnloadSceneAsync(GameData.currentLevel);
-        }
-
         string sceneName = "";
         if (gameState_EventArgs.LevelNumber < 10)
         {
@@ -57,26 +51,17 @@ public class GameManager : MonoBehaviour
             sceneName = "Level" + gameState_EventArgs.LevelNumber;
         }
 
-        GameData.currentLevel = SceneManager.GetSceneByName(sceneName);
         GameData.currentLevelName = sceneName;
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
     }
 
 
-    public async void OnExitLevel(object o, GameState_EventArgs gameState_EventArgs)
+    public async void OnStopLevel(object o, GameState_EventArgs gameState_EventArgs)
     {
-
         if (SceneManager.GetSceneByName(GameData.currentLevelName).isLoaded)
         {
-            Debug.Log("I Am Active");
             await SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName(GameData.currentLevelName));
+            GameData.currentLevelName = "";
         }
-        /*
-                if (GameData.currentLevel.isLoaded)
-                {
-                    //Debug.Log("I Am Active");
-                    await SceneManager.UnloadSceneAsync(GameData.currentLevel);
-                }
-                */
     }
 }
