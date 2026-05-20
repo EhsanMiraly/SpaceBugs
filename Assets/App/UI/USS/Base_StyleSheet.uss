@@ -95,12 +95,14 @@
     background-color: rgba(0, 233, 255, 0.2);
 }
 
-
-
 .AlignContentMiddle {
     align-items: center;
     justify-content: center;
 }
+
+
+
+
 
 
 

@@ -213,7 +213,7 @@ public class Enemy : MonoBehaviour, IObjectInPool
     {
         if (CanMove)
         {
-            if (other.gameObject.tag == "Bullet")
+            if (other.gameObject.tag == "Bullet")//Can Trigger Win
             {
                 EnemyData.CurrentHealth--;
                 enemyEventManager.InvokeOnEnemyGotHit(this.gameObject, EnemyData);
@@ -221,13 +221,23 @@ public class Enemy : MonoBehaviour, IObjectInPool
                 {
                     EnemyEventManager.InvokeOnEnemyDied(this.gameObject, EnemyData);
                     StopMoving();
+
+                    //if (PlayerData.Score >= )
+                    //{
+                    //    GameState_EventManager.InvokeOnWinLevel(this, new GameState_EventArgs(0));
+                    //}
                 }
             }
-            else if (other.gameObject.tag == "EndOfLine")
+            else if (other.gameObject.tag == "EndOfLine")//Can Trigger Lose
             {
                 PlayerData.CurrentHealth -= EnemyData.CurrentHealth;
                 EnemyEventManager.InvokeOnEnemyPassedLine(this.gameObject, EnemyData);
                 StopMoving();
+
+                if (PlayerData.CurrentHealth <= 0)
+                {
+                    GameState_EventManager.InvokeOnLoseLevel(this, new GameState_EventArgs(0));
+                }
             }
         }
 

@@ -27,4 +27,16 @@ public class GameState_EventManager
         OnStopLevel_Event?.Invoke(o, gameState_EventArgs);
     }
 
+    public static event EventHandler<GameState_EventArgs> OnWinLevel_Event;
+    public static void InvokeOnWinLevel(object o, GameState_EventArgs gameState_EventArgs)
+    {
+        OnWinLevel_Event?.Invoke(o, gameState_EventArgs);
+    }
+
+    public static event EventHandler<GameState_EventArgs> OnLoseLevel_Event;
+    public static void InvokeOnLoseLevel(object o, GameState_EventArgs gameState_EventArgs)
+    {
+        OnLoseLevel_Event?.Invoke(o, gameState_EventArgs);
+    }
+
 }

@@ -10,7 +10,7 @@ public class LevelInitiator : MonoBehaviour
 
     private async void Start()
     {
-        using (LoadingPage_UI loadingPage_UI = new LoadingPage_UI(new GameObject()))
+        using (LoadingWindow_UI loadingPage_UI = new LoadingWindow_UI(new GameObject()))
         {
             while (!GameData.IsGameDataSet())
             {

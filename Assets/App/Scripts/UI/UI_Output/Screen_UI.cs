@@ -46,6 +46,17 @@ public class Screen_UI : MonoBehaviour
         EnemyEventManager.OnEnemyPassedLine_Event += OnUpdatePlayerHealthInUI;
 
         BulletEventManager.OnBulletDestroyed_Event += OnUpdateBulletsInUIPlus;
+
+        GameState_EventManager.OnLoseLevel_Event += OnLoseGame;//Delete?-----------------------------
+    }
+
+    public void OnLoseGame(object o, GameState_EventArgs e)//Delete---------------------
+    {
+        WinLoseWindow_UI winLoseWindow_UI = new WinLoseWindow_UI(new GameObject());
+        winLoseWindow_UI.SetLose();
+        //Stop Game Time Scale
+
+
     }
 
     public void InitialPlayerHealthUI()
@@ -62,15 +73,11 @@ public class Screen_UI : MonoBehaviour
 
     public void OnUpdatePlayerHealthInUI(object sender, EnemyData_EventArgs e)
     {
-        /*
-        //Got Simpler in one Line
-        float x = ((playerHealthBackground_VisualElement.style.width.value.value / PlayerData.MaxHealth)
-                    * PlayerData.CurrentHealth);
-        x = (x / playerHealthBackground_VisualElement.style.width.value.value) * 100;
-        */
         float x = (100 * PlayerData.CurrentHealth) / PlayerData.MaxHealth;
 
         playerHealthForeground_VisualElement.style.width = Length.Percent(x);
+
+        //////Here?
     }
 
 

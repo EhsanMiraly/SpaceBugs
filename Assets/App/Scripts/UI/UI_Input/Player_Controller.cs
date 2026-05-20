@@ -145,6 +145,8 @@ public class Player_Controller : MonoBehaviour
             return;
         }
 
+        SceneManager.MoveGameObjectToScene(bullet, SceneManager.GetSceneByName(GameData.currentLevelName));
+
         Vector2 direction = Vector2.zero;
 
         if (PlayerData.CurrentRotateDirection == PlayerData.Left)
