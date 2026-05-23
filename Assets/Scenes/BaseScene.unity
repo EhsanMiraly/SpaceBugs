@@ -163,14 +163,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2ced196b3a93714fa445e0cad27d4d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameInitializer
-  _loading_UI: {fileID: 2478597591449032707, guid: 2dc52cda3798ccb48a2e0ae2b66535d0, type: 3}
   _scenesManager: {fileID: 4034255631303973193, guid: 051b1f77d279dac4e81b6072936a778c, type: 3}
   _camera: {fileID: 453093153607449952, guid: 8bd69e257be071a4ab5c71eeafdbf896, type: 3}
   _light: {fileID: 4912849366970350773, guid: b8a50a3af5468d34096f9e90ba753557, type: 3}
   _menu: {fileID: 5791469827558440857, guid: 078bfe80a03128c4b9572d2715ac7c05, type: 3}
   _screen_UI: {fileID: 8339402421884921863, guid: 83218bb44ba23a949afff915ec837402, type: 3}
   _baseWalls: {fileID: 6209705057476787532, guid: 90dda999af55c554da918bfcd70635ed, type: 3}
-  _player: {fileID: 8344368465705328900, guid: 960a3cea4e4fb9745a57387162016d2b, type: 3}
   _bullet: {fileID: 4823997178080694358, guid: 726e53a9ec76e034b856d6af639876ff, type: 3}
   _enemy: {fileID: 4082316859805085188, guid: 80240df7b97f1e34ba1bf740d5e3222b, type: 3}
   _enemyGenerator: {fileID: 5952252583996600167, guid: ddab8d6b4b3930f44b88b08cf57bb2e4, type: 3}

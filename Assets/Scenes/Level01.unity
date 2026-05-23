@@ -166,6 +166,7 @@ MonoBehaviour:
   _enemyGenerator: {fileID: 5952252583996600167, guid: ddab8d6b4b3930f44b88b08cf57bb2e4, type: 3}
   _walls: {fileID: 229806524273997438, guid: 9f91d1eb4642df6489b7c615f257385d, type: 3}
   _player: {fileID: 8344368465705328900, guid: 960a3cea4e4fb9745a57387162016d2b, type: 3}
+  _levelManager: {fileID: 2356937660972160430, guid: 9e0efadbc8eb95f44949be64c7e722a1, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

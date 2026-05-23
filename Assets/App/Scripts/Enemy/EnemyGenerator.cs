@@ -7,7 +7,6 @@ public class EnemyGenerator : MonoBehaviour
 {
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] List<LevelData_SO> levelsData;
-    LevelData_SO currentLevelData;
 
     List<Pool<Enemy>> enemyPoolsList;
 
@@ -15,9 +14,9 @@ public class EnemyGenerator : MonoBehaviour
     public void Initialize()
     {
         enemyPoolsList = new List<Pool<Enemy>>();
-        currentLevelData = levelsData[GameData.CurrentLevelNumber - 1];
+        GameData.currentLevelData = levelsData[GameData.CurrentLevelNumber - 1];
 
-        foreach (EnemyData_SO enemyData in currentLevelData.Enemies)
+        foreach (EnemyData_SO enemyData in GameData.currentLevelData.Enemies)
         {
             enemyPoolsList.Add(new Pool<Enemy>(enemyPrefab, enemyData.MaxInPool));
         }
@@ -26,7 +25,6 @@ public class EnemyGenerator : MonoBehaviour
     private void OnDisable()
     {
         enemyPoolsList = null;
-        currentLevelData = null;
     }
 
     public async void GenerateEnemys()
@@ -45,14 +43,14 @@ public class EnemyGenerator : MonoBehaviour
             {
                 float x = Random.Range(-11f, 11f);
                 GameObject enemy = enemyPoolsList[randomEnemyDataIndex].GetGameObject();
-                enemy.GetComponent<Enemy>().EnemyData = currentLevelData.Enemies[randomEnemyDataIndex];
+                enemy.GetComponent<Enemy>().EnemyData = GameData.currentLevelData.Enemies[randomEnemyDataIndex];
                 enemy.transform.position = transform.position + new Vector3(x, 0f, 0f);
                 enemy.transform.rotation = Quaternion.identity;
                 enemy.transform.parent = this.transform;
                 enemy.GetComponent<Enemy>().Initialize();
                 enemy.GetComponent<Enemy>().StartMoving();
 
-                await Awaitable.WaitForSecondsAsync(currentLevelData.EnemyGenerationRate);
+                await Awaitable.WaitForSecondsAsync(GameData.currentLevelData.EnemyGenerationRate);
             }
             else
             {
@@ -64,13 +62,13 @@ public class EnemyGenerator : MonoBehaviour
 
     public int RandomEnemyDataIndex()
     {
-        if (currentLevelData == null)
+        if (GameData.currentLevelData == null)
         {
             return -1;
         }
 
         int totalWeight = 0;
-        foreach (EnemyData_SO enemyData_SO in currentLevelData.Enemies)
+        foreach (EnemyData_SO enemyData_SO in GameData.currentLevelData.Enemies)
         {
             totalWeight += enemyData_SO.RespawnPossibility;
         }
@@ -78,16 +76,16 @@ public class EnemyGenerator : MonoBehaviour
         int randomNumber = Random.Range(0, totalWeight);
 
         int cumulative = 0;
-        for (int i = 0; i < currentLevelData.Enemies.Count; i++)
+        for (int i = 0; i < GameData.currentLevelData.Enemies.Count; i++)
         {
-            cumulative += currentLevelData.Enemies[i].RespawnPossibility;
+            cumulative += GameData.currentLevelData.Enemies[i].RespawnPossibility;
             if (randomNumber < cumulative)
             {
                 return i;
             }
         }
 
-        return currentLevelData.Enemies.Count - 1;
+        return GameData.currentLevelData.Enemies.Count - 1;
     }
 
 }

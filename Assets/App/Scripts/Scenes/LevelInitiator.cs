@@ -6,6 +6,7 @@ public class LevelInitiator : MonoBehaviour
     [SerializeField] private GameObject _enemyGenerator;
     [SerializeField] private GameObject _walls;
     [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _levelManager;
 
 
     private async void Start()
@@ -33,6 +34,11 @@ public class LevelInitiator : MonoBehaviour
             _player.GetComponent<Player_Controller>().Initialize();
             PlayerData.ResetPlayerData();
             loadingPage_UI.SetProgress(30);
+
+            _levelManager = Instantiate(_levelManager);
+            SceneManager.MoveGameObjectToScene(_levelManager, SceneManager.GetSceneByName(GameData.currentLevelName));
+            _levelManager.GetComponent<LevelManager>().Initialize();
+            loadingPage_UI.SetProgress(40);
 
             loadingPage_UI.SetProgress(100);
 

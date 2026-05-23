@@ -5,8 +5,8 @@ using UnityEngine;
 public class LevelData_SO : ScriptableObject
 {
     [Range(1, 1000)]
-    [SerializeField] private int pointsNeeded;
-    public int PointsNeeded => pointsNeeded;
+    [SerializeField] private int scoreNeeded;
+    public int ScoreNeeded => scoreNeeded;
 
     [Range(1, 10)]
     [SerializeField] private int enemyGenerationRate;

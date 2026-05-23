@@ -6,10 +6,12 @@ public class GameData
     public static bool IsPlaying { get; set; } = false;
     public static string currentLevelName { get; set; } = "";
     public static int CurrentLevelNumber { get; set; } = 0;
+    public static LevelData_SO currentLevelData { get; set; } = null;
+
 
     public static bool IsGameDataSet()
     {
-        if (IsPlaying == false || currentLevelName == "" || CurrentLevelNumber == 0)
+        if (IsPlaying == false || currentLevelName == "" || CurrentLevelNumber == 0)// || currentLevelData == null
         {
             return false;
         }
@@ -21,5 +23,6 @@ public class GameData
         IsPlaying = false;
         currentLevelName = "";
         CurrentLevelNumber = 0;
+        currentLevelData = null;
     }
 }

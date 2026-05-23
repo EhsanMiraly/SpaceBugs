@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0afdbf20d21cce4b8c4c2e25a14a3c2, type: 3}
   m_Name: LevelData_01
   m_EditorClassIdentifier: Assembly-CSharp::LevelData_SO
-  pointsNeeded: 10
+  scoreNeeded: 1
   enemyGenerationRate: 5
   enemies:
   - {fileID: 11400000, guid: 3b6b3f6027d69164183eeafd6fdcbf07, type: 2}
