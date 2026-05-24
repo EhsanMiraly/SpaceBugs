@@ -14,6 +14,8 @@ public class WinLoseWindow_UI
     Label winLose_Label;
     Button oK_Button;
 
+    MenuController menuController;
+
 
     public WinLoseWindow_UI(GameObject parent)
     {
@@ -33,12 +35,15 @@ public class WinLoseWindow_UI
         winLose_Label = root.Q<Label>("WinLose_Label");
         oK_Button = root.Q<Button>("OK_Button");
 
+        menuController = UnityEngine.Object.FindAnyObjectByType<MenuController>().GetComponent<MenuController>();
+
         oK_Button.RegisterCallback<ClickEvent>(evt =>
         {
             //Add points
             //Open Level 2 or next Level
-            GameState_EventManager.InvokeOnStopLevel(this, new GameState_EventArgs(0));
+            GameState_EventManager.InvokeOnStopLevel(this, new GameState_EventArgs(GameData.CurrentLevelNumber));
             //Menu Button Selected - Show Menu
+            menuController.InitialPage();
             Dispose();
         });
     }
@@ -64,6 +69,7 @@ public class WinLoseWindow_UI
             root = null;
             winLose_Label = null;
             oK_Button = null;
+            menuController = null;
         }
     }
 }

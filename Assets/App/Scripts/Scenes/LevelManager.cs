@@ -2,20 +2,34 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    Screen_UI screen_UI;
+    PlayerHealthScoreBullets_UI screen_UI;
 
     private int movingState;
 
     public void Initialize()
     {
-        screen_UI = FindAnyObjectByType<Screen_UI>().GetComponent<Screen_UI>();
+        screen_UI = FindAnyObjectByType<PlayerHealthScoreBullets_UI>().GetComponent<PlayerHealthScoreBullets_UI>();
 
-        UI_Input_EventManager.OnFire_Event += OnUpdateBulletsMinus;
+        PlayerInputUI_EventManager.OnFire_Event += OnUpdateBulletsMinus;
         BulletEventManager.OnBulletDestroyed_Event += OnUpdateBulletsPlus;
-        UI_Input_EventManager.OnMove_Event += OnMoveState;
+        PlayerInputUI_EventManager.OnMove_Event += OnMoveState;
 
         EnemyEventManager.OnEnemyDied_Event += OnUpdateScore;
         EnemyEventManager.OnEnemyPassedLine_Event += OnUpdateHealth;
+
+        screen_UI.UpdateHealthInUI();
+        screen_UI.UpdateScoreInUI();
+        screen_UI.UpdateBulletsInUI();
+    }
+
+    private void OnDisable()
+    {
+        PlayerInputUI_EventManager.OnFire_Event -= OnUpdateBulletsMinus;
+        BulletEventManager.OnBulletDestroyed_Event -= OnUpdateBulletsPlus;
+        PlayerInputUI_EventManager.OnMove_Event -= OnMoveState;
+
+        EnemyEventManager.OnEnemyDied_Event -= OnUpdateScore;
+        EnemyEventManager.OnEnemyPassedLine_Event -= OnUpdateHealth;
     }
 
 
@@ -26,7 +40,7 @@ public class LevelManager : MonoBehaviour
         PlayerData.CurrentBullets--;
         if (PlayerData.CurrentBullets <= 0)
         {
-            UI_Input_EventManager.InvokeOnCanFire(this, new PlayerFireInput_EventArgs(false));
+            PlayerInputUI_EventManager.InvokeOnCanFire(this, new PlayerFireInput_EventArgs(false));
         }
 
         screen_UI.UpdateBulletsInUI();
@@ -38,7 +52,7 @@ public class LevelManager : MonoBehaviour
 
         if (PlayerData.CurrentBullets > 0 && movingState == 0)
         {
-            UI_Input_EventManager.InvokeOnCanFire(this, new PlayerFireInput_EventArgs(true));
+            PlayerInputUI_EventManager.InvokeOnCanFire(this, new PlayerFireInput_EventArgs(true));
         }
 
         screen_UI.UpdateBulletsInUI();
@@ -62,7 +76,6 @@ public class LevelManager : MonoBehaviour
             WinLoseWindow_UI winLoseWindow_UI = new WinLoseWindow_UI(new GameObject());
             winLoseWindow_UI.SetWin();
         }
-
 
         screen_UI.UpdateScoreInUI();
     }

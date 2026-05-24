@@ -4,22 +4,6 @@
     <Style src="project://database/Assets/App/UI/USS/Level_Template_StyleSheet.uss?fileID=7433441132597879392&amp;guid=e6a3013f070eb9f45aa132dbfc282944&amp;type=3#Level_Template_StyleSheet"/>
     <Style src="project://database/Assets/App/UI/USS/ScrollView_StyleSheet.uss?fileID=7433441132597879392&amp;guid=06c512750cdfe9045b5851b1e3c773ab&amp;type=3#ScrollView_StyleSheet"/>
     <Style src="project://database/Assets/App/UI/USS/Slider_StyleSheet.uss?fileID=7433441132597879392&amp;guid=062c436bcb28cf046be77dfd2fb48149&amp;type=3#Slider_StyleSheet"/>
-    <ui:VisualElement name="Screen" picking-mode="Ignore" class="MatchParent" style="position: absolute;">
-        <ui:VisualElement name="EmptySpace_VisualElement" picking-mode="Ignore" class="EmptySpaceAboveButtons"/>
-        <ui:VisualElement name="ButtonsHolder_VisualElement" picking-mode="Ignore" class="ButtonsHolder" style="justify-content: space-between;">
-            <ui:VisualElement name="MoveButtonsHolder_VisualElement" picking-mode="Ignore" class="MoveButtonsHolder">
-                <ui:VisualElement name="MoveLeft_VisualElement" class="MoveButtons" style="background-image: url(&quot;project://database/Assets/App/Sprites/Icons/Picto_Icons/White/White_Right_256.png?fileID=2800000&amp;guid=c89ce4d258808884a995ba1fb6f15b1b&amp;type=3#White_Right_256&quot;); scale: -1 1;"/>
-                <ui:VisualElement name="MoveRight_VisualElement" class="MoveButtons" style="background-image: url(&quot;project://database/Assets/App/Sprites/Icons/Picto_Icons/White/White_Right_256.png?fileID=2800000&amp;guid=c89ce4d258808884a995ba1fb6f15b1b&amp;type=3#White_Right_256&quot;);"/>
-            </ui:VisualElement>
-            <ui:VisualElement name="TurnAndShootButtonsHolder_VisualElement" picking-mode="Ignore" class="TurnAndShootButtonsHolder">
-                <ui:VisualElement name="Shoot_VisualElement" class="ShootButton" style="background-image: url(&quot;project://database/Assets/App/Sprites/Icons/Picto_Icons/White/Bullet_256.png?fileID=2800000&amp;guid=543cb2a9d84026d4dbd1f7f9add54329&amp;type=3#Bullet_256&quot;);"/>
-                <ui:VisualElement name="TurnButtonsHolder_VisualElement" picking-mode="Ignore" class="TurnButtonsHolder">
-                    <ui:VisualElement name="TurnLeft_VisualElement" class="TurnButtons" style="background-image: url(&quot;project://database/Assets/App/Sprites/Icons/Picto_Icons/White/Turn_Left_256.png?fileID=2800000&amp;guid=3474c432d17e3b246963711a723beeed&amp;type=3#Turn_Left_256&quot;);"/>
-                    <ui:VisualElement name="TurnRight_VisualElement" class="TurnButtons" style="background-image: url(&quot;project://database/Assets/App/Sprites/Icons/Picto_Icons/White/Turn_Left_256.png?fileID=2800000&amp;guid=3474c432d17e3b246963711a723beeed&amp;type=3#Turn_Left_256&quot;); scale: -1 1;"/>
-                </ui:VisualElement>
-            </ui:VisualElement>
-        </ui:VisualElement>
-    </ui:VisualElement>
     <ui:VisualElement name="VisualElement" picking-mode="Ignore" class="MatchParent" style="position: absolute;">
         <ui:VisualElement name="PlayerHealthBackground_VisualElement" style="width: 500px; height: 50px; background-color: rgb(255, 0, 0); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; border-left-color: rgb(0, 0, 255); border-right-color: rgb(0, 0, 255); border-top-color: rgb(0, 0, 255); border-bottom-color: rgb(0, 0, 255); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;">
             <ui:VisualElement name="PlayerHealthForeground_VisualElement" class="MatchParent" style="background-color: rgb(0, 255, 0); width: 100%; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;"/>

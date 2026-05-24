@@ -7,7 +7,8 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private Camera _camera;
     [SerializeField] private Light2D _light;
     [SerializeField] private GameObject _menu;
-    [SerializeField] private GameObject _screen_UI;
+    [SerializeField] private GameObject _playerHealthScoreBullets_UI;
+    [SerializeField] private GameObject _playerInputUI;
     [SerializeField] private GameObject _baseWalls;
 
 
@@ -42,12 +43,16 @@ public class GameInitializer : MonoBehaviour
             _menu.GetComponent<MenuController>().Initialize();
             loadingPage_UI.SetProgress(40);
 
-            _screen_UI = Instantiate(_screen_UI);
-            _screen_UI.GetComponent<Screen_UI>().Initialize();
+            _playerHealthScoreBullets_UI = Instantiate(_playerHealthScoreBullets_UI);
+            _playerHealthScoreBullets_UI.GetComponent<PlayerHealthScoreBullets_UI>().Initialize();
             loadingPage_UI.SetProgress(50);
 
-            _baseWalls = Instantiate(_baseWalls);
+            _playerInputUI = Instantiate(_playerInputUI);
+            _playerInputUI.GetComponent<PlayerInputUI_Controller>().Initialize();
             loadingPage_UI.SetProgress(60);
+
+            _baseWalls = Instantiate(_baseWalls);
+            loadingPage_UI.SetProgress(70);
 
 
 

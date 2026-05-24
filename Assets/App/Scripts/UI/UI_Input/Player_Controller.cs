@@ -25,9 +25,9 @@ public class Player_Controller : MonoBehaviour
 
         bulletsPool = new Pool<Bullet>(bulletPrefab, PlayerData.MaxBullets);
 
-        UI_Input_EventManager.OnMove_Event += OnMove;
-        UI_Input_EventManager.OnRotate_Event += OnRotate;
-        UI_Input_EventManager.OnFire_Event += OnFire;
+        PlayerInputUI_EventManager.OnMove_Event += OnMove;
+        PlayerInputUI_EventManager.OnRotate_Event += OnRotate;
+        PlayerInputUI_EventManager.OnFire_Event += OnFire;
 
         spriteFire = pointOfShoot.GetComponent<SpriteRenderer>().sprite;
         pointOfShoot.GetComponent<SpriteRenderer>().sprite = null;
@@ -35,9 +35,9 @@ public class Player_Controller : MonoBehaviour
 
     private void OnDisable()
     {
-        UI_Input_EventManager.OnMove_Event -= OnMove;
-        UI_Input_EventManager.OnRotate_Event -= OnRotate;
-        UI_Input_EventManager.OnFire_Event -= OnFire;
+        PlayerInputUI_EventManager.OnMove_Event -= OnMove;
+        PlayerInputUI_EventManager.OnRotate_Event -= OnRotate;
+        PlayerInputUI_EventManager.OnFire_Event -= OnFire;
     }
 
 

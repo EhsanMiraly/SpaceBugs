@@ -112,7 +112,7 @@ public class MenuController : MonoBehaviour
         exit_Button.RegisterCallback<ClickEvent>(clickEvent => Application.Quit());
     }
 
-    private void InitialPage()
+    public void InitialPage()
     {
         menu_VisualElement.style.display = DisplayStyle.None;
 

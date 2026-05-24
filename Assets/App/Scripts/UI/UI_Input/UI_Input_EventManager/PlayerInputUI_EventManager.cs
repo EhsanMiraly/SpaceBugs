@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class UI_Input_EventManager
+public class PlayerInputUI_EventManager
 {
     public static event EventHandler<PlayerMoveInput_EventArgs> OnMove_Event;
     public static void InvokeOnMove(object o, PlayerMoveInput_EventArgs e)

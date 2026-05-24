@@ -17,14 +17,6 @@ public class Enemy_UI : MonoBehaviour
         health_VisualElement.style.width = x;
     }
 
-    public void UpdateUI2(int maxHealth, int currentHealth)
-    {
-        ConnectUI();
-
-        float x = (uiDocument.worldSpaceSize.x / maxHealth) * currentHealth;
-        health_VisualElement.style.width = x;
-    }
-
     public void ConnectUI()
     {
         uiDocument = GetComponent<UIDocument>();

@@ -34,6 +34,11 @@ public class Enemy : MonoBehaviour, IObjectInPool
         enemyEventManager.OnEnemyGotHit_Event += GetComponentInChildren<Enemy_UI>().OnUpdateUI;
     }
 
+    private void OnDisable()
+    {
+        enemyEventManager.OnEnemyGotHit_Event -= GetComponentInChildren<Enemy_UI>().OnUpdateUI;
+    }
+
     private void Update()
     {
         if (CanMove)
@@ -258,12 +263,12 @@ public class Enemy : MonoBehaviour, IObjectInPool
         enemyBody.SetActive(false);
         animator.SetBool("IsDead", true);
         await Awaitable.WaitForSecondsAsync(0.75f);
-        if (spriteRenderer.sprite != null)
+        if (this != null)
         {
             spriteRenderer.sprite = null;
+            IsEnable = false;
+            gameObject.SetActive(false);
         }
-        IsEnable = false;
-        gameObject.SetActive(false);
     }
 
 }

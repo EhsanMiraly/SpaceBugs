@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Screen_UI : MonoBehaviour
+public class PlayerHealthScoreBullets_UI : MonoBehaviour
 {
     UIDocument uIDocument;
     VisualElement root;

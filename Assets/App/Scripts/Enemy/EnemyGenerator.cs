@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyGenerator : MonoBehaviour
@@ -22,17 +23,13 @@ public class EnemyGenerator : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        enemyPoolsList = null;
-    }
 
     public async void GenerateEnemys()
     {
         while (GameData.IsPlaying)
         {
             int randomEnemyDataIndex = RandomEnemyDataIndex();
-            if (randomEnemyDataIndex == -1)
+            if (randomEnemyDataIndex <= -1 || randomEnemyDataIndex >= enemyPoolsList.Count)
             {
                 break;
                 //await Awaitable.WaitForSecondsAsync(0.1f);
@@ -64,6 +61,7 @@ public class EnemyGenerator : MonoBehaviour
     {
         if (GameData.currentLevelData == null)
         {
+            Debug.Log("WTF???");
             return -1;
         }
 
