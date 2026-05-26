@@ -27,7 +27,7 @@
 
 .InvisibleForeground_VisualElement {
     height: 100%;
-    width: 0%;
+    width: 10%;
 }
 
 .Handle_VisualElement {

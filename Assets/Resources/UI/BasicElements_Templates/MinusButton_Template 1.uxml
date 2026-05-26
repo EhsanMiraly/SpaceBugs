@@ -1,0 +1,6 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/UI/BasicElements_StyleSheets/MinusButton_Template_StyleSheet%201.uss?fileID=7433441132597879392&amp;guid=8af213d05f6f0e44eab9779e0b6c0fd8&amp;type=3#MinusButton_Template_StyleSheet 1"/>
+    <ui:VisualElement name="Background_VisualElement" class="MatchParent Background_VisualElement">
+        <ui:VisualElement name="Foreground_VisualElement" class="MatchParent Foreground_VisualElement"/>
+    </ui:VisualElement>
+</ui:UXML>

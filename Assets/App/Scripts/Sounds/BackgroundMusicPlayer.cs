@@ -1,19 +1,38 @@
+using System;
 using UnityEngine;
 
 public class BackgroundMusicPlayer : MonoBehaviour
 {
-    //this should be saved
-    bool isOn = true;
-    float volume = 0.1f;//0-1
-    //this should be saved
-
     AudioSource audioSource;
 
     public void Initialize()
     {
+        SoundsEventManager.OnBackgroundMusicChanged_Event += OnBackgroundMusicChanged;
+
         audioSource = GetComponent<AudioSource>();
 
-        if (isOn)
+        SetVolume(SettingsData.backgroundMusicVolume);
+        if (SettingsData.isBackgroundMusicOn)
+        {
+            TurnOn();
+        }
+        else
+        {
+            TurnOff();
+        }
+    }
+
+    private void OnDisable()
+    {
+        SoundsEventManager.OnBackgroundMusicChanged_Event -= OnBackgroundMusicChanged;
+    }
+
+
+    public void OnBackgroundMusicChanged(object sender, SoundData_EventArgs soundData_EventArgs)
+    {
+        SetVolume(soundData_EventArgs.Volume);
+
+        if (soundData_EventArgs.IsOn)
         {
             TurnOn();
         }
@@ -25,10 +44,13 @@ public class BackgroundMusicPlayer : MonoBehaviour
 
     public void TurnOn()
     {
-        audioSource.clip = Resources.Load<AudioClip>("Sounds/BackgroundMusic/Deep_In_Space");
+        if (audioSource.clip == null)
+            audioSource.clip = Resources.Load<AudioClip>("Sounds/BackgroundMusic/Deep_In_Space");
+
         audioSource.loop = true;
-        audioSource.Play();
-        SetVolume(volume);
+
+        if (!audioSource.isPlaying)
+            audioSource.Play();
     }
 
     public void TurnOff()

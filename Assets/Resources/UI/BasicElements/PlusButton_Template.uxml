@@ -1,6 +1,0 @@
-<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/App/UI/USS/Templates/PlusButton_Template_StyleSheet.uss?fileID=7433441132597879392&amp;guid=6a9eb47fd1742f1498f4838ef194962a&amp;type=3#PlusButton_Template_StyleSheet"/>
-    <ui:VisualElement name="Background_VisualElement" class="MatchParent Background_VisualElement">
-        <ui:VisualElement name="Foreground_VisualElement" class="MatchParent Foreground_VisualElement" style="background-image: url(&quot;project://database/Assets/App/Sprites/Icons/Picto_Icons/White/Plus-256.png?fileID=2800000&amp;guid=87bbb56e0ba01db489b27ef26914b01d&amp;type=3#Plus-256&quot;);"/>
-    </ui:VisualElement>
-</ui:UXML>
