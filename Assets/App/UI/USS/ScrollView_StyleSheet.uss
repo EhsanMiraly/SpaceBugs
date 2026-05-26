@@ -5,9 +5,3 @@ ScrollView {
     width: 100%;
     height: 100%;
 }
-
-ScrollView #unity-content-container {
-    background-color: rgb(255, 0, 0);
-    width: 100%;
-    height: 100%;
-}

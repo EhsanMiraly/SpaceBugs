@@ -1,0 +1,41 @@
+:root {
+}
+
+.Parent_VisualElement {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
+.Background_VisualElement {
+    position: absolute;
+    background-color: rgb(255, 0, 0);
+    width: 100%;
+    height: 20%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.Foreground_VisualElement {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+}
+
+.InvisibleForeground_VisualElement {
+    height: 100%;
+    width: 0%;
+}
+
+.Handle_VisualElement {
+    width: 5%;
+    height: 100%;
+    background-color: rgb(9, 0, 255);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+}

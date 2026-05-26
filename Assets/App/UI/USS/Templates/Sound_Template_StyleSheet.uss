@@ -1,0 +1,53 @@
+:root {
+}
+
+.Width100_Hieght50 {
+    width: 100%;
+    height: 50%;
+}
+
+.Flex_Row {
+    flex-direction: row;
+}
+
+.WhatAmI_Label {
+    font-size: 400%;
+    color: rgb(255, 255, 255);
+    -unity-text-align: middle-left;
+    width: 80%;
+    height: 100%;
+}
+
+.CheckMark_VisualElement {
+    width: 80%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.CheckMark_Template {
+    width: 50%;
+    height: 75%;
+}
+
+.MinusPlus_VisualElement {
+    width: 20%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.MinusPlus_Template {
+    width: 50%;
+    height: 75%;
+}
+
+.SliderInt_VisualElement {
+    width: 60%;
+    height: 100%;
+}
+
+.SliderInt_Template {
+    width: 100%;
+    height: 100%;
+}

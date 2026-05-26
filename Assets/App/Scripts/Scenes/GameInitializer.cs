@@ -11,11 +11,7 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private GameObject _playerInputUI;
     [SerializeField] private GameObject _baseWalls;
 
-
-
-    [SerializeField] private GameObject _bullet;
-    [SerializeField] private GameObject _enemy;
-    [SerializeField] private GameObject _enemyGenerator;
+    [SerializeField] private GameObject _backgroundMusicPlayer;
 
 
 
@@ -53,6 +49,10 @@ public class GameInitializer : MonoBehaviour
 
             _baseWalls = Instantiate(_baseWalls);
             loadingPage_UI.SetProgress(70);
+
+            _backgroundMusicPlayer = Instantiate(_backgroundMusicPlayer);
+            _backgroundMusicPlayer.GetComponent<BackgroundMusicPlayer>().Initialize();
+            loadingPage_UI.SetProgress(80);
 
 
 

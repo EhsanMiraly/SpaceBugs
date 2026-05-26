@@ -1,10 +1,13 @@
-using Unity.AppUI.MVVM;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class MenuController : MonoBehaviour
 {
-    private int numberOfLevels = 20;//Move
+    private int numberOfLevels = 2;//Move To ...
 
     UIDocument uIDocument;
     VisualElement root;
@@ -19,6 +22,7 @@ public class MenuController : MonoBehaviour
     Button exit_Button;
 
     VisualElement levelsPage_VisualElement;
+    VisualElement backButton_InLevelsPage_Template;
     VisualElement levelsHolder_VisualElement;
     //public stattic
     VisualTreeAsset level_Template;
@@ -26,10 +30,15 @@ public class MenuController : MonoBehaviour
     int level_Template_Padding = 100;
 
     VisualElement settingsPage_VisualElement;
+    VisualElement backButton_InSettingsPage_Template;
+    ScrollView settings_ScrollView;
+    VisualTreeAsset sound_VisualTreeAsset;
 
 
     public void Initialize()
     {
+        sound_VisualTreeAsset = Resources.Load<VisualTreeAsset>("UI/Settings_Templates/Sound_Template");
+
         ConnectUI();
         AddFunctionality();
         InitialPage();
@@ -53,8 +62,10 @@ public class MenuController : MonoBehaviour
         exit_Button = mainPage_VisualElement.Q<Button>("Exit_Button");
 
         levelsPage_VisualElement = root.Q<VisualElement>("LevelsPage_VisualElement");
+        backButton_InLevelsPage_Template = levelsPage_VisualElement.Q<VisualElement>("BackButton_Template");
         levelsHolder_VisualElement = levelsPage_VisualElement.Q<VisualElement>("LevelsHolder_VisualElement");
         level_Template = Resources.Load<VisualTreeAsset>("UI/Level_Template");
+
         for (int i = 0; i < numberOfLevels; i++)
         {
             TemplateContainer templateContainer = level_Template.Instantiate();
@@ -76,6 +87,15 @@ public class MenuController : MonoBehaviour
         }
 
         settingsPage_VisualElement = root.Q<VisualElement>("SettingsPage_VisualElement");
+        backButton_InSettingsPage_Template = settingsPage_VisualElement.Q<VisualElement>("BackButton_Template");
+        settings_ScrollView = settingsPage_VisualElement.Q<ScrollView>("Settings_ScrollView");
+
+        VisualElement visualElement = sound_VisualTreeAsset.Instantiate();
+        visualElement.style.width = Length.Percent(100);
+        visualElement.style.height = 300;
+        settings_ScrollView.Add(visualElement);
+
+
 
     }
 
@@ -95,21 +115,16 @@ public class MenuController : MonoBehaviour
     {
         menu_VisualElement.RegisterCallback<ClickEvent>(OnMenuSelected);
 
-        resume_Button.RegisterCallback<ClickEvent>(clickEvent =>
-        {
-            menu_VisualElement.style.display = DisplayStyle.Flex;
-            pageHolder_VisualElement.style.display = DisplayStyle.None;
-            GameState_EventManager.InvokeOnResumeLevel(this, new GameState_EventArgs(GameData.CurrentLevelNumber));
-        });
+        resume_Button.RegisterCallback<ClickEvent>(OnResume_ButtonSelected);
 
-        levels_Button.RegisterCallback<ClickEvent>(clickEvent =>
-        {
-            SwitchPage(levelsPage_VisualElement);
-            GameState_EventManager.InvokeOnStopLevel(this, new GameState_EventArgs(0));
-        });
+        levels_Button.RegisterCallback<ClickEvent>(OnLevels_ButtonSelected);
+        backButton_InLevelsPage_Template.RegisterCallback<ClickEvent>(OnBackButton_InLevelsPageSelected);
 
-        settings_Button.RegisterCallback<ClickEvent>(clickEvent => SwitchPage(settingsPage_VisualElement));
-        exit_Button.RegisterCallback<ClickEvent>(clickEvent => Application.Quit());
+        settings_Button.RegisterCallback<ClickEvent>(OnSettings_ButtonSelected);
+        backButton_InSettingsPage_Template.RegisterCallback<ClickEvent>(OnBackButton_InSettingsPageSelected);
+
+        exit_Button.RegisterCallback<ClickEvent>(OnExit_ButtonSelected);
+
     }
 
     public void InitialPage()
@@ -132,6 +147,44 @@ public class MenuController : MonoBehaviour
 
         resume_Button.style.display = DisplayStyle.Flex;
         SwitchPage(mainPage_VisualElement);//Change Later?
+    }
+
+    private void OnResume_ButtonSelected(ClickEvent clickEvent)
+    {
+        menu_VisualElement.style.display = DisplayStyle.Flex;
+        pageHolder_VisualElement.style.display = DisplayStyle.None;
+        GameState_EventManager.InvokeOnResumeLevel(this, new GameState_EventArgs(GameData.CurrentLevelNumber));
+    }
+
+    private void OnLevels_ButtonSelected(ClickEvent clickEvent)
+    {
+        resume_Button.style.display = DisplayStyle.None;
+        SwitchPage(levelsPage_VisualElement);
+        GameState_EventManager.InvokeOnStopLevel(this, new GameState_EventArgs(0));
+    }
+
+    private void OnBackButton_InLevelsPageSelected(ClickEvent clickEvent)
+    {
+        SwitchPage(mainPage_VisualElement);
+    }
+
+    private void OnSettings_ButtonSelected(ClickEvent clickEvent)
+    {
+        SwitchPage(settingsPage_VisualElement);
+    }
+
+    private void OnBackButton_InSettingsPageSelected(ClickEvent clickEvent)
+    {
+        SwitchPage(mainPage_VisualElement);
+    }
+
+    private void OnExit_ButtonSelected(ClickEvent clickEvent)
+    {
+#if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 
 
