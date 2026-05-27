@@ -36,7 +36,7 @@ public class GameInitializer : MonoBehaviour
             loadingPage_UI.SetProgress(30);
 
             _menu = Instantiate(_menu);
-            _menu.GetComponent<MenuController>().Initialize();
+            _menu.GetComponent<Menu_UIConnector>().Initialize();
             loadingPage_UI.SetProgress(40);
 
             _playerHealthScoreBullets_UI = Instantiate(_playerHealthScoreBullets_UI);

@@ -2,6 +2,16 @@ using UnityEngine;
 
 public class SettingsData
 {
+    //Move Where?
+    public static int NumberOfLevels { get; } = 2;
+    public static int Level_Template_Size { get; } = 10;
+    public static int Level_Template_Padding { get; } = 100;
+
+
+    //Move Where?
+
+
+
     public static bool isBackgroundMusicOn = true;
     public static float backgroundMusicVolume = 0.1f;
 

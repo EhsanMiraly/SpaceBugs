@@ -7,6 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class Player_Controller : MonoBehaviour
 {
+    AudioSource audioSource;
+    AudioClip shootBullet_AudioClip;
+
+
     Animator animator;
 
     [SerializeField] GameObject bulletPrefab;
@@ -21,6 +25,9 @@ public class Player_Controller : MonoBehaviour
 
     public void Initialize()
     {
+        audioSource = GetComponent<AudioSource>();
+        shootBullet_AudioClip = Resources.Load<AudioClip>("Sounds/SoundEffects/ShootBullet");
+
         animator = GetComponent<Animator>();
 
         bulletsPool = new Pool<Bullet>(bulletPrefab, PlayerData.MaxBullets);
@@ -170,6 +177,10 @@ public class Player_Controller : MonoBehaviour
         pointOfShoot.GetComponent<SpriteRenderer>().sprite = spriteFire;
         await Awaitable.WaitForSecondsAsync(0.1f);
         pointOfShoot.GetComponent<SpriteRenderer>().sprite = null;
+
+
+        audioSource.clip = shootBullet_AudioClip;
+        audioSource.Play();
     }
 
     public void SetAnimation(string animation)

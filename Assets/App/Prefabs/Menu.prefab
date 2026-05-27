@@ -10,7 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8150953058308605749}
   - component: {fileID: 6796751069999381234}
-  - component: {fileID: 7136618669759191141}
+  - component: {fileID: -1268353525642536931}
+  - component: {fileID: -4962009173989963635}
+  - component: {fileID: -2378193094599764673}
+  - component: {fileID: 7866997061862836854}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -56,7 +59,7 @@ MonoBehaviour:
   m_PivotReferenceSize: 0
   m_Pivot: 0
   m_WorldSpaceCollider: {fileID: 0}
---- !u!114 &7136618669759191141
+--- !u!114 &-1268353525642536931
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -65,6 +68,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 5791469827558440857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eaf1cd302a654945ad2f8fc1e0ac545, type: 3}
+  m_Script: {fileID: 11500000, guid: 8524bead0b818f04b8f907d2991b0cfb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MenuController
+  m_EditorClassIdentifier: Assembly-CSharp::Menu_UIConnector
+--- !u!114 &-4962009173989963635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5791469827558440857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59b261246ae09794eb3fd57933b3c620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainPage_Controller
+--- !u!114 &-2378193094599764673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5791469827558440857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9940afb69b2999240a0cce16438fedad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelsPage_Controller
+  level_Template: {fileID: 0}
+--- !u!114 &7866997061862836854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5791469827558440857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4769c9b40138b7419965b63749649ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SettingsPage_Controller
+  sound_VisualTreeAsset: {fileID: 0}
