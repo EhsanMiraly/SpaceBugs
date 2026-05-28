@@ -15,11 +15,19 @@ public class PlayerInputUI_EventManager
         OnRotate_Event?.Invoke(o, e);
     }
 
-    public static event EventHandler<PlayerFireInput_EventArgs> OnFire_Event;
-    public static void InvokeOnFire(object o, PlayerFireInput_EventArgs e)
+    public static event EventHandler<PlayerFireInput_EventArgs> OnTryedFire_Event;
+    public static void InvokeOnTryedFire(object o, PlayerFireInput_EventArgs e)
     {
-        OnFire_Event?.Invoke(o, e);
+        OnTryedFire_Event?.Invoke(o, e);
     }
+
+
+    public static event EventHandler<PlayerFireInput_EventArgs> OnFired_Event;
+    public static void InvokeOnFired(object o, PlayerFireInput_EventArgs e)
+    {
+        OnFired_Event?.Invoke(o, e);
+    }
+
 
     public static event EventHandler<PlayerFireInput_EventArgs> OnCanFire_Event;
     public static void InvokeOnCanFire(object o, PlayerFireInput_EventArgs e)

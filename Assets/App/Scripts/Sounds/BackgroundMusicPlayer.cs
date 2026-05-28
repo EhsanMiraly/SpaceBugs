@@ -55,9 +55,9 @@ public class BackgroundMusicPlayer : MonoBehaviour
 
     public void TurnOff()
     {
+        audioSource.Stop();
         audioSource.clip = null;
         audioSource.loop = false;
-        audioSource.Stop();
     }
 
     public void SetVolume(float volume)

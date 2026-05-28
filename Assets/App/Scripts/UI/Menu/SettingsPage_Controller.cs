@@ -162,9 +162,6 @@ public class SettingsPage_Controller : MonoBehaviour
     {
         SettingsData.isSoundEffectsOn = !SettingsData.isSoundEffectsOn;
 
-        SoundsEventManager.InvokeOnSoundEffectsChanged(this.gameObject,
-            new SoundData_EventArgs(SettingsData.isSoundEffectsOn, SettingsData.soundEffectsVolume));
-
         if (SettingsData.isSoundEffectsOn)
         {
             soundEffects_CheckMark_Foreground_VisualElement.style.display = DisplayStyle.Flex;
@@ -180,8 +177,6 @@ public class SettingsPage_Controller : MonoBehaviour
         SettingsData.soundEffectsVolume -= 0.1f;
         if (SettingsData.soundEffectsVolume < 0)
             SettingsData.soundEffectsVolume = 0;
-        SoundsEventManager.InvokeOnSoundEffectsChanged(this.gameObject,
-            new SoundData_EventArgs(SettingsData.isSoundEffectsOn, SettingsData.soundEffectsVolume));
 
         soundEffects_InvisibleForeground_VisualElement.style.width =
          Length.Percent(SettingsData.soundEffectsVolume * 100);
@@ -192,8 +187,6 @@ public class SettingsPage_Controller : MonoBehaviour
         SettingsData.soundEffectsVolume += 0.1f;
         if (SettingsData.soundEffectsVolume > 1)
             SettingsData.soundEffectsVolume = 1;
-        SoundsEventManager.InvokeOnSoundEffectsChanged(this.gameObject,
-            new SoundData_EventArgs(SettingsData.isSoundEffectsOn, SettingsData.soundEffectsVolume));
 
         soundEffects_InvisibleForeground_VisualElement.style.width
          = Length.Percent(SettingsData.soundEffectsVolume * 100);

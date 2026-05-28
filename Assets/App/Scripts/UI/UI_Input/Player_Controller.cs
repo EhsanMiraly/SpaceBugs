@@ -7,9 +7,11 @@ using UnityEngine.SceneManagement;
 
 public class Player_Controller : MonoBehaviour
 {
+    #region Sound effects
     AudioSource audioSource;
     AudioClip shootBullet_AudioClip;
-
+    AudioClip noBullet_AudioClip;
+    #endregion
 
     Animator animator;
 
@@ -23,10 +25,15 @@ public class Player_Controller : MonoBehaviour
     Sprite spriteFire;
 
 
+    private float fireDelay = 0.5f;
+    private float lastTimeFired;
+
+
     public void Initialize()
     {
         audioSource = GetComponent<AudioSource>();
         shootBullet_AudioClip = Resources.Load<AudioClip>("Sounds/SoundEffects/ShootBullet");
+        noBullet_AudioClip = Resources.Load<AudioClip>("Sounds/SoundEffects/NoBullet");
 
         animator = GetComponent<Animator>();
 
@@ -34,17 +41,19 @@ public class Player_Controller : MonoBehaviour
 
         PlayerInputUI_EventManager.OnMove_Event += OnMove;
         PlayerInputUI_EventManager.OnRotate_Event += OnRotate;
-        PlayerInputUI_EventManager.OnFire_Event += OnFire;
+        PlayerInputUI_EventManager.OnTryedFire_Event += OnTryedFire;
 
         spriteFire = pointOfShoot.GetComponent<SpriteRenderer>().sprite;
         pointOfShoot.GetComponent<SpriteRenderer>().sprite = null;
+
+        lastTimeFired = Time.time;
     }
 
     private void OnDisable()
     {
         PlayerInputUI_EventManager.OnMove_Event -= OnMove;
         PlayerInputUI_EventManager.OnRotate_Event -= OnRotate;
-        PlayerInputUI_EventManager.OnFire_Event -= OnFire;
+        PlayerInputUI_EventManager.OnTryedFire_Event -= OnTryedFire;
     }
 
 
@@ -134,13 +143,24 @@ public class Player_Controller : MonoBehaviour
 
     }
 
-    public async void OnFire(object o, EventArgs e)
+    public async void OnTryedFire(object o, EventArgs e)
     {
+        if (lastTimeFired + fireDelay < Time.time)
+        {
+            lastTimeFired = Time.time;
+        }
+        else
+        {
+            return;
+        }
+
         GameObject bullet;
         Bullet bulletMovement;
 
         if (bulletsPool.CanGetGameObject())
         {
+            PlayShootBullet();
+
             bullet = bulletsPool.GetGameObject();
             bullet.transform.position = pointOfShoot.transform.position;
             bullet.transform.rotation = Quaternion.identity;
@@ -149,10 +169,13 @@ public class Player_Controller : MonoBehaviour
         }
         else
         {
+            PlayNoBullet();
+
             return;
         }
 
         SceneManager.MoveGameObjectToScene(bullet, SceneManager.GetSceneByName(GameData.currentLevelName));
+        PlayerInputUI_EventManager.InvokeOnFired(this, new PlayerFireInput_EventArgs(true));
 
         Vector2 direction = Vector2.zero;
 
@@ -177,10 +200,6 @@ public class Player_Controller : MonoBehaviour
         pointOfShoot.GetComponent<SpriteRenderer>().sprite = spriteFire;
         await Awaitable.WaitForSecondsAsync(0.1f);
         pointOfShoot.GetComponent<SpriteRenderer>().sprite = null;
-
-
-        audioSource.clip = shootBullet_AudioClip;
-        audioSource.Play();
     }
 
     public void SetAnimation(string animation)
@@ -199,4 +218,33 @@ public class Player_Controller : MonoBehaviour
         //Active This
         animator.SetBool(animation, true);
     }
+
+
+    #region Sound effects
+
+    private void PlayShootBullet()
+    {
+        audioSource.volume = SettingsData.soundEffectsVolume;
+        audioSource.clip = shootBullet_AudioClip;
+
+        if (SettingsData.isSoundEffectsOn)
+        {
+            audioSource.Play();
+        }
+    }
+
+    private void PlayNoBullet()
+    {
+        audioSource.volume = SettingsData.soundEffectsVolume;
+        audioSource.clip = noBullet_AudioClip;
+
+        if (SettingsData.isSoundEffectsOn)
+        {
+            audioSource.Play();
+        }
+    }
+
+    #endregion
+
 }
+

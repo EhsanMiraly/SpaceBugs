@@ -42,7 +42,7 @@ public class PlayerInputUI_Controller : MonoBehaviour
         turnRight_VisualElement.UnregisterCallback<ClickEvent>(TurnRight);
 
         //Fire
-        shoot_VisualElement.UnregisterCallback<ClickEvent>(Fire);
+        shoot_VisualElement.UnregisterCallback<ClickEvent>(TryedFire);
     }
 
 
@@ -82,7 +82,7 @@ public class PlayerInputUI_Controller : MonoBehaviour
         turnRight_VisualElement.RegisterCallback<ClickEvent>(TurnRight);
 
         //Fire
-        shoot_VisualElement.RegisterCallback<ClickEvent>(Fire);
+        shoot_VisualElement.RegisterCallback<ClickEvent>(TryedFire);
 
     }
 
@@ -148,9 +148,9 @@ public class PlayerInputUI_Controller : MonoBehaviour
 
     #endregion
 
-    public void Fire(ClickEvent clickEvent)
+    public void TryedFire(ClickEvent clickEvent)
     {
-        PlayerInputUI_EventManager.InvokeOnFire(this, new PlayerFireInput_EventArgs(true));
+        PlayerInputUI_EventManager.InvokeOnTryedFire(this, new PlayerFireInput_EventArgs(true));
     }
 
     private void SetShootStateTrue()

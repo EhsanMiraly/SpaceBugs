@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour
     {
         screen_UI = FindAnyObjectByType<PlayerHealthScoreBullets_UI>().GetComponent<PlayerHealthScoreBullets_UI>();
 
-        PlayerInputUI_EventManager.OnFire_Event += OnUpdateBulletsMinus;
+        PlayerInputUI_EventManager.OnFired_Event += OnUpdateBulletsMinus;
         BulletEventManager.OnBulletDestroyed_Event += OnUpdateBulletsPlus;
         PlayerInputUI_EventManager.OnMove_Event += OnMoveState;
 
@@ -24,7 +24,7 @@ public class LevelManager : MonoBehaviour
 
     private void OnDisable()
     {
-        PlayerInputUI_EventManager.OnFire_Event -= OnUpdateBulletsMinus;
+        PlayerInputUI_EventManager.OnFired_Event -= OnUpdateBulletsMinus;
         BulletEventManager.OnBulletDestroyed_Event -= OnUpdateBulletsPlus;
         PlayerInputUI_EventManager.OnMove_Event -= OnMoveState;
 
