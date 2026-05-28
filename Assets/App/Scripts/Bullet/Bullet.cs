@@ -3,6 +3,13 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour, IObjectInPool
 {
+    #region Sound effects
+    AudioSource audioSource;
+    AudioClip bulletHitWall_AudioClip;
+    //AudioClip noBullet_AudioClip;
+    #endregion
+
+
     private Rigidbody2D rb2D;
     private float speed = 10f;
     public bool IsEnable { get; set; }
@@ -10,6 +17,9 @@ public class Bullet : MonoBehaviour, IObjectInPool
 
     void OnEnable()
     {
+        audioSource = GetComponent<AudioSource>();
+        bulletHitWall_AudioClip = Resources.Load<AudioClip>("Sounds/SoundEffects/BulletHitWall");
+
         rb2D = GetComponent<Rigidbody2D>();
     }
 
@@ -28,6 +38,8 @@ public class Bullet : MonoBehaviour, IObjectInPool
             StopMoving();
             return;
         }
+
+        PlayBulletHitWall();
 
         //Rotate Object
         Vector2 v = rb2D.linearVelocity;
@@ -52,5 +64,22 @@ public class Bullet : MonoBehaviour, IObjectInPool
         rb2D.linearVelocity = Vector2.zero;
         gameObject.SetActive(false);
     }
+
+
+
+    #region Sound effects
+
+    private void PlayBulletHitWall()
+    {
+        audioSource.volume = SettingsData.soundEffectsVolume;
+        audioSource.clip = bulletHitWall_AudioClip;
+
+        if (SettingsData.isSoundEffectsOn)
+        {
+            audioSource.Play();
+        }
+    }
+
+    #endregion
 
 }

@@ -3,6 +3,13 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IObjectInPool
 {
+    #region Sound effects
+    AudioSource audioSource;
+    AudioClip enemyGotHit_AudioClip;
+    AudioClip enemyDied_AudioClip;
+    #endregion
+
+
     [HideInInspector] public EnemyEventManager enemyEventManager;
 
     public EnemyData_SO EnemyData { get; set; }
@@ -25,6 +32,10 @@ public class Enemy : MonoBehaviour, IObjectInPool
 
     public void Initialize()
     {
+        audioSource = GetComponent<AudioSource>();
+        enemyGotHit_AudioClip = Resources.Load<AudioClip>("Sounds/SoundEffects/EnemyGotHit");
+        enemyDied_AudioClip = Resources.Load<AudioClip>("Sounds/SoundEffects/EnemyDied");
+
         enemyEventManager = new EnemyEventManager();
 
         enemyBody = transform.GetChild(1).gameObject;
@@ -224,8 +235,13 @@ public class Enemy : MonoBehaviour, IObjectInPool
                 enemyEventManager.InvokeOnEnemyGotHit(this.gameObject, EnemyData);
                 if (EnemyData.CurrentHealth <= 0)
                 {
+                    PlayEnemyDied();
                     EnemyEventManager.InvokeOnEnemyDied(this.gameObject, EnemyData);
                     StopMoving();
+                }
+                else
+                {
+                    PlayEnemyGotHit();
                 }
             }
             else if (other.gameObject.tag == "EndOfLine")
@@ -270,5 +286,31 @@ public class Enemy : MonoBehaviour, IObjectInPool
             gameObject.SetActive(false);
         }
     }
+
+    #region Sound effects
+
+    private void PlayEnemyGotHit()
+    {
+        audioSource.volume = SettingsData.soundEffectsVolume;
+        audioSource.clip = enemyGotHit_AudioClip;
+
+        if (SettingsData.isSoundEffectsOn)
+        {
+            audioSource.Play();
+        }
+    }
+
+    private void PlayEnemyDied()
+    {
+        audioSource.volume = SettingsData.soundEffectsVolume;
+        audioSource.clip = enemyDied_AudioClip;
+
+        if (SettingsData.isSoundEffectsOn)
+        {
+            audioSource.Play();
+        }
+    }
+
+    #endregion
 
 }
