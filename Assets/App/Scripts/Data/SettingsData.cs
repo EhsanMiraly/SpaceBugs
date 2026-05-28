@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SettingsData
 {
@@ -10,6 +12,12 @@ public class SettingsData
 
     //Move Where?
 
+    public static List<Language> languages = new List<Language>
+    {
+        new Language("English", LanguageDirection.LTR),
+        new Language("فارسی", LanguageDirection.RTL)
+    };
+    public static int currentLanguageIndex = 0;
 
 
     public static bool isBackgroundMusicOn = true;
@@ -18,4 +26,16 @@ public class SettingsData
     public static bool isSoundEffectsOn = true;
     public static float soundEffectsVolume = 0.1f;
 
+}
+
+public class Language
+{
+    public string language { get; }
+    public LanguageDirection languageDirection { get; }
+
+    public Language(string language, LanguageDirection languageDirection)
+    {
+        this.language = language;
+        this.languageDirection = languageDirection;
+    }
 }

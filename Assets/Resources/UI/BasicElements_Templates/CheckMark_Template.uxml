@@ -1,6 +1,0 @@
-<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/App/UI/USS/Templates/CheckMark_Template_StyleSheet.uss?fileID=7433441132597879392&amp;guid=812f49752fb90f0418375962588ffc28&amp;type=3#CheckMark_Template_StyleSheet"/>
-    <ui:VisualElement name="Background_VisualElement" class="MatchParent Background">
-        <ui:VisualElement name="Foreground_VisualElement" class="MatchParent Foreground"/>
-    </ui:VisualElement>
-</ui:UXML>

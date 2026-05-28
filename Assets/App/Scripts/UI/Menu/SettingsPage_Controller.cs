@@ -5,8 +5,17 @@ public class SettingsPage_Controller : MonoBehaviour
 {
     Menu_UIConnector menu_UIConnector;
 
+    VisualTreeAsset language_VisualTreeAsset;
     VisualTreeAsset sound_VisualTreeAsset;
 
+
+
+    #region Language_Setting
+    VisualElement language_VisualElement;
+    VisualElement chevronLeft_VisualElement;
+    Label language_Label;
+    VisualElement chevronRight_VisualElement;
+    #endregion
 
     #region BackgroundMusic_Setting
     VisualElement backgroundMusic_VisualElement;
@@ -32,9 +41,14 @@ public class SettingsPage_Controller : MonoBehaviour
 
     public void Initialize(Menu_UIConnector menu_UIConnector)
     {
+        LanguageEventManager.OnLanguageChanged_Event += OnLanguageChanged;
+
         this.menu_UIConnector = menu_UIConnector;
 
-        sound_VisualTreeAsset = Resources.Load<VisualTreeAsset>("UI/Settings_Templates/Sound_Template");
+        language_VisualTreeAsset =
+            Resources.Load<VisualTreeAsset>("UI/Settings_Templates/Language/Language_Template");
+        sound_VisualTreeAsset =
+            Resources.Load<VisualTreeAsset>("UI/Settings_Templates/Sound/Sound_Template");
 
         menu_UIConnector.backButton_InSettingsPage_Template.
             RegisterCallback<ClickEvent>(OnBackButton_InSettingsPageSelected);
@@ -50,9 +64,79 @@ public class SettingsPage_Controller : MonoBehaviour
 
     public void FillSettings_ScrollView()
     {
+        Add_Language_Setting();
         Add_BackgroundMusic_Setting();
         Add_SoundEffects_Setting();
     }
+
+
+    #region Events Handler
+    private void OnLanguageChanged(object o, LanguageData_EventArgs languageData_EventArgs)
+    {
+        #region Language
+        //Change text
+        language_Label.text =
+            SettingsData.languages[SettingsData.currentLanguageIndex].language;
+        //Change RTL
+        language_Label.languageDirection =
+            SettingsData.languages[SettingsData.currentLanguageIndex].languageDirection;
+        //Change Font
+        //language_Label.style.font
+        //Change Size?????
+        #endregion
+
+    }
+    #endregion
+
+
+    #region Language
+
+    public void Add_Language_Setting()
+    {
+        language_VisualElement = language_VisualTreeAsset.Instantiate();
+
+        chevronLeft_VisualElement = language_VisualElement.Q<VisualElement>("ChevronLeft_VisualElement");
+        language_Label = language_VisualElement.Q<Label>("Language_Label");
+        chevronRight_VisualElement = language_VisualElement.Q<VisualElement>("ChevronRight_VisualElement");
+
+        language_VisualElement.style.width = Length.Percent(100);
+        language_VisualElement.style.height = 300;
+
+        language_Label.text =
+            SettingsData.languages[SettingsData.currentLanguageIndex].language;
+        language_Label.languageDirection =
+            SettingsData.languages[SettingsData.currentLanguageIndex].languageDirection;
+
+        menu_UIConnector.settings_ScrollView.Add(language_VisualElement);
+
+        chevronLeft_VisualElement.RegisterCallback<ClickEvent>(OnLanguageChevronLeftSelected);
+        chevronRight_VisualElement.RegisterCallback<ClickEvent>(OnLanguageChevronRightSelected);
+
+    }
+
+    private void OnLanguageChevronLeftSelected(ClickEvent clickEvent)
+    {
+        SettingsData.currentLanguageIndex--;
+        if (SettingsData.currentLanguageIndex < 0)
+        {
+            SettingsData.currentLanguageIndex = SettingsData.languages.Count - 1;
+        }
+        LanguageEventManager.InvokeOnLanguageChanged(this.gameObject,
+            new LanguageData_EventArgs(SettingsData.currentLanguageIndex));
+    }
+
+    private void OnLanguageChevronRightSelected(ClickEvent clickEvent)
+    {
+        SettingsData.currentLanguageIndex++;
+        if (SettingsData.currentLanguageIndex > SettingsData.languages.Count - 1)
+        {
+            SettingsData.currentLanguageIndex = 0;
+        }
+        LanguageEventManager.InvokeOnLanguageChanged(this.gameObject,
+            new LanguageData_EventArgs(SettingsData.currentLanguageIndex));
+    }
+
+    #endregion
 
 
     #region BackgroundMusic
