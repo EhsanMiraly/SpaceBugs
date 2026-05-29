@@ -18,12 +18,12 @@ public class Menu_UIConnector : MonoBehaviour
 
     //LevelsPage
     public VisualElement levelsPage_VisualElement;
-    public VisualElement backButton_InLevelsPage_Template;
+    public VisualElement back_VisualElement_InLevelsPage;
     public VisualElement levelsHolder_VisualElement;
 
     //SettingsPage
     public VisualElement settingsPage_VisualElement;
-    public VisualElement backButton_InSettingsPage_Template;
+    public VisualElement back_VisualElement_InSettingsPage;
     public ScrollView settings_ScrollView;
 
 
@@ -43,11 +43,11 @@ public class Menu_UIConnector : MonoBehaviour
         exit_Button = mainPage_VisualElement.Q<Button>("Exit_Button");
 
         levelsPage_VisualElement = root.Q<VisualElement>("LevelsPage_VisualElement");
-        backButton_InLevelsPage_Template = levelsPage_VisualElement.Q<VisualElement>("BackButton_Template");
+        back_VisualElement_InLevelsPage = levelsPage_VisualElement.Q<VisualElement>("Back_VisualElement");
         levelsHolder_VisualElement = levelsPage_VisualElement.Q<VisualElement>("LevelsHolder_VisualElement");
 
         settingsPage_VisualElement = root.Q<VisualElement>("SettingsPage_VisualElement");
-        backButton_InSettingsPage_Template = settingsPage_VisualElement.Q<VisualElement>("BackButton_Template");
+        back_VisualElement_InSettingsPage = settingsPage_VisualElement.Q<VisualElement>("Back_VisualElement");
         settings_ScrollView = settingsPage_VisualElement.Q<ScrollView>("Settings_ScrollView");
 
 
@@ -76,7 +76,7 @@ public class Menu_UIConnector : MonoBehaviour
         menu_VisualElement.style.display = DisplayStyle.None;
         pageHolder_VisualElement.style.display = DisplayStyle.Flex;
 
-        GameState_EventManager.InvokeOnPauseLevel(this, new GameState_EventArgs(GameData.CurrentLevelNumber));
+        EventsManager.InvokeOnPauseLevel();
 
         resume_Button.style.display = DisplayStyle.Flex;
         SwitchPage(mainPage_VisualElement);

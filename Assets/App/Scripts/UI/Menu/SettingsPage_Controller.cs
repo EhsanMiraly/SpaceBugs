@@ -39,7 +39,7 @@ public class SettingsPage_Controller : MonoBehaviour
 
     public void Initialize(Menu_UIConnector menu_UIConnector)
     {
-        LanguageEventManager.OnLanguageChanged_Event += OnLanguageChanged;
+        EventsManager.OnLanguageChanged_Event += OnLanguageChanged;
 
         this.menu_UIConnector = menu_UIConnector;
 
@@ -48,7 +48,7 @@ public class SettingsPage_Controller : MonoBehaviour
         sound_VisualTreeAsset =
             Resources.Load<VisualTreeAsset>("UI/Settings_Templates/Sound/Sound_Template");
 
-        menu_UIConnector.backButton_InSettingsPage_Template.
+        menu_UIConnector.back_VisualElement_InSettingsPage.
             RegisterCallback<ClickEvent>(OnBackButton_InSettingsPageSelected);
 
         FillSettings_ScrollView();
@@ -56,7 +56,7 @@ public class SettingsPage_Controller : MonoBehaviour
 
     private void OnDisable()
     {
-        LanguageEventManager.OnLanguageChanged_Event -= OnLanguageChanged;
+        EventsManager.OnLanguageChanged_Event -= OnLanguageChanged;
     }
 
 
@@ -137,7 +137,7 @@ public class SettingsPage_Controller : MonoBehaviour
         {
             SettingsData.currentLanguageIndex = LanguageTextsData.languages.Count - 1;
         }
-        LanguageEventManager.InvokeOnLanguageChanged();
+        EventsManager.InvokeOnLanguageChanged();
     }
 
     private void OnLanguageChevronRightSelected(ClickEvent clickEvent)
@@ -147,7 +147,7 @@ public class SettingsPage_Controller : MonoBehaviour
         {
             SettingsData.currentLanguageIndex = 0;
         }
-        LanguageEventManager.InvokeOnLanguageChanged();
+        EventsManager.InvokeOnLanguageChanged();
     }
 
     #endregion
@@ -186,8 +186,7 @@ public class SettingsPage_Controller : MonoBehaviour
     {
         SettingsData.isBackgroundMusicOn = !SettingsData.isBackgroundMusicOn;
 
-        SoundsEventManager.InvokeOnBackgroundMusicChanged(this.gameObject,
-            new SoundData_EventArgs(SettingsData.isBackgroundMusicOn, SettingsData.backgroundMusicVolume));
+        EventsManager.InvokeOnBackgroundMusicChanged();
 
         if (SettingsData.isBackgroundMusicOn)
         {
@@ -204,8 +203,7 @@ public class SettingsPage_Controller : MonoBehaviour
         SettingsData.backgroundMusicVolume -= 0.1f;
         if (SettingsData.backgroundMusicVolume < 0)
             SettingsData.backgroundMusicVolume = 0;
-        SoundsEventManager.InvokeOnBackgroundMusicChanged(this.gameObject,
-            new SoundData_EventArgs(SettingsData.isBackgroundMusicOn, SettingsData.backgroundMusicVolume));
+        EventsManager.InvokeOnBackgroundMusicChanged();
 
         backgroundMusic_InvisibleForeground_VisualElement.style.width =
          Length.Percent(SettingsData.backgroundMusicVolume * 100);
@@ -216,8 +214,7 @@ public class SettingsPage_Controller : MonoBehaviour
         SettingsData.backgroundMusicVolume += 0.1f;
         if (SettingsData.backgroundMusicVolume > 1)
             SettingsData.backgroundMusicVolume = 1;
-        SoundsEventManager.InvokeOnBackgroundMusicChanged(this.gameObject,
-            new SoundData_EventArgs(SettingsData.isBackgroundMusicOn, SettingsData.backgroundMusicVolume));
+        EventsManager.InvokeOnBackgroundMusicChanged();
 
         backgroundMusic_InvisibleForeground_VisualElement.style.width
          = Length.Percent(SettingsData.backgroundMusicVolume * 100);

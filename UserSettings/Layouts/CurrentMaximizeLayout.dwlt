@@ -75,7 +75,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/App/Sprites/Icons/Picto_Icons/White
+    - Assets/App/Scripts/UI/Menu
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -85,35 +85,35 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/App/Sprites/Icons/Picto_Icons/White
+  - Assets/App/Scripts/UI/Menu
   m_LastFoldersGridSize: 96
   m_LastProjectPath: D:\UnityProjects\SpaceBugs
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 386}
+    scrollPos: {x: 0, y: 242}
     m_SelectedIDs:
-    - m_Data: 60874
+    - m_Data: 60926
     m_LastClickedID:
-      m_Data: 60874
+      m_Data: 60926
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 60396
-    - m_Data: 60398
-    - m_Data: 60400
-    - m_Data: 60402
-    - m_Data: 60404
-    - m_Data: 60406
-    - m_Data: 60408
-    - m_Data: 60410
-    - m_Data: 60412
-    - m_Data: 60414
-    - m_Data: 60416
-    - m_Data: 60418
-    - m_Data: 60420
-    - m_Data: 60856
-    - m_Data: 61128
+    - m_Data: 60428
+    - m_Data: 60430
+    - m_Data: 60432
+    - m_Data: 60434
+    - m_Data: 60436
+    - m_Data: 60438
+    - m_Data: 60440
+    - m_Data: 60444
+    - m_Data: 60446
+    - m_Data: 60448
+    - m_Data: 60450
+    - m_Data: 60452
+    - m_Data: 60454
+    - m_Data: 60456
+    - m_Data: 84716
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -147,19 +147,21 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 60396
-    - m_Data: 60398
-    - m_Data: 60400
-    - m_Data: 60402
-    - m_Data: 60404
-    - m_Data: 60406
-    - m_Data: 60408
-    - m_Data: 60410
-    - m_Data: 60412
-    - m_Data: 60414
-    - m_Data: 60416
-    - m_Data: 60418
-    - m_Data: 60420
+    - m_Data: 60428
+    - m_Data: 60430
+    - m_Data: 60432
+    - m_Data: 60434
+    - m_Data: 60436
+    - m_Data: 60438
+    - m_Data: 60440
+    - m_Data: 60442
+    - m_Data: 60444
+    - m_Data: 60446
+    - m_Data: 60448
+    - m_Data: 60450
+    - m_Data: 60452
+    - m_Data: 60454
+    - m_Data: 60456
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -187,9 +189,9 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: 60874
-    m_LastClickedInstanceID: 60874
-    m_HadKeyboardFocusLastEvent: 1
+    - m_Data: 41960
+    m_LastClickedInstanceID: 41960
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs:
     - m_Data: 50342
     - m_Data: 62140
@@ -219,7 +221,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 3660}
+    m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 96
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 224.59998
@@ -1084,7 +1086,7 @@ MonoBehaviour:
       height: 864.00006
     m_MinimalGUI: 1
   m_defaultScale: 0.5206018
-  m_LastWindowPixelSize: {x: 906.2, y: 470.8}
+  m_LastWindowPixelSize: {x: 1132.75, y: 588.5}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -1414,7 +1416,7 @@ MonoBehaviour:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs:
-      - m_Data: 60874
+      - m_Data: 41960
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:

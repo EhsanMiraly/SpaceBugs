@@ -39,9 +39,9 @@ public class Player_Controller : MonoBehaviour
 
         bulletsPool = new Pool<Bullet>(bulletPrefab, PlayerData.MaxBullets);
 
-        PlayerInputUI_EventManager.OnMove_Event += OnMove;
-        PlayerInputUI_EventManager.OnRotate_Event += OnRotate;
-        PlayerInputUI_EventManager.OnTryedFire_Event += OnTryedFire;
+        EventsManager.OnMove_Event += OnMove;
+        EventsManager.OnRotate_Event += OnRotate;
+        EventsManager.OnTryedFire_Event += OnTryedFire;
 
         spriteFire = pointOfShoot.GetComponent<SpriteRenderer>().sprite;
         pointOfShoot.GetComponent<SpriteRenderer>().sprite = null;
@@ -51,9 +51,9 @@ public class Player_Controller : MonoBehaviour
 
     private void OnDisable()
     {
-        PlayerInputUI_EventManager.OnMove_Event -= OnMove;
-        PlayerInputUI_EventManager.OnRotate_Event -= OnRotate;
-        PlayerInputUI_EventManager.OnTryedFire_Event -= OnTryedFire;
+        EventsManager.OnMove_Event -= OnMove;
+        EventsManager.OnRotate_Event -= OnRotate;
+        EventsManager.OnTryedFire_Event -= OnTryedFire;
     }
 
 
@@ -143,7 +143,7 @@ public class Player_Controller : MonoBehaviour
 
     }
 
-    public async void OnTryedFire(object o, EventArgs e)
+    public async void OnTryedFire()
     {
         if (lastTimeFired + fireDelay < Time.time)
         {
@@ -175,7 +175,7 @@ public class Player_Controller : MonoBehaviour
         }
 
         SceneManager.MoveGameObjectToScene(bullet, SceneManager.GetSceneByName(GameData.currentLevelName));
-        PlayerInputUI_EventManager.InvokeOnFired(this, new PlayerFireInput_EventArgs(true));
+        EventsManager.InvokeOnFired();
 
         Vector2 direction = Vector2.zero;
 

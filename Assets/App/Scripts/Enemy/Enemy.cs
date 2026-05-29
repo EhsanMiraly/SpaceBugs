@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour, IObjectInPool
     #endregion
 
 
-    [HideInInspector] public EnemyEventManager enemyEventManager;
+    [HideInInspector] public EventsManager eventsManager;
 
     public EnemyData_SO EnemyData { get; set; }
 
@@ -36,18 +36,18 @@ public class Enemy : MonoBehaviour, IObjectInPool
         enemyGotHit_AudioClip = Resources.Load<AudioClip>("Sounds/SoundEffects/EnemyGotHit");
         enemyDied_AudioClip = Resources.Load<AudioClip>("Sounds/SoundEffects/EnemyDied");
 
-        enemyEventManager = new EnemyEventManager();
+        eventsManager = new EventsManager();
 
         enemyBody = transform.GetChild(1).gameObject;
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
 
-        enemyEventManager.OnEnemyGotHit_Event += GetComponentInChildren<Enemy_UI>().OnUpdateUI;
+        eventsManager.OnEnemyGotHit_Event += GetComponentInChildren<Enemy_UI>().OnUpdateUI;
     }
 
     private void OnDisable()
     {
-        enemyEventManager.OnEnemyGotHit_Event -= GetComponentInChildren<Enemy_UI>().OnUpdateUI;
+        eventsManager.OnEnemyGotHit_Event -= GetComponentInChildren<Enemy_UI>().OnUpdateUI;
     }
 
     private void Update()
@@ -232,11 +232,11 @@ public class Enemy : MonoBehaviour, IObjectInPool
             if (other.gameObject.tag == "Bullet")
             {
                 EnemyData.CurrentHealth--;
-                enemyEventManager.InvokeOnEnemyGotHit(this.gameObject, EnemyData);
+                eventsManager.InvokeOnEnemyGotHit(this.gameObject, EnemyData);
                 if (EnemyData.CurrentHealth <= 0)
                 {
                     PlayEnemyDied();
-                    EnemyEventManager.InvokeOnEnemyDied(this.gameObject, EnemyData);
+                    EventsManager.InvokeOnEnemyDied(this.gameObject, EnemyData);
                     StopMoving();
                 }
                 else
@@ -247,7 +247,7 @@ public class Enemy : MonoBehaviour, IObjectInPool
             else if (other.gameObject.tag == "EndOfLine")
             {
                 PlayerData.CurrentHealth -= EnemyData.CurrentHealth;
-                EnemyEventManager.InvokeOnEnemyPassedLine(this.gameObject, EnemyData);
+                EventsManager.InvokeOnEnemyPassedLine(this.gameObject, EnemyData);
                 StopMoving();
             }
         }
@@ -268,7 +268,7 @@ public class Enemy : MonoBehaviour, IObjectInPool
         gameObject.SetActive(true);
         enemyBody.SetActive(true);
         EnemyData.CurrentHealth = EnemyData.MaxHealth;
-        enemyEventManager.InvokeOnEnemyGotHit(this.gameObject, EnemyData);//ChangeLater
+        eventsManager.InvokeOnEnemyGotHit(this.gameObject, EnemyData);//ChangeLater
         IsEnable = true;
         CanMove = true;
     }

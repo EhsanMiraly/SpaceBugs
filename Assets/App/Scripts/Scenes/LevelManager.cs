@@ -10,12 +10,12 @@ public class LevelManager : MonoBehaviour
     {
         screen_UI = FindAnyObjectByType<PlayerHealthScoreBullets_UI>().GetComponent<PlayerHealthScoreBullets_UI>();
 
-        PlayerInputUI_EventManager.OnFired_Event += OnUpdateBulletsMinus;
-        BulletEventManager.OnBulletDestroyed_Event += OnUpdateBulletsPlus;
-        PlayerInputUI_EventManager.OnMove_Event += OnMoveState;
+        EventsManager.OnFired_Event += OnUpdateBulletsMinus;
+        EventsManager.OnBulletDestroyed_Event += OnUpdateBulletsPlus;
+        EventsManager.OnMove_Event += OnMoveState;
 
-        EnemyEventManager.OnEnemyDied_Event += OnUpdateScore;
-        EnemyEventManager.OnEnemyPassedLine_Event += OnUpdateHealth;
+        EventsManager.OnEnemyDied_Event += OnUpdateScore;
+        EventsManager.OnEnemyPassedLine_Event += OnUpdateHealth;
 
         screen_UI.UpdateHealthInUI();
         screen_UI.UpdateScoreInUI();
@@ -24,35 +24,35 @@ public class LevelManager : MonoBehaviour
 
     private void OnDisable()
     {
-        PlayerInputUI_EventManager.OnFired_Event -= OnUpdateBulletsMinus;
-        BulletEventManager.OnBulletDestroyed_Event -= OnUpdateBulletsPlus;
-        PlayerInputUI_EventManager.OnMove_Event -= OnMoveState;
+        EventsManager.OnFired_Event -= OnUpdateBulletsMinus;
+        EventsManager.OnBulletDestroyed_Event -= OnUpdateBulletsPlus;
+        EventsManager.OnMove_Event -= OnMoveState;
 
-        EnemyEventManager.OnEnemyDied_Event -= OnUpdateScore;
-        EnemyEventManager.OnEnemyPassedLine_Event -= OnUpdateHealth;
+        EventsManager.OnEnemyDied_Event -= OnUpdateScore;
+        EventsManager.OnEnemyPassedLine_Event -= OnUpdateHealth;
     }
 
 
     #region Bullets
 
-    public void OnUpdateBulletsMinus(object sender, PlayerFireInput_EventArgs e)
+    public void OnUpdateBulletsMinus()
     {
         PlayerData.CurrentBullets--;
         if (PlayerData.CurrentBullets <= 0)
         {
-            PlayerInputUI_EventManager.InvokeOnCanFire(this, new PlayerFireInput_EventArgs(false));
+            EventsManager.InvokeOnCanFire(this, new PlayerFireInput_EventArgs(false));
         }
 
         screen_UI.UpdateBulletsInUI();
     }
 
-    public void OnUpdateBulletsPlus(object sender, Bullet_EventArgs e)
+    public void OnUpdateBulletsPlus()
     {
         PlayerData.CurrentBullets++;
 
         if (PlayerData.CurrentBullets > 0 && movingState == 0)
         {
-            PlayerInputUI_EventManager.InvokeOnCanFire(this, new PlayerFireInput_EventArgs(true));
+            EventsManager.InvokeOnCanFire(this, new PlayerFireInput_EventArgs(true));
         }
 
         screen_UI.UpdateBulletsInUI();

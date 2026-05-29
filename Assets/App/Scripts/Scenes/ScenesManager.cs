@@ -6,19 +6,19 @@ public class ScenesManager : MonoBehaviour
 
     public void Initialize()
     {
-        GameState_EventManager.OnStartLevel_Event += OnStartLevel;
-        GameState_EventManager.OnPauseLevel_Event += OnPauseLevel;
-        GameState_EventManager.OnResumeLevel_Event += OnResumeLevel;
-        GameState_EventManager.OnStopLevel_Event += OnStopLevel;
+        EventsManager.OnStartLevel_Event += OnStartLevel;
+        EventsManager.OnPauseLevel_Event += OnPauseLevel;
+        EventsManager.OnResumeLevel_Event += OnResumeLevel;
+        EventsManager.OnStopLevel_Event += OnStopLevel;
 
     }
 
     private void OnDisable()
     {
-        GameState_EventManager.OnStartLevel_Event -= OnStartLevel;
-        GameState_EventManager.OnPauseLevel_Event -= OnPauseLevel;
-        GameState_EventManager.OnResumeLevel_Event -= OnResumeLevel;
-        GameState_EventManager.OnStopLevel_Event -= OnStopLevel;
+        EventsManager.OnStartLevel_Event -= OnStartLevel;
+        EventsManager.OnPauseLevel_Event -= OnPauseLevel;
+        EventsManager.OnResumeLevel_Event -= OnResumeLevel;
+        EventsManager.OnStopLevel_Event -= OnStopLevel;
     }
 
 
@@ -42,17 +42,17 @@ public class ScenesManager : MonoBehaviour
         await SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
     }
 
-    public void OnPauseLevel(object o, GameState_EventArgs gameState_EventArgs)
+    public void OnPauseLevel()
     {
         Time.timeScale = 0;
     }
 
-    public void OnResumeLevel(object o, GameState_EventArgs gameState_EventArgs)
+    public void OnResumeLevel()
     {
         Time.timeScale = 1;
     }
 
-    public async void OnStopLevel(object o, GameState_EventArgs gameState_EventArgs)
+    public async void OnStopLevel()
     {
         if (SceneManager.GetSceneByName(GameData.currentLevelName).isLoaded)
         {

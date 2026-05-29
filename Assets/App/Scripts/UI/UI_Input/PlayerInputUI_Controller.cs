@@ -25,7 +25,7 @@ public class PlayerInputUI_Controller : MonoBehaviour
 
     private void OnDisable()
     {
-        PlayerInputUI_EventManager.OnCanFire_Event -= SetShoot_VisualElement;
+        EventsManager.OnCanFire_Event -= SetShoot_VisualElement;
 
         //Move Left
         moveLeft_VisualElement.UnregisterCallback<PointerDownEvent>(MovinigLeft_PointerDown);
@@ -65,7 +65,7 @@ public class PlayerInputUI_Controller : MonoBehaviour
 
     public void RegisterEventsOnUI()
     {
-        PlayerInputUI_EventManager.OnCanFire_Event += SetShoot_VisualElement;
+        EventsManager.OnCanFire_Event += SetShoot_VisualElement;
 
         //Move Left
         moveLeft_VisualElement.RegisterCallback<PointerDownEvent>(MovinigLeft_PointerDown);
@@ -96,7 +96,7 @@ public class PlayerInputUI_Controller : MonoBehaviour
 
     public void MovinigLeft_PointerDown(PointerDownEvent pointerDownEvent)
     {
-        PlayerInputUI_EventManager.InvokeOnMove(this, new PlayerMoveInput_EventArgs(-1));
+        EventsManager.InvokeOnMove(this, new PlayerMoveInput_EventArgs(-1));
         shoot_VisualElement.SetEnabled(false);
         SetTurnState(false);
     }
@@ -117,7 +117,7 @@ public class PlayerInputUI_Controller : MonoBehaviour
 
     private void MovinigRight_PointerDown(PointerDownEvent pointerDownEvent)
     {
-        PlayerInputUI_EventManager.InvokeOnMove(this, new PlayerMoveInput_EventArgs(1));
+        EventsManager.InvokeOnMove(this, new PlayerMoveInput_EventArgs(1));
         shoot_VisualElement.SetEnabled(false);
         SetTurnState(false);
     }
@@ -138,24 +138,24 @@ public class PlayerInputUI_Controller : MonoBehaviour
 
     public void TurnLeft(ClickEvent clickEvent)
     {
-        PlayerInputUI_EventManager.InvokeOnRotate(this, new PlayerRotateInput_EventArgs(PlayerData.Left));
+        EventsManager.InvokeOnRotate(this, new PlayerRotateInput_EventArgs(PlayerData.Left));
     }
 
     public void TurnRight(ClickEvent clickEvent)
     {
-        PlayerInputUI_EventManager.InvokeOnRotate(this, new PlayerRotateInput_EventArgs(PlayerData.Right));
+        EventsManager.InvokeOnRotate(this, new PlayerRotateInput_EventArgs(PlayerData.Right));
     }
 
     #endregion
 
     public void TryedFire(ClickEvent clickEvent)
     {
-        PlayerInputUI_EventManager.InvokeOnTryedFire(this, new PlayerFireInput_EventArgs(true));
+        EventsManager.InvokeOnTryedFire();
     }
 
     private void SetShootStateTrue()
     {
-        PlayerInputUI_EventManager.InvokeOnMove(this, new PlayerMoveInput_EventArgs(0));
+        EventsManager.InvokeOnMove(this, new PlayerMoveInput_EventArgs(0));
         if (PlayerData.CurrentBullets > 0)
         {
             shoot_VisualElement.SetEnabled(true);

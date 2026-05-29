@@ -41,7 +41,7 @@ public class WinLoseWindow_UI
         {
             //Add points
             //Open Level 2 or next Level
-            GameState_EventManager.InvokeOnStopLevel(this, new GameState_EventArgs(GameData.CurrentLevelNumber));
+            EventsManager.InvokeOnStopLevel();
             //Menu Button Selected - Show Menu
             menu_UIConnector.InitialPage();
             Dispose();

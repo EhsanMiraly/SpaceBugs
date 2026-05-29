@@ -7,7 +7,7 @@ public class BackgroundMusicPlayer : MonoBehaviour
 
     public void Initialize()
     {
-        SoundsEventManager.OnBackgroundMusicChanged_Event += OnBackgroundMusicChanged;
+        EventsManager.OnBackgroundMusicChanged_Event += OnBackgroundMusicChanged;
 
         audioSource = GetComponent<AudioSource>();
 
@@ -24,15 +24,15 @@ public class BackgroundMusicPlayer : MonoBehaviour
 
     private void OnDisable()
     {
-        SoundsEventManager.OnBackgroundMusicChanged_Event -= OnBackgroundMusicChanged;
+        EventsManager.OnBackgroundMusicChanged_Event -= OnBackgroundMusicChanged;
     }
 
 
-    public void OnBackgroundMusicChanged(object sender, SoundData_EventArgs soundData_EventArgs)
+    public void OnBackgroundMusicChanged()
     {
-        SetVolume(soundData_EventArgs.Volume);
+        SetVolume(SettingsData.backgroundMusicVolume);
 
-        if (soundData_EventArgs.IsOn)
+        if (SettingsData.isBackgroundMusicOn)
         {
             TurnOn();
         }

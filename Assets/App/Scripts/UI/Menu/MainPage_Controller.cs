@@ -11,7 +11,7 @@ public class MainPage_Controller : MonoBehaviour
 
     public void Initialize(Menu_UIConnector menu_UIConnector)
     {
-        LanguageEventManager.OnLanguageChanged_Event += OnLanguageChanged;
+        EventsManager.OnLanguageChanged_Event += OnLanguageChanged;
 
         this.menu_UIConnector = menu_UIConnector;
 
@@ -25,7 +25,7 @@ public class MainPage_Controller : MonoBehaviour
 
     private void OnDisable()
     {
-        LanguageEventManager.OnLanguageChanged_Event -= OnLanguageChanged;
+        EventsManager.OnLanguageChanged_Event -= OnLanguageChanged;
     }
 
 
@@ -77,14 +77,14 @@ public class MainPage_Controller : MonoBehaviour
     {
         menu_UIConnector.menu_VisualElement.style.display = DisplayStyle.Flex;
         menu_UIConnector.pageHolder_VisualElement.style.display = DisplayStyle.None;
-        GameState_EventManager.InvokeOnResumeLevel(this, new GameState_EventArgs(GameData.CurrentLevelNumber));
+        EventsManager.InvokeOnResumeLevel();
     }
 
     private void OnLevels_ButtonSelected(ClickEvent clickEvent)
     {
         menu_UIConnector.resume_Button.style.display = DisplayStyle.None;
         menu_UIConnector.SwitchPage(menu_UIConnector.levelsPage_VisualElement);
-        GameState_EventManager.InvokeOnStopLevel(this, new GameState_EventArgs(0));
+        EventsManager.InvokeOnStopLevel();
     }
 
     private void OnSettings_ButtonSelected(ClickEvent clickEvent)

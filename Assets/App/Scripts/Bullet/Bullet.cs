@@ -59,7 +59,7 @@ public class Bullet : MonoBehaviour, IObjectInPool
 
     public void StopMoving()
     {
-        BulletEventManager.InvokeOnBulletDestroyed(this.gameObject, false);
+        EventsManager.InvokeOnBulletDestroyed();
         IsEnable = false;
         rb2D.linearVelocity = Vector2.zero;
         gameObject.SetActive(false);

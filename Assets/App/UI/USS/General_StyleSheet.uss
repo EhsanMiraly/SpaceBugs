@@ -64,7 +64,7 @@
     height: 80%;
 }
 
-.BackButton {
+.Back_VisualElement {
     width: 10%;
     height: 20%;
 }

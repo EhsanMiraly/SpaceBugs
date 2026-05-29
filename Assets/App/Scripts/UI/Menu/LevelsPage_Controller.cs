@@ -13,8 +13,8 @@ public class LevelsPage_Controller : MonoBehaviour
 
         level_Template = Resources.Load<VisualTreeAsset>("UI/Level_Template");
 
-        menu_UIConnector.backButton_InLevelsPage_Template.
-            RegisterCallback<ClickEvent>(OnBackButton_InLevelsPageSelected);
+        menu_UIConnector.back_VisualElement_InLevelsPage.
+            RegisterCallback<ClickEvent>(OnBack_VisualElement_InLevelsPageSelected);
 
         for (int i = 0; i < SettingsData.NumberOfLevels; i++)
         {
@@ -37,7 +37,7 @@ public class LevelsPage_Controller : MonoBehaviour
         }
     }
 
-    private void OnBackButton_InLevelsPageSelected(ClickEvent clickEvent)
+    private void OnBack_VisualElement_InLevelsPageSelected(ClickEvent clickEvent)
     {
         menu_UIConnector.SwitchPage(menu_UIConnector.mainPage_VisualElement);
     }
@@ -48,7 +48,7 @@ public class LevelsPage_Controller : MonoBehaviour
         string name = visualElement.Q<Button>().name;
         int levelNumber = int.Parse(name);
 
-        GameState_EventManager.InvokeOnStartLevel(this, new GameState_EventArgs(levelNumber));
+        EventsManager.InvokeOnStartLevel(this, new GameState_EventArgs(levelNumber));
 
         menu_UIConnector.menu_VisualElement.style.display = DisplayStyle.Flex;
         menu_UIConnector.pageHolder_VisualElement.style.display = DisplayStyle.None;
