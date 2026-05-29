@@ -49,6 +49,7 @@ public class Menu_UIConnector : MonoBehaviour
         settingsPage_VisualElement = root.Q<VisualElement>("SettingsPage_VisualElement");
         back_VisualElement_InSettingsPage = settingsPage_VisualElement.Q<VisualElement>("Back_VisualElement");
         settings_ScrollView = settingsPage_VisualElement.Q<ScrollView>("Settings_ScrollView");
+        ScrollViewController.InitializeScrollView(settings_ScrollView);
 
 
         //Add Functionality To menu_VisualElement
