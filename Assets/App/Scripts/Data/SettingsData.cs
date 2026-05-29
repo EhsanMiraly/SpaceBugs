@@ -12,13 +12,10 @@ public class SettingsData
 
     //Move Where?
 
-    public static List<Language> languages = new List<Language>
-    {
-        new Language("English", LanguageDirection.LTR),
-        new Language("فارسی", LanguageDirection.RTL)
-    };
-    public static int currentLanguageIndex = 0;
 
+
+
+    public static int currentLanguageIndex = 0;
 
     public static bool isBackgroundMusicOn = true;
     public static float backgroundMusicVolume = 0.1f;
@@ -32,10 +29,12 @@ public class Language
 {
     public string language { get; }
     public LanguageDirection languageDirection { get; }
+    public Font font { get; }
 
-    public Language(string language, LanguageDirection languageDirection)
+    public Language(string language, LanguageDirection languageDirection, Font font)
     {
         this.language = language;
         this.languageDirection = languageDirection;
+        this.font = font;
     }
 }

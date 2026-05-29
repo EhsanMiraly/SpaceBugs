@@ -8,8 +8,6 @@ public class SettingsPage_Controller : MonoBehaviour
     VisualTreeAsset language_VisualTreeAsset;
     VisualTreeAsset sound_VisualTreeAsset;
 
-
-
     #region Language_Setting
     VisualElement language_VisualElement;
     VisualElement chevronLeft_VisualElement;
@@ -56,6 +54,11 @@ public class SettingsPage_Controller : MonoBehaviour
         FillSettings_ScrollView();
     }
 
+    private void OnDisable()
+    {
+        LanguageEventManager.OnLanguageChanged_Event -= OnLanguageChanged;
+    }
+
 
     private void OnBackButton_InSettingsPageSelected(ClickEvent clickEvent)
     {
@@ -67,25 +70,43 @@ public class SettingsPage_Controller : MonoBehaviour
         Add_Language_Setting();
         Add_BackgroundMusic_Setting();
         Add_SoundEffects_Setting();
+
+        OnLanguageChanged();
     }
 
 
     #region Events Handler
-    private void OnLanguageChanged(object o, LanguageData_EventArgs languageData_EventArgs)
+
+    private void OnLanguageChanged()
     {
         #region Language
-        //Change text
         language_Label.text =
-            SettingsData.languages[SettingsData.currentLanguageIndex].language;
-        //Change RTL
+            LanguageTextsData.languages[SettingsData.currentLanguageIndex].language;
         language_Label.languageDirection =
-            SettingsData.languages[SettingsData.currentLanguageIndex].languageDirection;
-        //Change Font
-        //language_Label.style.font
-        //Change Size?????
+            LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
+        language_Label.style.unityFont =
+            LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
         #endregion
 
+        #region BackgroundMusic
+        backgroundMusic_WhatAmI_Label.text =
+            LanguageTextsData.backgroundMusic[SettingsData.currentLanguageIndex];
+        backgroundMusic_WhatAmI_Label.languageDirection =
+            LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
+        backgroundMusic_WhatAmI_Label.style.unityFont =
+            LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
+        #endregion
+
+        #region SoundEffects
+        soundEffects_WhatAmI_Label.text =
+            LanguageTextsData.soundEffects[SettingsData.currentLanguageIndex];
+        soundEffects_WhatAmI_Label.languageDirection =
+            LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
+        soundEffects_WhatAmI_Label.style.unityFont =
+            LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
+        #endregion
     }
+
     #endregion
 
 
@@ -102,11 +123,6 @@ public class SettingsPage_Controller : MonoBehaviour
         language_VisualElement.style.width = Length.Percent(100);
         language_VisualElement.style.height = 300;
 
-        language_Label.text =
-            SettingsData.languages[SettingsData.currentLanguageIndex].language;
-        language_Label.languageDirection =
-            SettingsData.languages[SettingsData.currentLanguageIndex].languageDirection;
-
         menu_UIConnector.settings_ScrollView.Add(language_VisualElement);
 
         chevronLeft_VisualElement.RegisterCallback<ClickEvent>(OnLanguageChevronLeftSelected);
@@ -119,25 +135,22 @@ public class SettingsPage_Controller : MonoBehaviour
         SettingsData.currentLanguageIndex--;
         if (SettingsData.currentLanguageIndex < 0)
         {
-            SettingsData.currentLanguageIndex = SettingsData.languages.Count - 1;
+            SettingsData.currentLanguageIndex = LanguageTextsData.languages.Count - 1;
         }
-        LanguageEventManager.InvokeOnLanguageChanged(this.gameObject,
-            new LanguageData_EventArgs(SettingsData.currentLanguageIndex));
+        LanguageEventManager.InvokeOnLanguageChanged();
     }
 
     private void OnLanguageChevronRightSelected(ClickEvent clickEvent)
     {
         SettingsData.currentLanguageIndex++;
-        if (SettingsData.currentLanguageIndex > SettingsData.languages.Count - 1)
+        if (SettingsData.currentLanguageIndex > LanguageTextsData.languages.Count - 1)
         {
             SettingsData.currentLanguageIndex = 0;
         }
-        LanguageEventManager.InvokeOnLanguageChanged(this.gameObject,
-            new LanguageData_EventArgs(SettingsData.currentLanguageIndex));
+        LanguageEventManager.InvokeOnLanguageChanged();
     }
 
     #endregion
-
 
     #region BackgroundMusic
 
@@ -160,7 +173,7 @@ public class SettingsPage_Controller : MonoBehaviour
 
         backgroundMusic_VisualElement.style.width = Length.Percent(100);
         backgroundMusic_VisualElement.style.height = 300;
-        backgroundMusic_WhatAmI_Label.text = "Background music";
+
         menu_UIConnector.settings_ScrollView.Add(backgroundMusic_VisualElement);
 
         backgroundMusic_CheckMark_VisualElement.
@@ -233,7 +246,7 @@ public class SettingsPage_Controller : MonoBehaviour
 
         soundEffects_VisualElement.style.width = Length.Percent(100);
         soundEffects_VisualElement.style.height = 300;
-        soundEffects_WhatAmI_Label.text = "Sound effects";
+
         menu_UIConnector.settings_ScrollView.Add(soundEffects_VisualElement);
 
         soundEffects_CheckMark_VisualElement.

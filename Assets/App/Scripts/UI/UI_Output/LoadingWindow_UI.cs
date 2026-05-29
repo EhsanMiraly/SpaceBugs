@@ -10,6 +10,7 @@ public class LoadingWindow_UI : IDisposable
 
     UIDocument uIDocument;
     VisualElement root;
+    Label loading_Label;
 
     VisualElement sliderForeground_VisualElement;
 
@@ -29,6 +30,14 @@ public class LoadingWindow_UI : IDisposable
         uIDocument.sortingOrder = 100;
 
         root = uIDocument.rootVisualElement;
+
+        loading_Label = root.Q<Label>("Loading_Label");
+        loading_Label.text =
+            LanguageTextsData.loading[SettingsData.currentLanguageIndex];
+        loading_Label.languageDirection =
+            LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
+        loading_Label.style.unityFont =
+            LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
 
         sliderForeground_VisualElement = root.Q<VisualElement>("SliderForeground_VisualElement");
 
