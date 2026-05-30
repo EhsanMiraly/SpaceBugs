@@ -89,6 +89,12 @@ public class EventsManager
         OnLanguageChanged_Event?.Invoke();
     }
 
+    public static event OnNotify OnFontSizeChanged_Event;
+    public static void InvokeOnFontSizeChanged()
+    {
+        OnFontSizeChanged_Event?.Invoke();
+    }
+
     public static event OnNotify OnBackgroundMusicChanged_Event;
     public static void InvokeOnBackgroundMusicChanged()
     {

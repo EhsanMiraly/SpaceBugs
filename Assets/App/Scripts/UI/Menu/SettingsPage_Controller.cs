@@ -5,14 +5,22 @@ public class SettingsPage_Controller : MonoBehaviour
 {
     Menu_UIConnector menu_UIConnector;
 
-    VisualTreeAsset language_VisualTreeAsset;
+    VisualTreeAsset previousNextSelector_VisualTreeAsset;
     VisualTreeAsset sound_VisualTreeAsset;
+
 
     #region Language_Setting
     VisualElement language_VisualElement;
-    VisualElement chevronLeft_VisualElement;
+    VisualElement language_ChevronLeft_VisualElement;
     Label language_Label;
-    VisualElement chevronRight_VisualElement;
+    VisualElement language_ChevronRight_VisualElement;
+    #endregion
+
+    #region FontSize_Setting
+    VisualElement fontSize_VisualElement;
+    VisualElement fontSize_ChevronLeft_VisualElement;
+    Label fontSize_Label;
+    VisualElement fontSize_ChevronRight_VisualElement;
     #endregion
 
     #region BackgroundMusic_Setting
@@ -40,11 +48,12 @@ public class SettingsPage_Controller : MonoBehaviour
     public void Initialize(Menu_UIConnector menu_UIConnector)
     {
         EventsManager.OnLanguageChanged_Event += OnLanguageChanged;
+        EventsManager.OnFontSizeChanged_Event += OnFontSizeChanged;
 
         this.menu_UIConnector = menu_UIConnector;
 
-        language_VisualTreeAsset =
-            Resources.Load<VisualTreeAsset>("UI/Settings_Templates/Language/Language_Template");
+        previousNextSelector_VisualTreeAsset =
+            Resources.Load<VisualTreeAsset>("UI/Settings_Templates/PreviousNextSelector/previousNextSelector_Template");
         sound_VisualTreeAsset =
             Resources.Load<VisualTreeAsset>("UI/Settings_Templates/Sound/Sound_Template");
 
@@ -57,6 +66,7 @@ public class SettingsPage_Controller : MonoBehaviour
     private void OnDisable()
     {
         EventsManager.OnLanguageChanged_Event -= OnLanguageChanged;
+        EventsManager.OnFontSizeChanged_Event -= OnFontSizeChanged;
     }
 
 
@@ -68,10 +78,12 @@ public class SettingsPage_Controller : MonoBehaviour
     public void FillSettings_ScrollView()
     {
         Add_Language_Setting();
+        Add_FontSize_Setting();
         Add_BackgroundMusic_Setting();
         Add_SoundEffects_Setting();
 
         OnLanguageChanged();
+        OnFontSizeChanged();
     }
 
 
@@ -85,6 +97,16 @@ public class SettingsPage_Controller : MonoBehaviour
         language_Label.languageDirection =
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
         language_Label.style.unityFont =
+            LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
+        #endregion
+
+        #region FontSize
+        fontSize_Label.text =
+            LanguageTextsData.fontSizes[SettingsData.currentFontSizeIndex].
+            FontSizeString[SettingsData.currentLanguageIndex];
+        fontSize_Label.languageDirection =
+            LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
+        fontSize_Label.style.unityFont =
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
         #endregion
 
@@ -107,6 +129,32 @@ public class SettingsPage_Controller : MonoBehaviour
         #endregion
     }
 
+    private void OnFontSizeChanged()
+    {
+        #region Language
+        language_Label.style.fontSize =
+            LanguageTextsData.fontSizes[SettingsData.currentFontSizeIndex].FontSizeInt;
+        #endregion
+
+        #region FontSize
+        fontSize_Label.style.fontSize =
+            LanguageTextsData.fontSizes[SettingsData.currentFontSizeIndex].FontSizeInt;
+        fontSize_Label.text =
+            LanguageTextsData.fontSizes[SettingsData.currentFontSizeIndex].
+            FontSizeString[SettingsData.currentLanguageIndex];
+        #endregion
+
+        #region BackgroundMusic
+        backgroundMusic_WhatAmI_Label.style.fontSize =
+            LanguageTextsData.fontSizes[SettingsData.currentFontSizeIndex].FontSizeInt;
+        #endregion
+
+        #region SoundEffects
+        soundEffects_WhatAmI_Label.style.fontSize =
+            LanguageTextsData.fontSizes[SettingsData.currentFontSizeIndex].FontSizeInt;
+        #endregion
+    }
+
     #endregion
 
 
@@ -114,19 +162,19 @@ public class SettingsPage_Controller : MonoBehaviour
 
     public void Add_Language_Setting()
     {
-        language_VisualElement = language_VisualTreeAsset.Instantiate();
+        language_VisualElement = previousNextSelector_VisualTreeAsset.Instantiate();
 
-        chevronLeft_VisualElement = language_VisualElement.Q<VisualElement>("ChevronLeft_VisualElement");
-        language_Label = language_VisualElement.Q<Label>("Language_Label");
-        chevronRight_VisualElement = language_VisualElement.Q<VisualElement>("ChevronRight_VisualElement");
+        language_ChevronLeft_VisualElement = language_VisualElement.Q<VisualElement>("ChevronLeft_VisualElement");
+        language_Label = language_VisualElement.Q<Label>("Option_Label");
+        language_ChevronRight_VisualElement = language_VisualElement.Q<VisualElement>("ChevronRight_VisualElement");
 
         language_VisualElement.style.width = Length.Percent(100);
         language_VisualElement.style.height = 300;
 
         menu_UIConnector.settings_ScrollView.Add(language_VisualElement);
 
-        chevronLeft_VisualElement.RegisterCallback<ClickEvent>(OnLanguageChevronLeftSelected);
-        chevronRight_VisualElement.RegisterCallback<ClickEvent>(OnLanguageChevronRightSelected);
+        language_ChevronLeft_VisualElement.RegisterCallback<ClickEvent>(OnLanguageChevronLeftSelected);
+        language_ChevronRight_VisualElement.RegisterCallback<ClickEvent>(OnLanguageChevronRightSelected);
 
     }
 
@@ -148,6 +196,48 @@ public class SettingsPage_Controller : MonoBehaviour
             SettingsData.currentLanguageIndex = 0;
         }
         EventsManager.InvokeOnLanguageChanged();
+    }
+
+    #endregion
+
+    #region FontSize
+
+    public void Add_FontSize_Setting()
+    {
+        fontSize_VisualElement = previousNextSelector_VisualTreeAsset.Instantiate();
+
+        fontSize_ChevronLeft_VisualElement = fontSize_VisualElement.Q<VisualElement>("ChevronLeft_VisualElement");
+        fontSize_Label = fontSize_VisualElement.Q<Label>("Option_Label");
+        fontSize_ChevronRight_VisualElement = fontSize_VisualElement.Q<VisualElement>("ChevronRight_VisualElement");
+
+        fontSize_VisualElement.style.width = Length.Percent(100);
+        fontSize_VisualElement.style.height = 300;
+
+        menu_UIConnector.settings_ScrollView.Add(fontSize_VisualElement);
+
+        fontSize_ChevronLeft_VisualElement.RegisterCallback<ClickEvent>(OnFontSizeChevronLeftSelected);
+        fontSize_ChevronRight_VisualElement.RegisterCallback<ClickEvent>(OnFontSizeChevronRightSelected);
+
+    }
+
+    private void OnFontSizeChevronLeftSelected(ClickEvent clickEvent)
+    {
+        SettingsData.currentFontSizeIndex--;
+        if (SettingsData.currentFontSizeIndex < 0)
+        {
+            SettingsData.currentFontSizeIndex = LanguageTextsData.fontSizes.Count - 1;
+        }
+        EventsManager.InvokeOnFontSizeChanged();
+    }
+
+    private void OnFontSizeChevronRightSelected(ClickEvent clickEvent)
+    {
+        SettingsData.currentFontSizeIndex++;
+        if (SettingsData.currentFontSizeIndex > LanguageTextsData.fontSizes.Count - 1)
+        {
+            SettingsData.currentFontSizeIndex = 0;
+        }
+        EventsManager.InvokeOnFontSizeChanged();
     }
 
     #endregion

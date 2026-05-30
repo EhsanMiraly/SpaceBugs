@@ -27,8 +27,41 @@ public class LanguageTextsData
         new Language("فارسی", LanguageDirection.RTL,font_Farsi)
     };
 
+    public static List<FontSize> fontSizes = new List<FontSize>
+    {
+        new FontSize("Small","کوچک",50),
+        new FontSize("Average","متوسط",100),
+        new FontSize("Big","بزرگ",150)
+    };
+    //Delete 50,100,150 and add multiple numbers for every category of texts
     public static List<string> backgroundMusic = new List<string> { "Background music", "موزیک پس‌زمینه" };
     public static List<string> soundEffects = new List<string> { "Sound effects", "جلوه‌های صوتی" };
 
     #endregion
+}
+
+public class Language
+{
+    public string language { get; }
+    public LanguageDirection languageDirection { get; }
+    public Font font { get; }
+
+    public Language(string language, LanguageDirection languageDirection, Font font)
+    {
+        this.language = language;
+        this.languageDirection = languageDirection;
+        this.font = font;
+    }
+}
+
+public class FontSize
+{
+    public List<string> FontSizeString { get; }
+    public int FontSizeInt { get; }
+
+    public FontSize(string fontSizeEnglish, string fontSizeFarsi, int fontSizeInt)
+    {
+        FontSizeString = new List<string> { fontSizeEnglish, fontSizeFarsi };
+        FontSizeInt = fontSizeInt;
+    }
 }

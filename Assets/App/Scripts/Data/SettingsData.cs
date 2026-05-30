@@ -16,6 +16,7 @@ public class SettingsData
 
 
     public static int currentLanguageIndex = 0;
+    public static int currentFontSizeIndex = 0;
 
     public static bool isBackgroundMusicOn = true;
     public static float backgroundMusicVolume = 0.1f;
@@ -25,16 +26,4 @@ public class SettingsData
 
 }
 
-public class Language
-{
-    public string language { get; }
-    public LanguageDirection languageDirection { get; }
-    public Font font { get; }
 
-    public Language(string language, LanguageDirection languageDirection, Font font)
-    {
-        this.language = language;
-        this.languageDirection = languageDirection;
-        this.font = font;
-    }
-}
