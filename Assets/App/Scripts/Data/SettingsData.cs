@@ -16,7 +16,7 @@ public class SettingsData
 
 
     public static int currentLanguageIndex = 0;
-    public static int currentFontSizeIndex = 0;
+    public static int currentFontSizeIndex = 1;
 
     public static bool isBackgroundMusicOn = true;
     public static float backgroundMusicVolume = 0.1f;

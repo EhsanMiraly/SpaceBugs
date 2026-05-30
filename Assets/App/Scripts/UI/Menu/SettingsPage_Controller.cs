@@ -53,9 +53,9 @@ public class SettingsPage_Controller : MonoBehaviour
         this.menu_UIConnector = menu_UIConnector;
 
         previousNextSelector_VisualTreeAsset =
-            Resources.Load<VisualTreeAsset>("UI/Settings_Templates/PreviousNextSelector/previousNextSelector_Template");
+            Resources.Load<VisualTreeAsset>("UI/Basic_Templates/PreviousNextSelector/previousNextSelector_Template");
         sound_VisualTreeAsset =
-            Resources.Load<VisualTreeAsset>("UI/Settings_Templates/Sound/Sound_Template");
+            Resources.Load<VisualTreeAsset>("UI/Basic_Templates/Sound/Sound_Template");
 
         menu_UIConnector.back_VisualElement_InSettingsPage.
             RegisterCallback<ClickEvent>(OnBackButton_InSettingsPageSelected);
@@ -102,8 +102,8 @@ public class SettingsPage_Controller : MonoBehaviour
 
         #region FontSize
         fontSize_Label.text =
-            LanguageTextsData.fontSizes[SettingsData.currentFontSizeIndex].
-            FontSizeString[SettingsData.currentLanguageIndex];
+            LanguageTextsData.fontSize_Text[SettingsData.currentFontSizeIndex].
+            FontSizeLanguage[SettingsData.currentLanguageIndex];
         fontSize_Label.languageDirection =
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
         fontSize_Label.style.unityFont =
@@ -133,25 +133,25 @@ public class SettingsPage_Controller : MonoBehaviour
     {
         #region Language
         language_Label.style.fontSize =
-            LanguageTextsData.fontSizes[SettingsData.currentFontSizeIndex].FontSizeInt;
+            LanguageTextsData.fontSize_CategoryBig[SettingsData.currentFontSizeIndex];
         #endregion
 
         #region FontSize
         fontSize_Label.style.fontSize =
-            LanguageTextsData.fontSizes[SettingsData.currentFontSizeIndex].FontSizeInt;
+            LanguageTextsData.fontSize_CategoryBig[SettingsData.currentFontSizeIndex];
         fontSize_Label.text =
-            LanguageTextsData.fontSizes[SettingsData.currentFontSizeIndex].
-            FontSizeString[SettingsData.currentLanguageIndex];
+            LanguageTextsData.fontSize_Text[SettingsData.currentFontSizeIndex].
+            FontSizeLanguage[SettingsData.currentLanguageIndex];
         #endregion
 
         #region BackgroundMusic
         backgroundMusic_WhatAmI_Label.style.fontSize =
-            LanguageTextsData.fontSizes[SettingsData.currentFontSizeIndex].FontSizeInt;
+            LanguageTextsData.fontSize_CategoryBig[SettingsData.currentFontSizeIndex];
         #endregion
 
         #region SoundEffects
         soundEffects_WhatAmI_Label.style.fontSize =
-            LanguageTextsData.fontSizes[SettingsData.currentFontSizeIndex].FontSizeInt;
+            LanguageTextsData.fontSize_CategoryBig[SettingsData.currentFontSizeIndex];
         #endregion
     }
 
@@ -225,7 +225,7 @@ public class SettingsPage_Controller : MonoBehaviour
         SettingsData.currentFontSizeIndex--;
         if (SettingsData.currentFontSizeIndex < 0)
         {
-            SettingsData.currentFontSizeIndex = LanguageTextsData.fontSizes.Count - 1;
+            SettingsData.currentFontSizeIndex = LanguageTextsData.fontSize_Text.Count - 1;
         }
         EventsManager.InvokeOnFontSizeChanged();
     }
@@ -233,7 +233,7 @@ public class SettingsPage_Controller : MonoBehaviour
     private void OnFontSizeChevronRightSelected(ClickEvent clickEvent)
     {
         SettingsData.currentFontSizeIndex++;
-        if (SettingsData.currentFontSizeIndex > LanguageTextsData.fontSizes.Count - 1)
+        if (SettingsData.currentFontSizeIndex > LanguageTextsData.fontSize_Text.Count - 1)
         {
             SettingsData.currentFontSizeIndex = 0;
         }

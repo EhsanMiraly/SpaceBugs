@@ -38,6 +38,8 @@ public class LoadingWindow_UI : IDisposable
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
         loading_Label.style.unityFont =
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
+        loading_Label.style.fontSize =
+            LanguageTextsData.fontSize_CategoryBig[SettingsData.currentFontSizeIndex];
 
         sliderForeground_VisualElement = root.Q<VisualElement>("SliderForeground_VisualElement");
 

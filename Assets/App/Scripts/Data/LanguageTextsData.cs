@@ -19,6 +19,10 @@ public class LanguageTextsData
     public static List<string> exit = new List<string> { "Exit", "خروج" };
     #endregion
 
+    #region LevelsPage
+    public static List<string> level = new List<string> { "Level", "لول" };
+    #endregion
+
     #region SettingsPage
 
     public static List<Language> languages = new List<Language>
@@ -27,13 +31,17 @@ public class LanguageTextsData
         new Language("فارسی", LanguageDirection.RTL,font_Farsi)
     };
 
-    public static List<FontSize> fontSizes = new List<FontSize>
+    public static List<FontSize> fontSize_Text = new List<FontSize>
     {
-        new FontSize("Small","کوچک",50),
-        new FontSize("Average","متوسط",100),
-        new FontSize("Big","بزرگ",150)
+        new FontSize("Small","کوچک"),
+        new FontSize("Average","متوسط"),
+        new FontSize("Big","بزرگ")
     };
-    //Delete 50,100,150 and add multiple numbers for every category of texts
+
+    public static List<int> fontSize_CategorySmall = new List<int> { 10, 20, 30 };
+    public static List<int> fontSize_CategoryAverage = new List<int> { 20, 40, 60 };
+    public static List<int> fontSize_CategoryBig = new List<int> { 40, 80, 120 };
+
     public static List<string> backgroundMusic = new List<string> { "Background music", "موزیک پس‌زمینه" };
     public static List<string> soundEffects = new List<string> { "Sound effects", "جلوه‌های صوتی" };
 
@@ -56,12 +64,10 @@ public class Language
 
 public class FontSize
 {
-    public List<string> FontSizeString { get; }
-    public int FontSizeInt { get; }
+    public List<string> FontSizeLanguage { get; }
 
-    public FontSize(string fontSizeEnglish, string fontSizeFarsi, int fontSizeInt)
+    public FontSize(string fontSizeEnglish, string fontSizeFarsi)
     {
-        FontSizeString = new List<string> { fontSizeEnglish, fontSizeFarsi };
-        FontSizeInt = fontSizeInt;
+        FontSizeLanguage = new List<string> { fontSizeEnglish, fontSizeFarsi };
     }
 }
