@@ -40,7 +40,7 @@ public class GameInitializer : MonoBehaviour
             loadingPage_UI.SetProgress(40);
 
             _playerHealthScoreBullets_UI = Instantiate(_playerHealthScoreBullets_UI);
-            _playerHealthScoreBullets_UI.GetComponent<PlayerHealthScoreBullets_UI>().Initialize();
+            _playerHealthScoreBullets_UI.GetComponent<PlayerCombatInfo_UI>().Initialize();
             loadingPage_UI.SetProgress(50);
 
             _playerInputUI = Instantiate(_playerInputUI);

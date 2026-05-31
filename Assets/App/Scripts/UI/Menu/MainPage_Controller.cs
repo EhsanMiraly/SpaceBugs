@@ -12,6 +12,7 @@ public class MainPage_Controller : MonoBehaviour
     public void Initialize(Menu_UIConnector menu_UIConnector)
     {
         EventsManager.OnLanguageChanged_Event += OnLanguageChanged;
+        EventsManager.OnFontSizeChanged_Event += OnFontSizeChanged;
 
         this.menu_UIConnector = menu_UIConnector;
 
@@ -21,11 +22,13 @@ public class MainPage_Controller : MonoBehaviour
         menu_UIConnector.exit_Button.RegisterCallback<ClickEvent>(OnExit_ButtonSelected);
 
         OnLanguageChanged();
+        OnFontSizeChanged();
     }
 
     private void OnDisable()
     {
         EventsManager.OnLanguageChanged_Event -= OnLanguageChanged;
+        EventsManager.OnFontSizeChanged_Event -= OnFontSizeChanged;
     }
 
 
@@ -67,6 +70,29 @@ public class MainPage_Controller : MonoBehaviour
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
         menu_UIConnector.exit_Button.style.unityFont =
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
+        #endregion
+    }
+
+    private void OnFontSizeChanged()
+    {
+        #region Resume
+        menu_UIConnector.resume_Button.style.fontSize =
+            LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
+        #endregion
+
+        #region Levels
+        menu_UIConnector.levels_Button.style.fontSize =
+            LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
+        #endregion
+
+        #region Settings
+        menu_UIConnector.settings_Button.style.fontSize =
+            LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
+        #endregion
+
+        #region Exit
+        menu_UIConnector.exit_Button.style.fontSize =
+            LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
         #endregion
     }
 

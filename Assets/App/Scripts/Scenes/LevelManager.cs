@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    PlayerHealthScoreBullets_UI screen_UI;
+    PlayerCombatInfo_UI screen_UI;
 
     private int movingState;
 
     public void Initialize()
     {
-        screen_UI = FindAnyObjectByType<PlayerHealthScoreBullets_UI>().GetComponent<PlayerHealthScoreBullets_UI>();
+        screen_UI = FindAnyObjectByType<PlayerCombatInfo_UI>().GetComponent<PlayerCombatInfo_UI>();
 
         EventsManager.OnFired_Event += OnUpdateBulletsMinus;
         EventsManager.OnBulletDestroyed_Event += OnUpdateBulletsPlus;

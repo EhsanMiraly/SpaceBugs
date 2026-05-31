@@ -20,7 +20,7 @@ public class LanguageTextsData
     #endregion
 
     #region LevelsPage
-    public static List<string> level = new List<string> { "Level", "لول" };
+    public static List<string> level = new List<string> { "Level ", "لول " };
     #endregion
 
     #region SettingsPage
@@ -33,9 +33,9 @@ public class LanguageTextsData
 
     public static List<FontSize> fontSize_Text = new List<FontSize>
     {
-        new FontSize("Small","کوچک"),
-        new FontSize("Average","متوسط"),
-        new FontSize("Big","بزرگ")
+        new FontSize("Font size: Small","اندازه فونت: کوچک"),
+        new FontSize("Font size: Average","اندازه فونت: متوسط"),
+        new FontSize("Font size: Big","اندازه فونت: بزرگ")
     };
 
     public static List<int> fontSize_CategorySmall = new List<int> { 10, 20, 30 };
@@ -44,6 +44,21 @@ public class LanguageTextsData
 
     public static List<string> backgroundMusic = new List<string> { "Background music", "موزیک پس‌زمینه" };
     public static List<string> soundEffects = new List<string> { "Sound effects", "جلوه‌های صوتی" };
+
+    #endregion
+
+    #region PlayerCombatInfo
+
+    public static List<string> score = new List<string> { "Score: ", "امتیاز: " };
+    public static List<string> bullets = new List<string> { "Bullets: ", "تیرها: " };
+
+    #endregion
+
+    #region WinLose Window
+
+    public static List<string> win = new List<string> { "Win", "برنده شدید" };
+    public static List<string> lose = new List<string> { "Lose", "باختید" };
+    public static List<string> ok = new List<string> { "Ok", "باشه" };
 
     #endregion
 }

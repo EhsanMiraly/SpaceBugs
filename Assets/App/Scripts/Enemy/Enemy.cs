@@ -246,7 +246,6 @@ public class Enemy : MonoBehaviour, IObjectInPool
             }
             else if (other.gameObject.tag == "EndOfLine")
             {
-                PlayerData.CurrentHealth -= EnemyData.CurrentHealth;
                 EventsManager.InvokeOnEnemyPassedLine(this.gameObject, EnemyData);
                 StopMoving();
             }

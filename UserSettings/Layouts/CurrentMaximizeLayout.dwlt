@@ -75,7 +75,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/App/Scripts/UI/Menu
+    - Assets/App/Sprites/Icons/Picto_Icons/White
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -85,20 +85,21 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/App/Scripts/UI/Menu
+  - Assets/App/Sprites/Icons/Picto_Icons/White
   m_LastFoldersGridSize: 96
   m_LastProjectPath: D:\UnityProjects\SpaceBugs
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 242}
+    scrollPos: {x: 0, y: 402}
     m_SelectedIDs:
-    - m_Data: 60926
+    - m_Data: 60942
     m_LastClickedID:
-      m_Data: 60926
+      m_Data: 60942
     m_ExpandedIDs:
     - m_Data: 0
+    - m_Data: 60426
     - m_Data: 60428
     - m_Data: 60430
     - m_Data: 60432
@@ -106,6 +107,7 @@ MonoBehaviour:
     - m_Data: 60436
     - m_Data: 60438
     - m_Data: 60440
+    - m_Data: 60442
     - m_Data: 60444
     - m_Data: 60446
     - m_Data: 60448
@@ -113,7 +115,6 @@ MonoBehaviour:
     - m_Data: 60452
     - m_Data: 60454
     - m_Data: 60456
-    - m_Data: 84716
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -147,6 +148,7 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
+    - m_Data: 60426
     - m_Data: 60428
     - m_Data: 60430
     - m_Data: 60432
@@ -189,9 +191,9 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: 41960
-    m_LastClickedInstanceID: 41960
-    m_HadKeyboardFocusLastEvent: 0
+    - m_Data: 60942
+    m_LastClickedInstanceID: 60942
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 50342
     - m_Data: 62140
@@ -221,7 +223,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
+    m_ScrollPosition: {x: 0, y: 1500}
     m_GridSize: 96
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 224.59998
@@ -1116,7 +1118,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 79.200005
-    width: 945.4
+    width: 906.2
     height: 470.8
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1416,10 +1418,18 @@ MonoBehaviour:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs:
-      - m_Data: 41960
+      - m_Data: 60942
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
+      - m_Data: -14944
+      - m_Data: -14924
+      - m_Data: -10588
+      - m_Data: -10568
+      - m_Data: -6982
+      - m_Data: -6962
+      - m_Data: -6010
+      - m_Data: -5990
       - m_Data: -1364
       m_RenameOverlay:
         m_UserAcceptedRename: 0
