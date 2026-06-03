@@ -73,7 +73,8 @@ public class PlayerCombatInfo_UI : MonoBehaviour
     public void UpdateScoreInUI()
     {
         score_Label.text =
-            LanguageTextsData.score[SettingsData.currentLanguageIndex] + PlayerData.Score;
+            LanguageTextsData.score[SettingsData.currentLanguageIndex] + PlayerData.Score
+            + " / " + GameData.currentLevelData.ScoreNeeded;
     }
 
     public void UpdateBulletsInUI()

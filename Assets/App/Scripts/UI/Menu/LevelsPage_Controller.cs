@@ -7,44 +7,27 @@ public class LevelsPage_Controller : MonoBehaviour
     Menu_UIConnector menu_UIConnector;
 
     VisualTreeAsset level_Template;
-    List<VisualElement> levels_VisualElement;
+    List<VisualElement> levels_VisualElement_List;
+
 
     public void Initialize(Menu_UIConnector menu_UIConnector)
     {
+        Levels_SaveSystem.Load_Levels();
 
         EventsManager.OnLanguageChanged_Event += OnLanguageChanged;
         EventsManager.OnFontSizeChanged_Event += OnFontSizeChanged;
-
+        EventsManager.OnWinLevel_Event += OnWinLevel;
+        EventsManager.OnLoseLevel_Event += OnLoseLevel;
 
         this.menu_UIConnector = menu_UIConnector;
 
         level_Template = Resources.Load<VisualTreeAsset>("UI/Basic_Templates/Level/Level_Template");
-        levels_VisualElement = new List<VisualElement>();
+        levels_VisualElement_List = new List<VisualElement>();
 
         menu_UIConnector.back_VisualElement_InLevelsPage.
             RegisterCallback<ClickEvent>(OnBack_VisualElement_InLevelsPageSelected);
 
-        for (int i = 0; i < SettingsData.NumberOfLevels; i++)
-        {
-            VisualElement level_VisualElement = level_Template.Instantiate();
-
-            level_VisualElement.style.width = Screen.width / SettingsData.Level_Template_Size;
-            level_VisualElement.style.height = Screen.width / SettingsData.Level_Template_Size;
-
-            level_VisualElement.style.paddingLeft = Screen.width / SettingsData.Level_Template_Padding;
-            level_VisualElement.style.paddingTop = Screen.width / SettingsData.Level_Template_Padding;
-            level_VisualElement.style.paddingRight = Screen.width / SettingsData.Level_Template_Padding;
-            level_VisualElement.style.paddingBottom = Screen.width / SettingsData.Level_Template_Padding;
-
-            Label label = level_VisualElement.Q<Label>("LevelNumber_Label");
-            label.text = "Level " + (i + 1);
-            label.name = "" + (i + 1);
-            level_VisualElement.RegisterCallback<ClickEvent>(OnLevelSelected);
-
-            menu_UIConnector.levelsHolder_VisualElement.Add(level_VisualElement);
-
-            levels_VisualElement.Add(level_VisualElement);
-        }
+        FillLevelsHolder();
 
         OnLanguageChanged();
         OnFontSizeChanged();
@@ -55,11 +38,79 @@ public class LevelsPage_Controller : MonoBehaviour
     {
         EventsManager.OnLanguageChanged_Event -= OnLanguageChanged;
         EventsManager.OnFontSizeChanged_Event -= OnFontSizeChanged;
+        EventsManager.OnWinLevel_Event -= OnWinLevel;
+        EventsManager.OnLoseLevel_Event -= OnLoseLevel;
+
+        menu_UIConnector.back_VisualElement_InLevelsPage.
+            UnregisterCallback<ClickEvent>(OnBack_VisualElement_InLevelsPageSelected);
+
+        for (int i = 0; i < LevelsData.Levels.Length; i++)
+        {
+            levels_VisualElement_List[i].UnregisterCallback<ClickEvent>(OnLevelSelected);
+        }
     }
 
     private void OnBack_VisualElement_InLevelsPageSelected(ClickEvent clickEvent)
     {
         menu_UIConnector.SwitchPage(menu_UIConnector.mainPage_VisualElement);
+    }
+
+    private void FillLevelsHolder()
+    {
+        for (int i = 0; i < LevelsData.Levels.Length; i++)
+        {
+            VisualElement level_VisualElement = level_Template.Instantiate();
+
+            level_VisualElement.style.width = Screen.width / 10;
+            level_VisualElement.style.height = Screen.width / 10;
+
+            level_VisualElement.style.marginLeft = Screen.width / 100;
+            level_VisualElement.style.marginTop = Screen.width / 100;
+            level_VisualElement.style.marginRight = Screen.width / 100;
+            level_VisualElement.style.marginBottom = Screen.width / 100;
+
+            Label label = level_VisualElement.Q<Label>("LevelNumber_Label");
+            label.text = "Level " + (i + 1);
+            label.name = "" + (i + 1);
+
+            VisualElement lock_VisualElement = level_VisualElement.Q<VisualElement>("Lock_VisualElement");
+            if (LevelsData.Levels[i].IsOpen)
+            {
+                lock_VisualElement.style.display = DisplayStyle.None;
+                level_VisualElement.RegisterCallback<ClickEvent>(OnLevelSelected);
+            }
+            else
+            {
+                lock_VisualElement.style.display = DisplayStyle.Flex;
+            }
+
+            menu_UIConnector.levelsHolder_VisualElement.Add(level_VisualElement);
+
+            levels_VisualElement_List.Add(level_VisualElement);
+        }
+    }
+
+    public void OnWinLevel()
+    {
+        if (GameData.CurrentLevelNumber <= LevelsData.Levels.Length)
+        {
+            LevelsData.Levels[GameData.CurrentLevelNumber].IsOpen = true;
+            VisualElement lock_VisualElement =
+                levels_VisualElement_List[GameData.CurrentLevelNumber].Q<VisualElement>("Lock_VisualElement");
+            lock_VisualElement.style.display = DisplayStyle.None;
+            levels_VisualElement_List[GameData.CurrentLevelNumber].RegisterCallback<ClickEvent>(OnLevelSelected);
+        }
+
+        LevelsData.Levels[GameData.CurrentLevelNumber - 1].Progress = 100;
+
+        Levels_SaveSystem.Save_Levels();
+    }
+
+    public void OnLoseLevel()
+    {
+        LevelsData.Levels[GameData.CurrentLevelNumber - 1].Progress = GameData.currentLevelProgress;
+
+        Levels_SaveSystem.Save_Levels();
     }
 
     private void OnLevelSelected(ClickEvent clickEvent)
@@ -75,11 +126,13 @@ public class LevelsPage_Controller : MonoBehaviour
     }
 
 
+    #region Events Handler
+
     private void OnLanguageChanged()
     {
-        for (int i = 0; i < levels_VisualElement.Count; i++)
+        for (int i = 0; i < levels_VisualElement_List.Count; i++)
         {
-            Label label = levels_VisualElement[i].Q<Label>("" + (i + 1));
+            Label label = levels_VisualElement_List[i].Q<Label>("" + (i + 1));
             label.text = LanguageTextsData.level[SettingsData.currentLanguageIndex] + (i + 1);
             label.languageDirection =
                 LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
@@ -90,13 +143,15 @@ public class LevelsPage_Controller : MonoBehaviour
 
     private void OnFontSizeChanged()
     {
-        for (int i = 0; i < levels_VisualElement.Count; i++)
+        for (int i = 0; i < levels_VisualElement_List.Count; i++)
         {
-            Label label = levels_VisualElement[i].Q<Label>("" + (i + 1));
+            Label label = levels_VisualElement_List[i].Q<Label>("" + (i + 1));
             label.style.fontSize =
                 LanguageTextsData.fontSize_CategorySmall[SettingsData.currentFontSizeIndex];
         }
 
     }
+
+    #endregion
 
 }

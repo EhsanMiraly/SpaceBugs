@@ -60,10 +60,16 @@ public class WinLoseWindow_UI
 
         oK_Button.RegisterCallback<ClickEvent>(evt =>
         {
-            //Add points
-            //Open Level 2 or next Level
+            //Add Stars
+            if (PlayerData.Score >= GameData.currentLevelData.ScoreNeeded)
+            {
+                EventsManager.InvokeOnWinLevel();
+            }
+            else
+            {
+                EventsManager.InvokeOnLoseLevel();
+            }
             EventsManager.InvokeOnStopLevel();
-            //Menu Button Selected - Show Menu
             menu_UIConnector.InitialPage();
             Dispose();
         });

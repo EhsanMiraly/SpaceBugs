@@ -66,16 +66,16 @@ public class EventsManager
         OnStopLevel_Event?.Invoke();
     }
 
-    public static event EventHandler<GameState_EventArgs> OnWinLevel_Event;
-    public static void InvokeOnWinLevel(object o, GameState_EventArgs gameState_EventArgs)
+    public static event OnNotify OnWinLevel_Event;
+    public static void InvokeOnWinLevel()
     {
-        OnWinLevel_Event?.Invoke(o, gameState_EventArgs);
+        OnWinLevel_Event?.Invoke();
     }
 
-    public static event EventHandler<GameState_EventArgs> OnLoseLevel_Event;
-    public static void InvokeOnLoseLevel(object o, GameState_EventArgs gameState_EventArgs)
+    public static event OnNotify OnLoseLevel_Event;
+    public static void InvokeOnLoseLevel()
     {
-        OnLoseLevel_Event?.Invoke(o, gameState_EventArgs);
+        OnLoseLevel_Event?.Invoke();
     }
 
     #endregion
@@ -137,7 +137,6 @@ public class EventsManager
     }
 
     #endregion
-
 
 
 

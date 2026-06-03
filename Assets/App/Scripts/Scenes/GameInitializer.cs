@@ -23,6 +23,8 @@ public class GameInitializer : MonoBehaviour
 
     private async void InstantiateGameObjects()
     {
+        Settings_SaveSystem.Load_Settings();
+
         using (LoadingWindow_UI loadingPage_UI = new LoadingWindow_UI(new GameObject()))
         {
             _scenesManager = Instantiate(_scenesManager);

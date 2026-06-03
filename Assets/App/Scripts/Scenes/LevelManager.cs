@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour
         EventsManager.OnMove_Event += OnMoveState;
 
         EventsManager.OnEnemyDied_Event += OnUpdateScore;
+        EventsManager.OnEnemyDied_Event += OnUpdateProgress;
         EventsManager.OnEnemyPassedLine_Event += OnUpdateHealth;
 
         screen_UI.UpdateHealthInUI();
@@ -29,6 +30,7 @@ public class LevelManager : MonoBehaviour
         EventsManager.OnMove_Event -= OnMoveState;
 
         EventsManager.OnEnemyDied_Event -= OnUpdateScore;
+        EventsManager.OnEnemyDied_Event -= OnUpdateProgress;
         EventsManager.OnEnemyPassedLine_Event -= OnUpdateHealth;
     }
 
@@ -78,6 +80,12 @@ public class LevelManager : MonoBehaviour
         }
 
         screen_UI.UpdateScoreInUI();
+    }
+
+    public void OnUpdateProgress(object sender, EnemyData_EventArgs e)
+    {
+        GameData.currentLevelProgress = (int)
+            (((float)PlayerData.Score / (float)GameData.currentLevelData.ScoreNeeded) * 100);
     }
 
     public void OnUpdateHealth(object sender, EnemyData_EventArgs e)

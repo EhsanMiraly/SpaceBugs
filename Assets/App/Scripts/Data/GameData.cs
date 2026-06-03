@@ -7,6 +7,7 @@ public class GameData
     public static string currentLevelName { get; set; } = "";
     public static int CurrentLevelNumber { get; set; } = 0;
     public static LevelData_SO currentLevelData { get; set; } = null;
+    public static int currentLevelProgress { get; set; } = 0;
 
 
     public static bool IsGameDataSet()
@@ -24,5 +25,6 @@ public class GameData
         currentLevelName = "";
         CurrentLevelNumber = 0;
         currentLevelData = null;
+        currentLevelProgress = 0;
     }
 }

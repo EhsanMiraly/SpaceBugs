@@ -84,6 +84,8 @@ public class SettingsPage_Controller : MonoBehaviour
 
         OnLanguageChanged();
         OnFontSizeChanged();
+        OnBackgroundMusicChanged();
+        OnSoundEffectsChanged();
     }
 
 
@@ -155,6 +157,34 @@ public class SettingsPage_Controller : MonoBehaviour
         #endregion
     }
 
+    private void OnBackgroundMusicChanged()
+    {
+        if (SettingsData.isBackgroundMusicOn)
+        {
+            backgroundMusic_CheckMark_Foreground_VisualElement.style.display = DisplayStyle.Flex;
+        }
+        else
+        {
+            backgroundMusic_CheckMark_Foreground_VisualElement.style.display = DisplayStyle.None;
+        }
+        backgroundMusic_InvisibleForeground_VisualElement.style.width =
+                 Length.Percent(SettingsData.backgroundMusicVolume * 100);
+    }
+
+    private void OnSoundEffectsChanged()
+    {
+        if (SettingsData.isSoundEffectsOn)
+        {
+            soundEffects_CheckMark_Foreground_VisualElement.style.display = DisplayStyle.Flex;
+        }
+        else
+        {
+            soundEffects_CheckMark_Foreground_VisualElement.style.display = DisplayStyle.None;
+        }
+        soundEffects_InvisibleForeground_VisualElement.style.width =
+                 Length.Percent(SettingsData.soundEffectsVolume * 100);
+    }
+
     #endregion
 
 
@@ -186,6 +216,7 @@ public class SettingsPage_Controller : MonoBehaviour
             SettingsData.currentLanguageIndex = LanguageTextsData.languages.Count - 1;
         }
         EventsManager.InvokeOnLanguageChanged();
+        Settings_SaveSystem.Save_Settings();//Delete
     }
 
     private void OnLanguageChevronRightSelected(ClickEvent clickEvent)
@@ -196,6 +227,7 @@ public class SettingsPage_Controller : MonoBehaviour
             SettingsData.currentLanguageIndex = 0;
         }
         EventsManager.InvokeOnLanguageChanged();
+        Settings_SaveSystem.Save_Settings();//Delete
     }
 
     #endregion
@@ -228,6 +260,7 @@ public class SettingsPage_Controller : MonoBehaviour
             SettingsData.currentFontSizeIndex = LanguageTextsData.fontSize_Text.Count - 1;
         }
         EventsManager.InvokeOnFontSizeChanged();
+        Settings_SaveSystem.Save_Settings();//Delete
     }
 
     private void OnFontSizeChevronRightSelected(ClickEvent clickEvent)
@@ -238,6 +271,7 @@ public class SettingsPage_Controller : MonoBehaviour
             SettingsData.currentFontSizeIndex = 0;
         }
         EventsManager.InvokeOnFontSizeChanged();
+        Settings_SaveSystem.Save_Settings();//Delete
     }
 
     #endregion
@@ -277,6 +311,7 @@ public class SettingsPage_Controller : MonoBehaviour
         SettingsData.isBackgroundMusicOn = !SettingsData.isBackgroundMusicOn;
 
         EventsManager.InvokeOnBackgroundMusicChanged();
+        Settings_SaveSystem.Save_Settings();//Delete
 
         if (SettingsData.isBackgroundMusicOn)
         {
@@ -294,6 +329,7 @@ public class SettingsPage_Controller : MonoBehaviour
         if (SettingsData.backgroundMusicVolume < 0)
             SettingsData.backgroundMusicVolume = 0;
         EventsManager.InvokeOnBackgroundMusicChanged();
+        Settings_SaveSystem.Save_Settings();//Delete
 
         backgroundMusic_InvisibleForeground_VisualElement.style.width =
          Length.Percent(SettingsData.backgroundMusicVolume * 100);
@@ -305,6 +341,7 @@ public class SettingsPage_Controller : MonoBehaviour
         if (SettingsData.backgroundMusicVolume > 1)
             SettingsData.backgroundMusicVolume = 1;
         EventsManager.InvokeOnBackgroundMusicChanged();
+        Settings_SaveSystem.Save_Settings();//Delete
 
         backgroundMusic_InvisibleForeground_VisualElement.style.width
          = Length.Percent(SettingsData.backgroundMusicVolume * 100);
@@ -354,6 +391,8 @@ public class SettingsPage_Controller : MonoBehaviour
         {
             soundEffects_CheckMark_Foreground_VisualElement.style.display = DisplayStyle.None;
         }
+
+        Settings_SaveSystem.Save_Settings();//Delete
     }
 
     public void OnSoundEffectsMinusSelected(ClickEvent clickEvent)
@@ -364,6 +403,8 @@ public class SettingsPage_Controller : MonoBehaviour
 
         soundEffects_InvisibleForeground_VisualElement.style.width =
          Length.Percent(SettingsData.soundEffectsVolume * 100);
+
+        Settings_SaveSystem.Save_Settings();//Delete
     }
 
     public void OnSoundEffectsPlusSelected(ClickEvent clickEvent)
@@ -374,6 +415,37 @@ public class SettingsPage_Controller : MonoBehaviour
 
         soundEffects_InvisibleForeground_VisualElement.style.width
          = Length.Percent(SettingsData.soundEffectsVolume * 100);
+
+        Settings_SaveSystem.Save_Settings();//Delete
+    }
+
+    #endregion
+
+
+    #region Save&Load
+
+    public void Save(ref Settings_SaveData settings_SaveData)
+    {
+        settings_SaveData.currentLanguageIndex = SettingsData.currentLanguageIndex;
+        settings_SaveData.currentFontSizeIndex = SettingsData.currentFontSizeIndex;
+
+        settings_SaveData.isBackgroundMusicOn = SettingsData.isBackgroundMusicOn;
+        settings_SaveData.backgroundMusicVolume = SettingsData.backgroundMusicVolume;
+
+        settings_SaveData.isSoundEffectsOn = SettingsData.isSoundEffectsOn;
+        settings_SaveData.soundEffectsVolume = SettingsData.soundEffectsVolume;
+    }
+
+    public void Load(Settings_SaveData settings_SaveData)
+    {
+        SettingsData.currentLanguageIndex = settings_SaveData.currentLanguageIndex;
+        SettingsData.currentFontSizeIndex = settings_SaveData.currentFontSizeIndex;
+
+        SettingsData.isBackgroundMusicOn = settings_SaveData.isBackgroundMusicOn;
+        SettingsData.backgroundMusicVolume = settings_SaveData.backgroundMusicVolume;
+
+        SettingsData.isSoundEffectsOn = settings_SaveData.isSoundEffectsOn;
+        SettingsData.soundEffectsVolume = settings_SaveData.soundEffectsVolume;
     }
 
     #endregion

@@ -4,17 +4,6 @@ using UnityEngine.UIElements;
 
 public class SettingsData
 {
-    //Move Where?
-    public static int NumberOfLevels { get; } = 2;
-    public static int Level_Template_Size { get; } = 10;
-    public static int Level_Template_Padding { get; } = 100;
-
-
-    //Move Where?
-
-
-
-
     public static int currentLanguageIndex = 0;
     public static int currentFontSizeIndex = 1;
 
