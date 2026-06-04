@@ -65,7 +65,7 @@ public class PlayerCombatInfo_UI : MonoBehaviour
 
     public void UpdateHealthInUI()
     {
-        float x = (100 * PlayerData.CurrentHealth) / PlayerData.MaxHealth;
+        float x = (100 * PlayerData.CurrentHealth) / AchievementsData.health;
 
         healthBarForeground_VisualElement.style.width = Length.Percent(x);
     }

@@ -92,7 +92,7 @@ public class LevelsPage_Controller : MonoBehaviour
 
     public void OnWinLevel()
     {
-        if (GameData.CurrentLevelNumber <= LevelsData.Levels.Length)
+        if (GameData.CurrentLevelNumber < LevelsData.Levels.Length)
         {
             LevelsData.Levels[GameData.CurrentLevelNumber].IsOpen = true;
             VisualElement lock_VisualElement =
@@ -102,15 +102,23 @@ public class LevelsPage_Controller : MonoBehaviour
         }
 
         LevelsData.Levels[GameData.CurrentLevelNumber - 1].Progress = 100;
+        AchievementsData.stars += LevelsData.Levels[GameData.CurrentLevelNumber - 1].TotalStars;
 
         Levels_SaveSystem.Save_Levels();
+        Achievements_SaveSystem.Save_Achievements();
     }
 
     public void OnLoseLevel()
     {
-        LevelsData.Levels[GameData.CurrentLevelNumber - 1].Progress = GameData.currentLevelProgress;
+        if (GameData.currentLevelProgress > LevelsData.Levels[GameData.CurrentLevelNumber - 1].Progress)
+        {
+            LevelsData.Levels[GameData.CurrentLevelNumber - 1].Progress = GameData.currentLevelProgress;
+        }
 
+
+        //add stars based on progress
         Levels_SaveSystem.Save_Levels();
+        //Achievements_SaveSystem.Save_Achievements();
     }
 
     private void OnLevelSelected(ClickEvent clickEvent)

@@ -11,7 +11,7 @@ public class LevelsData
 
     public static void FillLevelsData(Level[] levels)
     {
-        for (int i = 0; i < Levels.Length; i++)
+        for (int i = 0; i < levels.Length; i++)
         {
             Levels[i].IsOpen = levels[i].IsOpen;
             Levels[i].Progress = levels[i].Progress;

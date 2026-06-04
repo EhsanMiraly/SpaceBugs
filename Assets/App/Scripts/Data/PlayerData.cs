@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class PlayerData
 {
-    public static int MaxHealth => 10;
-    public static int CurrentHealth { get; set; } = MaxHealth;
+    public static int CurrentHealth { get; set; } = AchievementsData.health;
 
     public static int Score { get; set; } = 0;
 
-    public static int MaxBullets => 3;
-    public static int CurrentBullets { get; set; } = MaxBullets;
+    public static int CurrentBullets { get; set; } = AchievementsData.bullets;
 
     public static int MoveSpeed => 10;
 
@@ -19,9 +17,9 @@ public class PlayerData
 
     public static void ResetPlayerData()
     {
-        CurrentHealth = MaxHealth;
+        CurrentHealth = AchievementsData.health;
         Score = 0;
-        CurrentBullets = MaxBullets;
+        CurrentBullets = AchievementsData.bullets;
         CurrentRotateDirection = Up;
     }
 }

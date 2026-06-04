@@ -75,8 +75,7 @@ public class LevelManager : MonoBehaviour
         if (PlayerData.Score >= GameData.currentLevelData.ScoreNeeded)
         {//Win
             Time.timeScale = 0f;
-            WinLoseWindow_UI winLoseWindow_UI = new WinLoseWindow_UI(new GameObject());
-            winLoseWindow_UI.SetWin();
+            WinLoseWindow_UI winLoseWindow_UI = new WinLoseWindow_UI(new GameObject(), true);
         }
 
         screen_UI.UpdateScoreInUI();
@@ -95,8 +94,7 @@ public class LevelManager : MonoBehaviour
         if (PlayerData.CurrentHealth <= 0)
         {//Lose
             Time.timeScale = 0f;
-            WinLoseWindow_UI winLoseWindow_UI = new WinLoseWindow_UI(new GameObject());
-            winLoseWindow_UI.SetLose();
+            WinLoseWindow_UI winLoseWindow_UI = new WinLoseWindow_UI(new GameObject(), false);
         }
 
         screen_UI.UpdateHealthInUI();

@@ -37,7 +37,7 @@ public class Player_Controller : MonoBehaviour
 
         animator = GetComponent<Animator>();
 
-        bulletsPool = new Pool<Bullet>(bulletPrefab, PlayerData.MaxBullets);
+        bulletsPool = new Pool<Bullet>(bulletPrefab, AchievementsData.bullets);
 
         EventsManager.OnMove_Event += OnMove;
         EventsManager.OnRotate_Event += OnRotate;
