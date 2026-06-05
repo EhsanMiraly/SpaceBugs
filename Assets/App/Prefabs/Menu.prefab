@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -4962009173989963635}
   - component: {fileID: -2378193094599764673}
   - component: {fileID: 7866997061862836854}
+  - component: {fileID: 764115731183955861}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -95,7 +96,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9940afb69b2999240a0cce16438fedad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelsPage_Controller
-  level_VisualElement: {fileID: 2735251230465183108, guid: ae79c7732837cfb4f8755e69aa2f27cb, type: 3}
 --- !u!114 &7866997061862836854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,3 +108,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4769c9b40138b7419965b63749649ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SettingsPage_Controller
+--- !u!114 &764115731183955861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5791469827558440857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fb9e4205fd65e348824e4ee2341d84d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryShopPage_Controller

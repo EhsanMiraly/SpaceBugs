@@ -18,6 +18,7 @@ public class MainPage_Controller : MonoBehaviour
 
         menu_UIConnector.resume_Button.RegisterCallback<ClickEvent>(OnResume_ButtonSelected);
         menu_UIConnector.levels_Button.RegisterCallback<ClickEvent>(OnLevels_ButtonSelected);
+        menu_UIConnector.inventoryShop_Button.RegisterCallback<ClickEvent>(OnInventoryShop_ButtonSelected);
         menu_UIConnector.settings_Button.RegisterCallback<ClickEvent>(OnSettings_ButtonSelected);
         menu_UIConnector.exit_Button.RegisterCallback<ClickEvent>(OnExit_ButtonSelected);
 
@@ -54,6 +55,15 @@ public class MainPage_Controller : MonoBehaviour
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
         #endregion
 
+        #region InventoryShop
+        menu_UIConnector.inventoryShop_Button.text =
+            LanguageTextsData.inventoryShop[SettingsData.currentLanguageIndex];
+        menu_UIConnector.inventoryShop_Button.languageDirection =
+            LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
+        menu_UIConnector.inventoryShop_Button.style.unityFont =
+            LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
+        #endregion
+
         #region Settings
         menu_UIConnector.settings_Button.text =
             LanguageTextsData.settings[SettingsData.currentLanguageIndex];
@@ -85,6 +95,11 @@ public class MainPage_Controller : MonoBehaviour
             LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
         #endregion
 
+        #region InventoryShop
+        menu_UIConnector.inventoryShop_Button.style.fontSize =
+            LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
+        #endregion
+
         #region Settings
         menu_UIConnector.settings_Button.style.fontSize =
             LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
@@ -110,6 +125,13 @@ public class MainPage_Controller : MonoBehaviour
     {
         menu_UIConnector.resume_Button.style.display = DisplayStyle.None;
         menu_UIConnector.SwitchPage(menu_UIConnector.levelsPage_VisualElement);
+        EventsManager.InvokeOnStopLevel();
+    }
+
+    private void OnInventoryShop_ButtonSelected(ClickEvent clickEvent)
+    {
+        menu_UIConnector.resume_Button.style.display = DisplayStyle.None;
+        menu_UIConnector.SwitchPage(menu_UIConnector.inventoryShopPage_VisualElement);
         EventsManager.InvokeOnStopLevel();
     }
 

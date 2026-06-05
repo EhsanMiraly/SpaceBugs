@@ -13,6 +13,7 @@ public class Menu_UIConnector : MonoBehaviour
     public VisualElement mainPage_VisualElement;
     public Button resume_Button;
     public Button levels_Button;
+    public Button inventoryShop_Button;
     public Button settings_Button;
     public Button exit_Button;
 
@@ -20,6 +21,21 @@ public class Menu_UIConnector : MonoBehaviour
     public VisualElement levelsPage_VisualElement;
     public VisualElement back_VisualElement_InLevelsPage;
     public VisualElement levelsHolder_VisualElement;
+
+    //InventoryShopPage
+    public VisualElement inventoryShopPage_VisualElement;
+    public Label inventory_Label;
+    public VisualElement inventoryScrollViewHolder_VisualElement;
+    public Label currencyAmount_Label;
+    public Label shop_Label;
+    public VisualElement shopScrollViewHolder_VisualElement;
+    public VisualElement buy_TemplateContainer;
+    public Label buy_Label;
+    public VisualElement exit_TemplateContainer;
+    public Label exit_Label;
+
+
+
 
     //SettingsPage
     public VisualElement settingsPage_VisualElement;
@@ -39,13 +55,30 @@ public class Menu_UIConnector : MonoBehaviour
         mainPage_VisualElement = root.Q<VisualElement>("MainPage_VisualElement");
         resume_Button = mainPage_VisualElement.Q<Button>("Resume_Button");
         levels_Button = mainPage_VisualElement.Q<Button>("Levels_Button");
+        inventoryShop_Button = mainPage_VisualElement.Q<Button>("Shop_Button");
         settings_Button = mainPage_VisualElement.Q<Button>("Settings_Button");
         exit_Button = mainPage_VisualElement.Q<Button>("Exit_Button");
 
+        //LevelsPage
         levelsPage_VisualElement = root.Q<VisualElement>("LevelsPage_VisualElement");
         back_VisualElement_InLevelsPage = levelsPage_VisualElement.Q<VisualElement>("Back_VisualElement");
         levelsHolder_VisualElement = levelsPage_VisualElement.Q<VisualElement>("LevelsHolder_VisualElement");
 
+        //InventoryShopPage
+        inventoryShopPage_VisualElement = root.Q<VisualElement>("InventoryShopPage_VisualElement");
+        inventory_Label = inventoryShopPage_VisualElement.Q<Label>("Inventory_Label");
+        inventoryScrollViewHolder_VisualElement =
+            inventoryShopPage_VisualElement.Q<VisualElement>("InventoryScrollViewHolder_VisualElement");
+        currencyAmount_Label = inventoryShopPage_VisualElement.Q<Label>("CurrencyAmount_Label");
+        shop_Label = inventoryShopPage_VisualElement.Q<Label>("Shop_Label");
+        shopScrollViewHolder_VisualElement =
+            inventoryShopPage_VisualElement.Q<VisualElement>("ShopScrollViewHolder_VisualElement");
+        buy_TemplateContainer = inventoryShopPage_VisualElement.Q<VisualElement>("Buy_TemplateContainer");
+        buy_Label = inventoryShopPage_VisualElement.Q<Label>("Buy_Label");
+        exit_TemplateContainer = inventoryShopPage_VisualElement.Q<VisualElement>("Exit_TemplateContainer");
+        exit_Label = inventoryShopPage_VisualElement.Q<Label>("Exit_Label");
+
+        //SettingsPage
         settingsPage_VisualElement = root.Q<VisualElement>("SettingsPage_VisualElement");
         back_VisualElement_InSettingsPage = settingsPage_VisualElement.Q<VisualElement>("Back_VisualElement");
         settings_ScrollView = settingsPage_VisualElement.Q<ScrollView>("Settings_ScrollView");
@@ -57,9 +90,15 @@ public class Menu_UIConnector : MonoBehaviour
 
         GetComponent<MainPage_Controller>().Initialize(this);
         GetComponent<LevelsPage_Controller>().Initialize(this);
+        GetComponent<InventoryShopPage_Controller>().Initialize(this);
         GetComponent<SettingsPage_Controller>().Initialize(this);
 
         InitialPage();
+    }
+
+    private void OnDisable()
+    {
+        menu_VisualElement.UnregisterCallback<ClickEvent>(OnMenuSelected);
     }
 
     public void InitialPage()
@@ -87,6 +126,7 @@ public class Menu_UIConnector : MonoBehaviour
     {
         mainPage_VisualElement.style.display = DisplayStyle.None;
         levelsPage_VisualElement.style.display = DisplayStyle.None;
+        inventoryShopPage_VisualElement.style.display = DisplayStyle.None;
         settingsPage_VisualElement.style.display = DisplayStyle.None;
 
         page.style.display = DisplayStyle.Flex;

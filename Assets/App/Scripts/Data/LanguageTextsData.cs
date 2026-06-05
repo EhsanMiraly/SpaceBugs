@@ -15,12 +15,20 @@ public class LanguageTextsData
     #region MainPage
     public static List<string> resume = new List<string> { "Resume", "ادامه" };
     public static List<string> levels = new List<string> { "Levels", "لول‌ها" };
+    public static List<string> inventoryShop = new List<string> { "Inventory / Shop", "موجودی / فروشگاه" };
     public static List<string> settings = new List<string> { "Settings", "تنظیمات" };
     public static List<string> exit = new List<string> { "Exit", "خروج" };
     #endregion
 
     #region LevelsPage
     public static List<string> level = new List<string> { "Level ", "لول " };
+    #endregion
+
+    #region InventoryShopPage
+    public static List<string> inventory = new List<string> { "Inventory", "موجودی" };
+    public static List<string> shop = new List<string> { "Shop", "فروشگاه" };
+    public static List<string> buy = new List<string> { "Buy", "خرید" };
+    //public static List<string> exit = new List<string> { "Shop", "فروشگاه" };
     #endregion
 
     #region SettingsPage
