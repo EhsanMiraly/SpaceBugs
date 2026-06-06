@@ -8,14 +8,18 @@ public class InventoryShopPage_Controller : MonoBehaviour
 
     VisualTreeAsset inventoryShopItem_Template;
     List<VisualElement> inventoryShopItems_List;
+    VisualElement currentVisualElement;
+    int currentVisualElementIndex;
+    string currentBoughtItem;
 
 
     public void Initialize(Menu_UIConnector menu_UIConnector)
     {
-        //InventoryShop_SaveSystem.Load_InventoryShop();
+        InventoryShop_SaveSystem.Load_InventoryShopItems();
 
         EventsManager.OnLanguageChanged_Event += OnLanguageChanged;
         EventsManager.OnFontSizeChanged_Event += OnFontSizeChanged;
+        EventsManager.OnWinLevel_Event += OnWinLevel;
 
         inventoryShopItem_Template =
             Resources.Load<VisualTreeAsset>("UI/Basic_Templates/InventoryShopItem/InventoryShopItem_Template");
@@ -24,14 +28,18 @@ public class InventoryShopPage_Controller : MonoBehaviour
 
         this.menu_UIConnector = menu_UIConnector;
 
-
-
         menu_UIConnector.buy_TemplateContainer.
             RegisterCallback<ClickEvent>(OnBuy_TemplateContainerSelected);
         menu_UIConnector.exit_TemplateContainer.
             RegisterCallback<ClickEvent>(OnExit_TemplateContainerSelected);
 
-        FillScrollViewHolders();
+        ScrollViewController.InitializeScrollView(menu_UIConnector.inventory_ScrollView);
+        menu_UIConnector.inventory_ScrollView.mode = ScrollViewMode.VerticalAndHorizontal;
+
+        ScrollViewController.InitializeScrollView(menu_UIConnector.shop_ScrollView);
+        menu_UIConnector.shop_ScrollView.mode = ScrollViewMode.VerticalAndHorizontal;
+
+        FillScrollViews();
 
         OnLanguageChanged();
         OnFontSizeChanged();
@@ -46,9 +54,10 @@ public class InventoryShopPage_Controller : MonoBehaviour
 
         EventsManager.OnLanguageChanged_Event -= OnLanguageChanged;
         EventsManager.OnFontSizeChanged_Event -= OnFontSizeChanged;
+        EventsManager.OnWinLevel_Event -= OnWinLevel;
     }
 
-    public void FillScrollViewHolders()
+    public void FillScrollViews()
     {
         for (int i = 0; i < InventoryShopData.InventoryShopItems.Length; i++)
         {
@@ -62,7 +71,9 @@ public class InventoryShopPage_Controller : MonoBehaviour
             inventoryShopItem_VisualElement.style.marginRight = Screen.width / 100;
             inventoryShopItem_VisualElement.style.marginBottom = Screen.width / 100;
 
-            inventoryShopItem_VisualElement.name = InventoryShopData.InventoryShopItems[i].ItemName;
+            //inventoryShopItem_VisualElement.name = InventoryShopData.InventoryShopItems[i].ItemName;
+            VisualElement background_VisualElement =
+                inventoryShopItem_VisualElement.Q<VisualElement>("Background_VisualElement");
 
             VisualElement itemImage_VisualElement =
                 inventoryShopItem_VisualElement.Q<VisualElement>("ItemImage_VisualElement");
@@ -81,15 +92,16 @@ public class InventoryShopPage_Controller : MonoBehaviour
             itemCurrencyImage_VisualElement.style.backgroundImage =
                 Resources.Load<Texture2D>("Images/Currency");
 
-            inventoryShopItems_List.Add(inventoryShopItem_VisualElement);
+            inventoryShopItems_List.Add(background_VisualElement);
 
             if (InventoryShopData.InventoryShopItems[i].IsBought)
             {
-                menu_UIConnector.inventoryScrollViewHolder_VisualElement.Add(inventoryShopItem_VisualElement);
+                menu_UIConnector.inventory_ScrollView.Add(inventoryShopItem_VisualElement);
             }
             else
             {
-                menu_UIConnector.shopScrollViewHolder_VisualElement.Add(inventoryShopItem_VisualElement);
+                background_VisualElement.RegisterCallback<ClickEvent>(OnItemSelected);
+                menu_UIConnector.shop_ScrollView.Add(inventoryShopItem_VisualElement);
             }
         }
 
@@ -98,12 +110,59 @@ public class InventoryShopPage_Controller : MonoBehaviour
 
     private void OnBuy_TemplateContainerSelected(ClickEvent clickEvent)
     {
-        //Move Item From Buy To Inventory And Save
+        if (AchievementsData.stars >= InventoryShopData.InventoryShopItems[currentVisualElementIndex].Price)
+        {
+            currentVisualElement.UnregisterCallback<ClickEvent>(OnItemSelected);
+            AchievementsData.stars -= InventoryShopData.InventoryShopItems[currentVisualElementIndex].Price;
+            InventoryShopData.InventoryShopItems[currentVisualElementIndex].IsBought = true;
+            //Change Health And Bulltes And What Ever
+            if (currentBoughtItem == "Bullet")
+            {
+                AchievementsData.bullets++;
+            }
+            else if (currentBoughtItem == "Health")
+            {
+                AchievementsData.health++;
+            }
+            menu_UIConnector.shop_ScrollView.Remove(currentVisualElement.parent);
+            menu_UIConnector.inventory_ScrollView.Add(currentVisualElement.parent);
+
+            //Save
+            Achievements_SaveSystem.Save_Achievements();
+            InventoryShop_SaveSystem.Save_InventoryShopItems();
+
+            currentVisualElement = null;
+            currentVisualElementIndex = -1;
+            currentBoughtItem = "";
+        }
     }
 
     private void OnExit_TemplateContainerSelected(ClickEvent clickEvent)
     {
         menu_UIConnector.SwitchPage(menu_UIConnector.mainPage_VisualElement);
+    }
+
+    private void OnItemSelected(ClickEvent clickEvent)
+    {
+        for (int i = 0; i < inventoryShopItems_List.Count; i++)
+        {
+            inventoryShopItems_List[i].RemoveFromClassList("Selected");
+        }
+
+        VisualElement parent_VisualElement = clickEvent.currentTarget as VisualElement;
+        VisualElement background_VisualElement = parent_VisualElement.Q<VisualElement>("Background_VisualElement");
+        Label label = background_VisualElement.Q<Label>("ItemName_Label");
+
+        for (int i = 0; i < inventoryShopItems_List.Count; i++)
+        {
+            if (inventoryShopItems_List[i].Q<Label>("ItemName_Label").text == label.text)
+            {
+                inventoryShopItems_List[i].AddToClassList("Selected");
+                currentVisualElement = inventoryShopItems_List[i];
+                currentVisualElementIndex = i;
+                currentBoughtItem = label.text;
+            }
+        }
     }
 
     #region EventsHandler
@@ -116,6 +175,14 @@ public class InventoryShopPage_Controller : MonoBehaviour
         menu_UIConnector.inventory_Label.languageDirection =
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
         menu_UIConnector.inventory_Label.style.unityFont =
+            LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
+        #endregion
+
+        #region Currency
+        menu_UIConnector.currencyAmount_Label.text = "" + AchievementsData.stars;
+        menu_UIConnector.currencyAmount_Label.languageDirection =
+            LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
+        menu_UIConnector.currencyAmount_Label.style.unityFont =
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
         #endregion
 
@@ -154,6 +221,11 @@ public class InventoryShopPage_Controller : MonoBehaviour
             LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
         #endregion
 
+        #region Currency
+        menu_UIConnector.currencyAmount_Label.style.fontSize =
+            LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
+        #endregion
+
         #region Shop
         menu_UIConnector.shop_Label.style.fontSize =
             LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
@@ -167,6 +239,13 @@ public class InventoryShopPage_Controller : MonoBehaviour
         #region Exit
         menu_UIConnector.exit_Label.style.fontSize =
             LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
+        #endregion
+    }
+
+    private void OnWinLevel()
+    {
+        #region Currency
+        menu_UIConnector.currencyAmount_Label.text = "" + AchievementsData.stars;
         #endregion
     }
 

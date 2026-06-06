@@ -5,8 +5,8 @@ public class InventoryShopData
 {
     public static InventoryShopItem[] InventoryShopItems = new InventoryShopItem[]
     {
-        new InventoryShopItem(true, "Bullet", 10),
-        new InventoryShopItem(false, "Bullet", 10)
+        new InventoryShopItem(false, "Health", 1),
+        new InventoryShopItem(false, "Bullet", 1)
     };
 
 
