@@ -24,14 +24,24 @@ public class LevelsPage_Controller : MonoBehaviour
         level_Template = Resources.Load<VisualTreeAsset>("UI/Basic_Templates/Level/Level_Template");
         levels_VisualElement_List = new List<VisualElement>();
 
-        menu_UIConnector.back_VisualElement_InLevelsPage.
+        menu_UIConnector.back_TemplateContainer_InLevelsPage.
             RegisterCallback<ClickEvent>(OnBack_VisualElement_InLevelsPageSelected);
 
-        FillLevelsHolder();
+        FixUIElementsSize();
+
+        FillLevelsScrollView();
 
         OnLanguageChanged();
         OnFontSizeChanged();
 
+    }
+
+    private void FixUIElementsSize()
+    {
+        int backButtonSize = Screen.width / 15;
+
+        menu_UIConnector.back_TemplateContainer_InLevelsPage.style.width = backButtonSize;
+        menu_UIConnector.back_TemplateContainer_InLevelsPage.style.height = backButtonSize;
     }
 
     private void OnDisable()
@@ -41,7 +51,7 @@ public class LevelsPage_Controller : MonoBehaviour
         EventsManager.OnWinLevel_Event -= OnWinLevel;
         EventsManager.OnLoseLevel_Event -= OnLoseLevel;
 
-        menu_UIConnector.back_VisualElement_InLevelsPage.
+        menu_UIConnector.back_TemplateContainer_InLevelsPage.
             UnregisterCallback<ClickEvent>(OnBack_VisualElement_InLevelsPageSelected);
 
         for (int i = 0; i < LevelsData.Levels.Length; i++)
@@ -55,7 +65,7 @@ public class LevelsPage_Controller : MonoBehaviour
         menu_UIConnector.SwitchPage(menu_UIConnector.mainPage_VisualElement);
     }
 
-    private void FillLevelsHolder()
+    private void FillLevelsScrollView()
     {
         for (int i = 0; i < LevelsData.Levels.Length; i++)
         {
@@ -84,7 +94,7 @@ public class LevelsPage_Controller : MonoBehaviour
                 lock_VisualElement.style.display = DisplayStyle.Flex;
             }
 
-            menu_UIConnector.levelsHolder_VisualElement.Add(level_VisualElement);
+            menu_UIConnector.levels_ScrollView.Add(level_VisualElement);
 
             levels_VisualElement_List.Add(level_VisualElement);
         }
@@ -102,7 +112,7 @@ public class LevelsPage_Controller : MonoBehaviour
         }
 
         LevelsData.Levels[GameData.CurrentLevelNumber - 1].Progress = 100;
-        AchievementsData.stars += LevelsData.Levels[GameData.CurrentLevelNumber - 1].TotalStars;
+        AchievementsData.coins += LevelsData.Levels[GameData.CurrentLevelNumber - 1].Coins;
 
         Levels_SaveSystem.Save_Levels();
         Achievements_SaveSystem.Save_Achievements();

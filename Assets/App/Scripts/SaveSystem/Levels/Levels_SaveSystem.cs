@@ -59,12 +59,12 @@ public struct Level
 {
     public bool IsOpen;
     public int Progress;
-    public int TotalStars;
+    public int Coins;
 
-    public Level(bool isOpen, int progress, int totalStars)
+    public Level(bool isOpen, int progress, int coins)
     {
         IsOpen = isOpen;
         Progress = progress;
-        TotalStars = totalStars;
+        Coins = coins;
     }
 }

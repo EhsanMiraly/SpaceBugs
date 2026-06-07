@@ -12,7 +12,10 @@ public class InventoryShopData
 
     public static void FillInventoryShopData(InventoryShopItem[] inventoryShopItems)
     {
-        InventoryShopItems = new InventoryShopItem[inventoryShopItems.Length];
+        if (InventoryShopItems.Length <= inventoryShopItems.Length)
+        {
+            InventoryShopItems = new InventoryShopItem[inventoryShopItems.Length];
+        }
 
         for (int i = 0; i < inventoryShopItems.Length; i++)
         {

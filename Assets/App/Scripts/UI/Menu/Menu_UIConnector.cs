@@ -19,8 +19,9 @@ public class Menu_UIConnector : MonoBehaviour
 
     //LevelsPage
     public VisualElement levelsPage_VisualElement;
-    public VisualElement back_VisualElement_InLevelsPage;
+    public VisualElement back_TemplateContainer_InLevelsPage;
     public VisualElement levelsHolder_VisualElement;
+    public ScrollView levels_ScrollView;
 
     //InventoryShopPage
     public VisualElement inventoryShopPage_VisualElement;
@@ -39,7 +40,8 @@ public class Menu_UIConnector : MonoBehaviour
 
     //SettingsPage
     public VisualElement settingsPage_VisualElement;
-    public VisualElement back_VisualElement_InSettingsPage;
+    public VisualElement back_TemplateContainer_InSettingsPage;
+    public VisualElement settingsHolder_VisualElement;
     public ScrollView settings_ScrollView;
 
 
@@ -61,8 +63,10 @@ public class Menu_UIConnector : MonoBehaviour
 
         //LevelsPage
         levelsPage_VisualElement = root.Q<VisualElement>("LevelsPage_VisualElement");
-        back_VisualElement_InLevelsPage = levelsPage_VisualElement.Q<VisualElement>("Back_VisualElement");
+        back_TemplateContainer_InLevelsPage = levelsPage_VisualElement.Q<VisualElement>("Back_TemplateContainer");
         levelsHolder_VisualElement = levelsPage_VisualElement.Q<VisualElement>("LevelsHolder_VisualElement");
+        levels_ScrollView = levelsPage_VisualElement.Q<ScrollView>("Levels_ScrollView");
+        ScrollViewController.InitializeScrollView(levels_ScrollView);
 
         //InventoryShopPage
         inventoryShopPage_VisualElement = root.Q<VisualElement>("InventoryShopPage_VisualElement");
@@ -78,7 +82,8 @@ public class Menu_UIConnector : MonoBehaviour
 
         //SettingsPage
         settingsPage_VisualElement = root.Q<VisualElement>("SettingsPage_VisualElement");
-        back_VisualElement_InSettingsPage = settingsPage_VisualElement.Q<VisualElement>("Back_VisualElement");
+        back_TemplateContainer_InSettingsPage = settingsPage_VisualElement.Q<VisualElement>("Back_TemplateContainer");
+        settingsHolder_VisualElement = settingsPage_VisualElement.Q<VisualElement>("SettingsHolder_VisualElement");
         settings_ScrollView = settingsPage_VisualElement.Q<ScrollView>("Settings_ScrollView");
         ScrollViewController.InitializeScrollView(settings_ScrollView);
 

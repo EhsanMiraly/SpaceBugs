@@ -15,18 +15,19 @@ public class InventoryShopPage_Controller : MonoBehaviour
 
     public void Initialize(Menu_UIConnector menu_UIConnector)
     {
+        this.menu_UIConnector = menu_UIConnector;
+
         InventoryShop_SaveSystem.Load_InventoryShopItems();
 
         EventsManager.OnLanguageChanged_Event += OnLanguageChanged;
         EventsManager.OnFontSizeChanged_Event += OnFontSizeChanged;
-        EventsManager.OnWinLevel_Event += OnWinLevel;
+        EventsManager.OnWinLevel_Event += OnCurrencyChanged;
 
         inventoryShopItem_Template =
             Resources.Load<VisualTreeAsset>("UI/Basic_Templates/InventoryShopItem/InventoryShopItem_Template");
 
         inventoryShopItems_List = new List<VisualElement>();
-
-        this.menu_UIConnector = menu_UIConnector;
+        RmoveCurrentItemSelected();
 
         menu_UIConnector.buy_TemplateContainer.
             RegisterCallback<ClickEvent>(OnBuy_TemplateContainerSelected);
@@ -34,10 +35,8 @@ public class InventoryShopPage_Controller : MonoBehaviour
             RegisterCallback<ClickEvent>(OnExit_TemplateContainerSelected);
 
         ScrollViewController.InitializeScrollView(menu_UIConnector.inventory_ScrollView);
-        menu_UIConnector.inventory_ScrollView.mode = ScrollViewMode.VerticalAndHorizontal;
 
         ScrollViewController.InitializeScrollView(menu_UIConnector.shop_ScrollView);
-        menu_UIConnector.shop_ScrollView.mode = ScrollViewMode.VerticalAndHorizontal;
 
         FillScrollViews();
 
@@ -54,7 +53,7 @@ public class InventoryShopPage_Controller : MonoBehaviour
 
         EventsManager.OnLanguageChanged_Event -= OnLanguageChanged;
         EventsManager.OnFontSizeChanged_Event -= OnFontSizeChanged;
-        EventsManager.OnWinLevel_Event -= OnWinLevel;
+        EventsManager.OnWinLevel_Event -= OnCurrencyChanged;
     }
 
     public void FillScrollViews()
@@ -63,15 +62,14 @@ public class InventoryShopPage_Controller : MonoBehaviour
         {
             VisualElement inventoryShopItem_VisualElement = inventoryShopItem_Template.Instantiate();
 
-            inventoryShopItem_VisualElement.style.width = Screen.width / 10;
-            inventoryShopItem_VisualElement.style.height = Screen.width / 5;
+            inventoryShopItem_VisualElement.style.width = Length.Percent(100);
+            inventoryShopItem_VisualElement.style.height = Screen.width / 10;
 
-            inventoryShopItem_VisualElement.style.marginLeft = Screen.width / 100;
-            inventoryShopItem_VisualElement.style.marginTop = Screen.width / 100;
-            inventoryShopItem_VisualElement.style.marginRight = Screen.width / 100;
-            inventoryShopItem_VisualElement.style.marginBottom = Screen.width / 100;
+            inventoryShopItem_VisualElement.style.paddingLeft = Screen.width / 100;
+            inventoryShopItem_VisualElement.style.paddingTop = Screen.width / 100;
+            inventoryShopItem_VisualElement.style.paddingRight = Screen.width / 100;
+            inventoryShopItem_VisualElement.style.paddingBottom = Screen.width / 100;
 
-            //inventoryShopItem_VisualElement.name = InventoryShopData.InventoryShopItems[i].ItemName;
             VisualElement background_VisualElement =
                 inventoryShopItem_VisualElement.Q<VisualElement>("Background_VisualElement");
 
@@ -110,12 +108,18 @@ public class InventoryShopPage_Controller : MonoBehaviour
 
     private void OnBuy_TemplateContainerSelected(ClickEvent clickEvent)
     {
-        if (AchievementsData.stars >= InventoryShopData.InventoryShopItems[currentVisualElementIndex].Price)
+        if (currentVisualElement == null)
+        {
+            return;
+        }
+
+        if (AchievementsData.coins >= InventoryShopData.InventoryShopItems[currentVisualElementIndex].Price)
         {
             currentVisualElement.UnregisterCallback<ClickEvent>(OnItemSelected);
-            AchievementsData.stars -= InventoryShopData.InventoryShopItems[currentVisualElementIndex].Price;
+            menu_UIConnector.inventory_ScrollView.Add(currentVisualElement.parent);
+
+            AchievementsData.coins -= InventoryShopData.InventoryShopItems[currentVisualElementIndex].Price;
             InventoryShopData.InventoryShopItems[currentVisualElementIndex].IsBought = true;
-            //Change Health And Bulltes And What Ever
             if (currentBoughtItem == "Bullet")
             {
                 AchievementsData.bullets++;
@@ -124,39 +128,39 @@ public class InventoryShopPage_Controller : MonoBehaviour
             {
                 AchievementsData.health++;
             }
-            menu_UIConnector.shop_ScrollView.Remove(currentVisualElement.parent);
-            menu_UIConnector.inventory_ScrollView.Add(currentVisualElement.parent);
 
-            //Save
             Achievements_SaveSystem.Save_Achievements();
             InventoryShop_SaveSystem.Save_InventoryShopItems();
 
-            currentVisualElement = null;
-            currentVisualElementIndex = -1;
-            currentBoughtItem = "";
+            RmoveCurrentItemSelected();
+
+            OnCurrencyChanged();
         }
     }
 
     private void OnExit_TemplateContainerSelected(ClickEvent clickEvent)
     {
+        RmoveCurrentItemSelected();
         menu_UIConnector.SwitchPage(menu_UIConnector.mainPage_VisualElement);
     }
 
     private void OnItemSelected(ClickEvent clickEvent)
     {
-        for (int i = 0; i < inventoryShopItems_List.Count; i++)
-        {
-            inventoryShopItems_List[i].RemoveFromClassList("Selected");
-        }
-
         VisualElement parent_VisualElement = clickEvent.currentTarget as VisualElement;
         VisualElement background_VisualElement = parent_VisualElement.Q<VisualElement>("Background_VisualElement");
         Label label = background_VisualElement.Q<Label>("ItemName_Label");
+
+        if (currentVisualElement != null)
+        {
+            currentVisualElement.RemoveFromClassList("Selected");
+            currentVisualElement.AddToClassList("UnSelected");
+        }
 
         for (int i = 0; i < inventoryShopItems_List.Count; i++)
         {
             if (inventoryShopItems_List[i].Q<Label>("ItemName_Label").text == label.text)
             {
+                inventoryShopItems_List[i].RemoveFromClassList("UnSelected");
                 inventoryShopItems_List[i].AddToClassList("Selected");
                 currentVisualElement = inventoryShopItems_List[i];
                 currentVisualElementIndex = i;
@@ -179,7 +183,7 @@ public class InventoryShopPage_Controller : MonoBehaviour
         #endregion
 
         #region Currency
-        menu_UIConnector.currencyAmount_Label.text = "" + AchievementsData.stars;
+        menu_UIConnector.currencyAmount_Label.text = "" + AchievementsData.coins;
         menu_UIConnector.currencyAmount_Label.languageDirection =
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
         menu_UIConnector.currencyAmount_Label.style.unityFont =
@@ -242,12 +246,24 @@ public class InventoryShopPage_Controller : MonoBehaviour
         #endregion
     }
 
-    private void OnWinLevel()
+    private void OnCurrencyChanged()//Change to coins changed
     {
         #region Currency
-        menu_UIConnector.currencyAmount_Label.text = "" + AchievementsData.stars;
+        menu_UIConnector.currencyAmount_Label.text = "" + AchievementsData.coins;
         #endregion
     }
 
     #endregion
+
+    private void RmoveCurrentItemSelected()
+    {
+        if (currentVisualElement != null)
+        {
+            currentVisualElement.RemoveFromClassList("Selected");
+            currentVisualElement.AddToClassList("UnSelected");
+        }
+        currentVisualElement = null;
+        currentVisualElementIndex = -1;
+        currentBoughtItem = "";
+    }
 }

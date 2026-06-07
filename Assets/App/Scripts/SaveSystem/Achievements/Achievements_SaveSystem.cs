@@ -26,7 +26,7 @@ public class Achievements_SaveSystem
 
     public static void Save_Achievements()
     {
-        achievements_SaveData.stars = AchievementsData.stars;
+        achievements_SaveData.coins = AchievementsData.coins;
         achievements_SaveData.health = AchievementsData.health;
         achievements_SaveData.bullets = AchievementsData.bullets;
 
@@ -44,7 +44,7 @@ public class Achievements_SaveSystem
 
         achievements_SaveData = JsonUtility.FromJson<Achievements_SaveData>(saveContent);
 
-        AchievementsData.stars = achievements_SaveData.stars;
+        AchievementsData.coins = achievements_SaveData.coins;
         AchievementsData.health = achievements_SaveData.health;
         AchievementsData.bullets = achievements_SaveData.bullets;
     }
@@ -54,7 +54,7 @@ public class Achievements_SaveSystem
 [System.Serializable]
 public struct Achievements_SaveData
 {
-    public int stars;
+    public int coins;
     public int health;
     public int bullets;
 }

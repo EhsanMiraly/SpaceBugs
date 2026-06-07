@@ -57,10 +57,20 @@ public class SettingsPage_Controller : MonoBehaviour
         sound_VisualTreeAsset =
             Resources.Load<VisualTreeAsset>("UI/Basic_Templates/Sound/Sound_Template");
 
-        menu_UIConnector.back_VisualElement_InSettingsPage.
+        menu_UIConnector.back_TemplateContainer_InSettingsPage.
             RegisterCallback<ClickEvent>(OnBackButton_InSettingsPageSelected);
 
+        FixUIElementsSize();
+
         FillSettings_ScrollView();
+    }
+
+    private void FixUIElementsSize()
+    {
+        int backButtonSize = Screen.width / 15;
+
+        menu_UIConnector.back_TemplateContainer_InSettingsPage.style.width = backButtonSize;
+        menu_UIConnector.back_TemplateContainer_InSettingsPage.style.height = backButtonSize;
     }
 
     private void OnDisable()
