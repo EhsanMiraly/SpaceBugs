@@ -9,7 +9,6 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private GameObject _menu;
     [SerializeField] private GameObject _playerHealthScoreBullets_UI;
     [SerializeField] private GameObject _playerInputUI;
-    [SerializeField] private GameObject _baseWalls;
 
     [SerializeField] private GameObject _backgroundMusicPlayer;
 
@@ -50,7 +49,7 @@ public class GameInitializer : MonoBehaviour
             _playerInputUI.GetComponent<PlayerInputUI_Controller>().Initialize();
             loadingPage_UI.SetProgress(60);
 
-            _baseWalls = Instantiate(_baseWalls);
+            MakeWallsAroundScreen();
             loadingPage_UI.SetProgress(70);
 
             _backgroundMusicPlayer = Instantiate(_backgroundMusicPlayer);
@@ -65,5 +64,54 @@ public class GameInitializer : MonoBehaviour
         }
 
     }
+
+
+    private void MakeWallsAroundScreen()
+    {
+        GameObject parentGameObject = new GameObject();
+        parentGameObject.layer = LayerMask.NameToLayer("Wall");
+
+        float x = Screen.width;
+        float y = Screen.height;
+        float z = Mathf.Abs(Camera.main.transform.position.z);
+
+        Vector3 ZeroPoint = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, z));
+        Vector3 XY = Camera.main.ScreenToWorldPoint(new Vector3(x, y, z));
+
+        //LeftWall
+        GameObject leftWall = new GameObject();
+        leftWall.layer = LayerMask.NameToLayer("Wall");
+        leftWall.transform.parent = parentGameObject.transform;
+        leftWall.transform.localScale = new Vector3(1, (XY.y - ZeroPoint.y) * 2, 1);
+        leftWall.AddComponent<BoxCollider2D>();
+        leftWall.transform.localPosition = new Vector3(ZeroPoint.x - 0.5f, 0, 0);
+
+        //RightWall
+        GameObject rightWall = new GameObject();
+        rightWall.layer = LayerMask.NameToLayer("Wall");
+        rightWall.transform.parent = parentGameObject.transform;
+        rightWall.transform.localScale = new Vector3(1, (XY.y - ZeroPoint.y) * 2, 1);
+        rightWall.AddComponent<BoxCollider2D>();
+        rightWall.transform.localPosition = new Vector3(XY.x + 0.5f, 0, 0);
+
+        //TopWall
+        GameObject topWall = new GameObject();
+        topWall.layer = LayerMask.NameToLayer("Wall");
+        topWall.transform.parent = parentGameObject.transform;
+        topWall.transform.localScale = new Vector3((XY.x - ZeroPoint.x) * 2, 1, 1);
+        topWall.AddComponent<BoxCollider2D>();
+        topWall.transform.localPosition = new Vector3(0, XY.y + 0.5f, 0);
+
+        //DownWall
+        GameObject downWall = new GameObject();
+        downWall.layer = LayerMask.NameToLayer("EndOfLine");
+        downWall.tag = "EndOfLine";
+        downWall.transform.parent = parentGameObject.transform;
+        downWall.transform.localScale = new Vector3((XY.x - ZeroPoint.x) * 2, 1, 1);
+        downWall.AddComponent<BoxCollider2D>();
+        downWall.transform.localPosition = new Vector3(0, ZeroPoint.y - 0.5f, 0);
+    }
+
+
 
 }

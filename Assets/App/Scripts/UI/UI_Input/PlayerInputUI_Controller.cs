@@ -20,6 +20,7 @@ public class PlayerInputUI_Controller : MonoBehaviour
     public void Initialize()
     {
         ConnectUI();
+        FixUISizes();
         RegisterEventsOnUI();
     }
 
@@ -75,6 +76,25 @@ public class PlayerInputUI_Controller : MonoBehaviour
         turnRight_TemplateContainer.style.height = buttonSize;
     }
 
+    private void FixUISizes()
+    {
+        int size = Screen.width / 15;
+
+        moveLeft_TemplateContainer.style.width = size;
+        moveLeft_TemplateContainer.style.height = size;
+
+        moveRight_TemplateContainer.style.width = size;
+        moveRight_TemplateContainer.style.height = size;
+
+        shoot_TemplateContainer.style.width = size;
+        shoot_TemplateContainer.style.height = size;
+
+        turnLeft_TemplateContainer.style.width = size;
+        turnLeft_TemplateContainer.style.height = size;
+
+        turnRight_TemplateContainer.style.width = size;
+        turnRight_TemplateContainer.style.height = size;
+    }
 
 
     public void RegisterEventsOnUI()

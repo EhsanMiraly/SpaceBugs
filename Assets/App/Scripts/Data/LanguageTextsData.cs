@@ -26,9 +26,16 @@ public class LanguageTextsData
 
     #region InventoryShopPage
     public static List<string> inventory = new List<string> { "Inventory", "موجودی" };
+    public static List<string> watchAd = new List<string> { "WatchAd", "تماشای تبلیغ" };
+    public static List<string> reward = new List<string> { "Reward", "پاداش" };
+
     public static List<string> shop = new List<string> { "Shop", "فروشگاه" };
     public static List<string> buy = new List<string> { "Buy", "خرید" };
-    //public static List<string> exit = new List<string> { "Shop", "فروشگاه" };
+
+
+    public static List<string> health = new List<string> { "Health", "جان" };//Delete
+    public static List<string> bullet = new List<string> { "Bullet", "تیر" };//Delete
+
     #endregion
 
     #region SettingsPage

@@ -8,9 +8,7 @@ public class InventoryShopPage_Controller : MonoBehaviour
 
     VisualTreeAsset inventoryShopItem_Template;
     List<VisualElement> inventoryShopItems_List;
-    VisualElement currentVisualElement;
-    int currentVisualElementIndex;
-    string currentBoughtItem;
+    int currentVisualElementIndex = -1;
 
 
     public void Initialize(Menu_UIConnector menu_UIConnector)
@@ -19,20 +17,23 @@ public class InventoryShopPage_Controller : MonoBehaviour
 
         InventoryShop_SaveSystem.Load_InventoryShopItems();
 
-        EventsManager.OnLanguageChanged_Event += OnLanguageChanged;
-        EventsManager.OnFontSizeChanged_Event += OnFontSizeChanged;
-        EventsManager.OnWinLevel_Event += OnCurrencyChanged;
-
         inventoryShopItem_Template =
             Resources.Load<VisualTreeAsset>("UI/Basic_Templates/InventoryShopItem/InventoryShopItem_Template");
 
         inventoryShopItems_List = new List<VisualElement>();
         RmoveCurrentItemSelected();
 
+        menu_UIConnector.watchAd_TemplateContainer.
+            RegisterCallback<ClickEvent>(OnWatchAd_TemplateContainerSelected);
+
         menu_UIConnector.buy_TemplateContainer.
             RegisterCallback<ClickEvent>(OnBuy_TemplateContainerSelected);
         menu_UIConnector.exit_TemplateContainer.
             RegisterCallback<ClickEvent>(OnExit_TemplateContainerSelected);
+
+        EventsManager.OnLanguageChanged_Event += OnLanguageChanged;
+        EventsManager.OnFontSizeChanged_Event += OnFontSizeChanged;
+        EventsManager.OnWinLevel_Event += OnCurrencyChanged;
 
         ScrollViewController.InitializeScrollView(menu_UIConnector.inventory_ScrollView);
 
@@ -46,6 +47,9 @@ public class InventoryShopPage_Controller : MonoBehaviour
 
     private void OnDisable()
     {
+        menu_UIConnector.watchAd_TemplateContainer.
+            UnregisterCallback<ClickEvent>(OnWatchAd_TemplateContainerSelected);
+
         menu_UIConnector.buy_TemplateContainer.
             UnregisterCallback<ClickEvent>(OnBuy_TemplateContainerSelected);
         menu_UIConnector.exit_TemplateContainer.
@@ -61,6 +65,7 @@ public class InventoryShopPage_Controller : MonoBehaviour
         for (int i = 0; i < InventoryShopData.InventoryShopItems.Length; i++)
         {
             VisualElement inventoryShopItem_VisualElement = inventoryShopItem_Template.Instantiate();
+            inventoryShopItem_VisualElement.name = i + "_" + InventoryShopData.InventoryShopItems[i].ItemName[0];
 
             inventoryShopItem_VisualElement.style.width = Length.Percent(100);
             inventoryShopItem_VisualElement.style.height = Screen.width / 10;
@@ -70,27 +75,18 @@ public class InventoryShopPage_Controller : MonoBehaviour
             inventoryShopItem_VisualElement.style.paddingRight = Screen.width / 100;
             inventoryShopItem_VisualElement.style.paddingBottom = Screen.width / 100;
 
-            VisualElement background_VisualElement =
-                inventoryShopItem_VisualElement.Q<VisualElement>("Background_VisualElement");
-
             VisualElement itemImage_VisualElement =
                 inventoryShopItem_VisualElement.Q<VisualElement>("ItemImage_VisualElement");
             itemImage_VisualElement.style.backgroundImage =
                 Resources.Load<Texture2D>("InventoryShopItems_Images/" +
-                    InventoryShopData.InventoryShopItems[i].ItemName);
-
-            Label itemName_Label = inventoryShopItem_VisualElement.Q<Label>("ItemName_Label");
-            itemName_Label.text = InventoryShopData.InventoryShopItems[i].ItemName;
-
-            Label itemPrice_Label = inventoryShopItem_VisualElement.Q<Label>("ItemPrice_Label");
-            itemPrice_Label.text = "" + InventoryShopData.InventoryShopItems[i].Price;
+                    InventoryShopData.InventoryShopItems[i].ItemName[0]);
 
             VisualElement itemCurrencyImage_VisualElement =
                 inventoryShopItem_VisualElement.Q<VisualElement>("ItemCurrencyImage_VisualElement");
             itemCurrencyImage_VisualElement.style.backgroundImage =
                 Resources.Load<Texture2D>("Images/Currency");
 
-            inventoryShopItems_List.Add(background_VisualElement);
+            inventoryShopItems_List.Add(inventoryShopItem_VisualElement);
 
             if (InventoryShopData.InventoryShopItems[i].IsBought)
             {
@@ -98,33 +94,54 @@ public class InventoryShopPage_Controller : MonoBehaviour
             }
             else
             {
-                background_VisualElement.RegisterCallback<ClickEvent>(OnItemSelected);
+                inventoryShopItem_VisualElement.RegisterCallback<ClickEvent>(OnItemSelected);
                 menu_UIConnector.shop_ScrollView.Add(inventoryShopItem_VisualElement);
             }
         }
 
     }
 
+    private void OnItemSelected(ClickEvent clickEvent)
+    {
+        RmoveCurrentItemSelected();
+
+        VisualElement parent_VisualElement = clickEvent.currentTarget as VisualElement;
+
+        VisualElement background_VisualElement =
+            parent_VisualElement.Q<VisualElement>("Background_VisualElement");
+        background_VisualElement.RemoveFromClassList("UnSelected");
+        background_VisualElement.AddToClassList("Selected");
+
+        string[] parts = parent_VisualElement.name.Split('_');
+        currentVisualElementIndex = int.Parse(parts[0]);
+    }
+
+
+    private void OnWatchAd_TemplateContainerSelected(ClickEvent clickEvent)
+    {
+        Debug.Log("Watch Ad.");
+    }
+
 
     private void OnBuy_TemplateContainerSelected(ClickEvent clickEvent)
     {
-        if (currentVisualElement == null)
+        if (currentVisualElementIndex == -1)
         {
             return;
         }
 
         if (AchievementsData.coins >= InventoryShopData.InventoryShopItems[currentVisualElementIndex].Price)
         {
-            currentVisualElement.UnregisterCallback<ClickEvent>(OnItemSelected);
-            menu_UIConnector.inventory_ScrollView.Add(currentVisualElement.parent);
+            inventoryShopItems_List[currentVisualElementIndex].UnregisterCallback<ClickEvent>(OnItemSelected);
+            menu_UIConnector.inventory_ScrollView.Add(inventoryShopItems_List[currentVisualElementIndex]);
 
             AchievementsData.coins -= InventoryShopData.InventoryShopItems[currentVisualElementIndex].Price;
             InventoryShopData.InventoryShopItems[currentVisualElementIndex].IsBought = true;
-            if (currentBoughtItem == "Bullet")
+            if (InventoryShopData.InventoryShopItems[currentVisualElementIndex].ItemName[0] == "Bullet")
             {
                 AchievementsData.bullets++;
             }
-            else if (currentBoughtItem == "Health")
+            else if (InventoryShopData.InventoryShopItems[currentVisualElementIndex].ItemName[0] == "Health")
             {
                 AchievementsData.health++;
             }
@@ -144,35 +161,32 @@ public class InventoryShopPage_Controller : MonoBehaviour
         menu_UIConnector.SwitchPage(menu_UIConnector.mainPage_VisualElement);
     }
 
-    private void OnItemSelected(ClickEvent clickEvent)
-    {
-        VisualElement parent_VisualElement = clickEvent.currentTarget as VisualElement;
-        VisualElement background_VisualElement = parent_VisualElement.Q<VisualElement>("Background_VisualElement");
-        Label label = background_VisualElement.Q<Label>("ItemName_Label");
-
-        if (currentVisualElement != null)
-        {
-            currentVisualElement.RemoveFromClassList("Selected");
-            currentVisualElement.AddToClassList("UnSelected");
-        }
-
-        for (int i = 0; i < inventoryShopItems_List.Count; i++)
-        {
-            if (inventoryShopItems_List[i].Q<Label>("ItemName_Label").text == label.text)
-            {
-                inventoryShopItems_List[i].RemoveFromClassList("UnSelected");
-                inventoryShopItems_List[i].AddToClassList("Selected");
-                currentVisualElement = inventoryShopItems_List[i];
-                currentVisualElementIndex = i;
-                currentBoughtItem = label.text;
-            }
-        }
-    }
 
     #region EventsHandler
 
     private void OnLanguageChanged()
     {
+        for (int i = 0; i < inventoryShopItems_List.Count; i++)
+        {
+            #region ItemName
+            Label label = inventoryShopItems_List[i].Q<Label>("ItemName_Label");
+            label.text = InventoryShopData.InventoryShopItems[i].ItemName[SettingsData.currentLanguageIndex];
+            label.languageDirection =
+                LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
+            label.style.unityFont =
+                LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
+            #endregion
+
+            #region ItemPrice
+            label = inventoryShopItems_List[i].Q<Label>("ItemPrice_Label");
+            label.text = "" + InventoryShopData.InventoryShopItems[i].Price;
+            label.languageDirection =
+                LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
+            label.style.unityFont =
+                LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
+            #endregion
+        }
+
         #region Inventory
         menu_UIConnector.inventory_Label.text =
             LanguageTextsData.inventory[SettingsData.currentLanguageIndex];
@@ -182,13 +196,24 @@ public class InventoryShopPage_Controller : MonoBehaviour
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
         #endregion
 
-        #region Currency
-        menu_UIConnector.currencyAmount_Label.text = "" + AchievementsData.coins;
-        menu_UIConnector.currencyAmount_Label.languageDirection =
+        #region WatchAd
+        menu_UIConnector.watchAd_Label.text =
+            LanguageTextsData.watchAd[SettingsData.currentLanguageIndex];
+        menu_UIConnector.watchAd_Label.languageDirection =
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
-        menu_UIConnector.currencyAmount_Label.style.unityFont =
+        menu_UIConnector.watchAd_Label.style.unityFont =
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
         #endregion
+
+        #region Reward
+        menu_UIConnector.reward_Label.text =
+            LanguageTextsData.reward[SettingsData.currentLanguageIndex];
+        menu_UIConnector.reward_Label.languageDirection =
+            LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
+        menu_UIConnector.reward_Label.style.unityFont =
+            LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
+        #endregion
+
 
         #region Shop
         menu_UIConnector.shop_Label.text =
@@ -196,6 +221,14 @@ public class InventoryShopPage_Controller : MonoBehaviour
         menu_UIConnector.shop_Label.languageDirection =
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
         menu_UIConnector.shop_Label.style.unityFont =
+            LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
+        #endregion
+
+        #region Currency
+        menu_UIConnector.currencyAmount_Label.text = "" + AchievementsData.coins;
+        menu_UIConnector.currencyAmount_Label.languageDirection =
+            LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
+        menu_UIConnector.currencyAmount_Label.style.unityFont =
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
         #endregion
 
@@ -220,19 +253,45 @@ public class InventoryShopPage_Controller : MonoBehaviour
 
     private void OnFontSizeChanged()
     {
+        for (int i = 0; i < inventoryShopItems_List.Count; i++)
+        {
+            #region ItemName
+            Label label = inventoryShopItems_List[i].Q<Label>("ItemName_Label");
+            label.style.fontSize =
+                LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
+            #endregion
+
+            #region ItemPrice
+            label = inventoryShopItems_List[i].Q<Label>("ItemPrice_Label");
+            label.style.fontSize =
+                LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
+            #endregion
+        }
+
+
         #region Inventory
         menu_UIConnector.inventory_Label.style.fontSize =
             LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
         #endregion
 
-        #region Currency
-        menu_UIConnector.currencyAmount_Label.style.fontSize =
+        #region WatchAd
+        menu_UIConnector.watchAd_Label.style.fontSize =
+            LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
+        #endregion
+
+        #region Reward
+        menu_UIConnector.reward_Label.style.fontSize =
             LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
         #endregion
 
         #region Shop
         menu_UIConnector.shop_Label.style.fontSize =
-            LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
+                LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
+        #endregion
+
+        #region Currency
+        menu_UIConnector.currencyAmount_Label.style.fontSize =
+                LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
         #endregion
 
         #region Buy
@@ -257,13 +316,14 @@ public class InventoryShopPage_Controller : MonoBehaviour
 
     private void RmoveCurrentItemSelected()
     {
-        if (currentVisualElement != null)
+        if (currentVisualElementIndex != -1)
         {
-            currentVisualElement.RemoveFromClassList("Selected");
-            currentVisualElement.AddToClassList("UnSelected");
+            VisualElement background_VisualElement =
+                inventoryShopItems_List[currentVisualElementIndex].Q<VisualElement>("Background_VisualElement");
+
+            background_VisualElement.RemoveFromClassList("Selected");
+            background_VisualElement.AddToClassList("UnSelected");
         }
-        currentVisualElement = null;
         currentVisualElementIndex = -1;
-        currentBoughtItem = "";
     }
 }

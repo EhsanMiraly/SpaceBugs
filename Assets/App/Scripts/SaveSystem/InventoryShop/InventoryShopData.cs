@@ -5,8 +5,9 @@ public class InventoryShopData
 {
     public static InventoryShopItem[] InventoryShopItems = new InventoryShopItem[]
     {
-        new InventoryShopItem(false, "Health", 1),
-        new InventoryShopItem(false, "Bullet", 1)
+        new InventoryShopItem(false, new string[]{"Health","جان"}, 1),
+        new InventoryShopItem(false, new string[]{"Bullet","تیر"}, 1),
+        new InventoryShopItem(false, new string[]{"Bullet","تیر"}, 1)
     };
 
 
@@ -20,7 +21,11 @@ public class InventoryShopData
         for (int i = 0; i < inventoryShopItems.Length; i++)
         {
             InventoryShopItems[i].IsBought = inventoryShopItems[i].IsBought;
-            InventoryShopItems[i].ItemName = inventoryShopItems[i].ItemName;
+            InventoryShopItems[i].ItemName = new string[inventoryShopItems[i].ItemName.Length];
+            for (int j = 0; j < inventoryShopItems[i].ItemName.Length; j++)
+            {
+                InventoryShopItems[i].ItemName[j] = inventoryShopItems[i].ItemName[j];
+            }
             InventoryShopItems[i].Price = inventoryShopItems[i].Price;
         }
     }

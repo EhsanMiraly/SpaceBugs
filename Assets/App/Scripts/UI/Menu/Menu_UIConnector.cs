@@ -25,11 +25,16 @@ public class Menu_UIConnector : MonoBehaviour
 
     //InventoryShopPage
     public VisualElement inventoryShopPage_VisualElement;
+    //Inventory
     public Label inventory_Label;
     public ScrollView inventory_ScrollView;
-    public Label currencyAmount_Label;
+    public VisualElement watchAd_TemplateContainer;
+    public Label watchAd_Label;
+    public Label reward_Label;
+    //Shop
     public Label shop_Label;
     public ScrollView shop_ScrollView;
+    public Label currencyAmount_Label;
     public VisualElement buy_TemplateContainer;
     public Label buy_Label;
     public VisualElement exit_TemplateContainer;
@@ -70,11 +75,16 @@ public class Menu_UIConnector : MonoBehaviour
 
         //InventoryShopPage
         inventoryShopPage_VisualElement = root.Q<VisualElement>("InventoryShopPage_VisualElement");
+        //Inventory
         inventory_Label = inventoryShopPage_VisualElement.Q<Label>("Inventory_Label");
         inventory_ScrollView = inventoryShopPage_VisualElement.Q<ScrollView>("Inventory_ScrollView");
-        currencyAmount_Label = inventoryShopPage_VisualElement.Q<Label>("CurrencyAmount_Label");
+        watchAd_TemplateContainer = inventoryShopPage_VisualElement.Q<VisualElement>("WatchAd_TemplateContainer");
+        watchAd_Label = inventoryShopPage_VisualElement.Q<Label>("WatchAd_Label");
+        reward_Label = inventoryShopPage_VisualElement.Q<Label>("Reward_Label");
+        //Shop
         shop_Label = inventoryShopPage_VisualElement.Q<Label>("Shop_Label");
         shop_ScrollView = inventoryShopPage_VisualElement.Q<ScrollView>("Shop_ScrollView");
+        currencyAmount_Label = inventoryShopPage_VisualElement.Q<Label>("CurrencyAmount_Label");
         buy_TemplateContainer = inventoryShopPage_VisualElement.Q<VisualElement>("Buy_TemplateContainer");
         buy_Label = inventoryShopPage_VisualElement.Q<Label>("Buy_Label");
         exit_TemplateContainer = inventoryShopPage_VisualElement.Q<VisualElement>("Exit_TemplateContainer");

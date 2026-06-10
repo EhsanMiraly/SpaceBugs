@@ -57,13 +57,18 @@ public struct InventoryShopItems_SaveData
 public struct InventoryShopItem
 {
     public bool IsBought;
-    public string ItemName;
+    public string[] ItemName;
     public int Price;
 
-    public InventoryShopItem(bool isBought, string itemName, int price)
+    public InventoryShopItem(bool isBought, string[] itemName, int price)
     {
         IsBought = isBought;
-        ItemName = itemName;
+        ItemName = new string[itemName.Length];
+        for (int i = 0; i < itemName.Length; i++)
+        {
+            ItemName[i] = itemName[i];
+        }
         Price = price;
     }
+
 }
