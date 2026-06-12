@@ -31,6 +31,8 @@ public class LoadingWindow_UI : IDisposable
 
         root = uIDocument.rootVisualElement;
 
+        ScreenSafeArea.RemoveUnSafeAreaFromUI(root);
+
         loading_Label = root.Q<Label>("Loading_Label");
         loading_Label.text =
             LanguageTextsData.loading[SettingsData.currentLanguageIndex];

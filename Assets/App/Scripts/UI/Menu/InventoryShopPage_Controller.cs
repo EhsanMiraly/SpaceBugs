@@ -67,13 +67,8 @@ public class InventoryShopPage_Controller : MonoBehaviour
             VisualElement inventoryShopItem_VisualElement = inventoryShopItem_Template.Instantiate();
             inventoryShopItem_VisualElement.name = i + "_" + InventoryShopData.InventoryShopItems[i].ItemName[0];
 
-            inventoryShopItem_VisualElement.style.width = Length.Percent(100);
             inventoryShopItem_VisualElement.style.height = Screen.width / 10;
-
-            inventoryShopItem_VisualElement.style.paddingLeft = Screen.width / 100;
-            inventoryShopItem_VisualElement.style.paddingTop = Screen.width / 100;
-            inventoryShopItem_VisualElement.style.paddingRight = Screen.width / 100;
-            inventoryShopItem_VisualElement.style.paddingBottom = Screen.width / 100;
+            inventoryShopItem_VisualElement.AddToClassList("InventoryShopItem_Template");
 
             VisualElement itemImage_VisualElement =
                 inventoryShopItem_VisualElement.Q<VisualElement>("ItemImage_VisualElement");

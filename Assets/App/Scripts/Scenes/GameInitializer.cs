@@ -32,6 +32,7 @@ public class GameInitializer : MonoBehaviour
             loadingPage_UI.SetProgress(10);
 
             _camera = Instantiate(_camera);
+            ScreenSafeArea.RemoveUnSafeAreaFromGame();
             loadingPage_UI.SetProgress(20);
 
             _light = Instantiate(_light);
@@ -71,12 +72,17 @@ public class GameInitializer : MonoBehaviour
         GameObject parentGameObject = new GameObject();
         parentGameObject.layer = LayerMask.NameToLayer("Wall");
 
-        float x = Screen.width;
-        float y = Screen.height;
+        Rect safeArea = Screen.safeArea;
+        float xLeft = safeArea.xMin;
+        float xRight = safeArea.xMax - safeArea.xMin;
+        float yDown = safeArea.yMin;
+        float yTop = safeArea.yMax - safeArea.yMin;
+
+
         float z = Mathf.Abs(Camera.main.transform.position.z);
 
-        Vector3 ZeroPoint = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, z));
-        Vector3 XY = Camera.main.ScreenToWorldPoint(new Vector3(x, y, z));
+        Vector3 ZeroPoint = Camera.main.ScreenToWorldPoint(new Vector3(xLeft, yDown, z));
+        Vector3 XY = Camera.main.ScreenToWorldPoint(new Vector3(xRight, yTop, z));
 
         //LeftWall
         GameObject leftWall = new GameObject();

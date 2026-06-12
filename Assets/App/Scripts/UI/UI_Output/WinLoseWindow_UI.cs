@@ -37,6 +37,8 @@ public class WinLoseWindow_UI
 
         root = uIDocument.rootVisualElement;
 
+        ScreenSafeArea.RemoveUnSafeAreaFromUI(root);
+
         winLose_Label = root.Q<Label>("WinLose_Label");
         oK_Button = root.Q<Button>("OK_Button");
 

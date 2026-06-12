@@ -1,7 +1,4 @@
-using System;
 using Unity.Mathematics;
-using UnityEditor.Animations;
-using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,6 +15,7 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     Pool<Bullet> bulletsPool;
 
+    float moveLimit;
     int moveDirection;
 
     [SerializeField] GameObject barrel;
@@ -47,6 +45,18 @@ public class Player_Controller : MonoBehaviour
         pointOfShoot.GetComponent<SpriteRenderer>().sprite = null;
 
         lastTimeFired = Time.time;
+
+        SetPlayerLimits();
+    }
+
+    private void SetPlayerLimits()
+    {
+        Rect safeArea = Screen.safeArea;
+
+        float xRight = safeArea.xMax - safeArea.xMin;
+        float z = Mathf.Abs(Camera.main.transform.position.z);
+
+        moveLimit = Camera.main.ScreenToWorldPoint(new Vector3(xRight, 0, -10)).x - 1.5f;
     }
 
     private void OnDisable()
@@ -66,7 +76,7 @@ public class Player_Controller : MonoBehaviour
     void MovePlayer()
     {
         transform.Translate(moveDirection * PlayerData.MoveSpeed * Time.deltaTime, 0f, 0f);
-        float x = (float)math.clamp(transform.position.x, -11.5, 11.5);
+        float x = (float)math.clamp(transform.position.x, -moveLimit, moveLimit);
         transform.position = new Vector3(x, transform.position.y, transform.position.z);
     }
 

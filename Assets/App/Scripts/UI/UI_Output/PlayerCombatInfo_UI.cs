@@ -36,6 +36,8 @@ public class PlayerCombatInfo_UI : MonoBehaviour
         uIDocument = GetComponent<UIDocument>();
         root = uIDocument.rootVisualElement;
 
+        ScreenSafeArea.RemoveUnSafeAreaFromUI(root);
+
         healthBarBackground_VisualElement = root.Q<VisualElement>("Background_VisualElement");
         healthBarForeground_VisualElement = root.Q<VisualElement>("Foreground_VisualElement");
         score_Label = root.Q<Label>("Score_Label");

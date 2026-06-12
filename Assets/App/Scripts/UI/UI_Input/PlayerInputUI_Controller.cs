@@ -53,6 +53,8 @@ public class PlayerInputUI_Controller : MonoBehaviour
         uIDocument = GetComponent<UIDocument>();
         root = uIDocument.rootVisualElement;
 
+        ScreenSafeArea.RemoveUnSafeAreaFromUI(root);
+
         int buttonSize = Screen.width / 15;
 
         moveLeft_TemplateContainer = root.Q<VisualElement>("MoveLeft_TemplateContainer");

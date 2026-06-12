@@ -116,7 +116,7 @@ public class MainPage_Controller : MonoBehaviour
 
     private void OnResume_ButtonSelected(ClickEvent clickEvent)
     {
-        menu_UIConnector.menu_VisualElement.style.display = DisplayStyle.Flex;
+        //menu_UIConnector.menu_VisualElement.style.display = DisplayStyle.Flex;
         menu_UIConnector.pageHolder_VisualElement.style.display = DisplayStyle.None;
         EventsManager.InvokeOnResumeLevel();
     }

@@ -6,7 +6,7 @@ public class Menu_UIConnector : MonoBehaviour
     UIDocument uIDocument;
     VisualElement root;
 
-    public VisualElement menu_VisualElement;
+    //public VisualElement menu_VisualElement;
     public VisualElement pageHolder_VisualElement;
 
     //MainPage
@@ -56,7 +56,9 @@ public class Menu_UIConnector : MonoBehaviour
         uIDocument = GetComponent<UIDocument>();
         root = uIDocument.rootVisualElement;
 
-        menu_VisualElement = root.Q<VisualElement>("Menu_VisualElement");
+        ScreenSafeArea.RemoveUnSafeAreaFromUI(root);
+
+        //menu_VisualElement = root.Q<VisualElement>("Menu_VisualElement");
         pageHolder_VisualElement = root.Q<VisualElement>("PageHolder_VisualElement");
 
         mainPage_VisualElement = root.Q<VisualElement>("MainPage_VisualElement");
@@ -99,7 +101,7 @@ public class Menu_UIConnector : MonoBehaviour
 
 
         //Add Functionality To menu_VisualElement
-        menu_VisualElement.RegisterCallback<ClickEvent>(OnMenuSelected);
+        //menu_VisualElement.RegisterCallback<ClickEvent>(OnMenuSelected);
 
         GetComponent<MainPage_Controller>().Initialize(this);
         GetComponent<LevelsPage_Controller>().Initialize(this);
@@ -111,12 +113,12 @@ public class Menu_UIConnector : MonoBehaviour
 
     private void OnDisable()
     {
-        menu_VisualElement.UnregisterCallback<ClickEvent>(OnMenuSelected);
+        //menu_VisualElement.UnregisterCallback<ClickEvent>(OnMenuSelected);
     }
 
     public void InitialPage()
     {
-        menu_VisualElement.style.display = DisplayStyle.None;
+        //menu_VisualElement.style.display = DisplayStyle.None;
 
         pageHolder_VisualElement.style.display = DisplayStyle.Flex;
         resume_Button.style.display = DisplayStyle.None;
@@ -126,7 +128,7 @@ public class Menu_UIConnector : MonoBehaviour
 
     private void OnMenuSelected(ClickEvent clickEvent)
     {
-        menu_VisualElement.style.display = DisplayStyle.None;
+        //menu_VisualElement.style.display = DisplayStyle.None;
         pageHolder_VisualElement.style.display = DisplayStyle.Flex;
 
         EventsManager.InvokeOnPauseLevel();
