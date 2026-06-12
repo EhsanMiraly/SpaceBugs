@@ -20,7 +20,6 @@ public class PlayerInputUI_Controller : MonoBehaviour
     public void Initialize()
     {
         ConnectUI();
-        FixUISizes();
         RegisterEventsOnUI();
     }
 
@@ -55,47 +54,20 @@ public class PlayerInputUI_Controller : MonoBehaviour
 
         ScreenSafeArea.RemoveUnSafeAreaFromUI(root);
 
-        int buttonSize = Screen.width / 15;
-
         moveLeft_TemplateContainer = root.Q<VisualElement>("MoveLeft_TemplateContainer");
-        moveLeft_TemplateContainer.style.width = buttonSize;
-        moveLeft_TemplateContainer.style.height = buttonSize;
+        FixElementSize(moveLeft_TemplateContainer);
 
         moveRight_TemplateContainer = root.Q<VisualElement>("MoveRight_TemplateContainer");
-        moveRight_TemplateContainer.style.width = buttonSize;
-        moveRight_TemplateContainer.style.height = buttonSize;
+        FixElementSize(moveRight_TemplateContainer);
 
         shoot_TemplateContainer = root.Q<VisualElement>("Shoot_TemplateContainer");
-        shoot_TemplateContainer.style.width = buttonSize;
-        shoot_TemplateContainer.style.height = buttonSize;
+        FixElementSize(shoot_TemplateContainer);
 
         turnLeft_TemplateContainer = root.Q<VisualElement>("TurnLeft_TemplateContainer");
-        turnLeft_TemplateContainer.style.width = buttonSize;
-        turnLeft_TemplateContainer.style.height = buttonSize;
+        FixElementSize(turnLeft_TemplateContainer);
 
         turnRight_TemplateContainer = root.Q<VisualElement>("TurnRight_TemplateContainer");
-        turnRight_TemplateContainer.style.width = buttonSize;
-        turnRight_TemplateContainer.style.height = buttonSize;
-    }
-
-    private void FixUISizes()
-    {
-        int size = Screen.width / 15;
-
-        moveLeft_TemplateContainer.style.width = size;
-        moveLeft_TemplateContainer.style.height = size;
-
-        moveRight_TemplateContainer.style.width = size;
-        moveRight_TemplateContainer.style.height = size;
-
-        shoot_TemplateContainer.style.width = size;
-        shoot_TemplateContainer.style.height = size;
-
-        turnLeft_TemplateContainer.style.width = size;
-        turnLeft_TemplateContainer.style.height = size;
-
-        turnRight_TemplateContainer.style.width = size;
-        turnRight_TemplateContainer.style.height = size;
+        FixElementSize(turnRight_TemplateContainer);
     }
 
 
@@ -203,6 +175,14 @@ public class PlayerInputUI_Controller : MonoBehaviour
     {
         turnLeft_TemplateContainer.SetEnabled(state);
         turnRight_TemplateContainer.SetEnabled(state);
+    }
+
+    public void FixElementSize(VisualElement visualElement)
+    {
+        float size = (Screen.safeArea.xMax - (2 * Screen.safeArea.xMin)) / 10;
+
+        visualElement.style.width = size;
+        visualElement.style.height = size;
     }
 
 }

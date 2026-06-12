@@ -139,8 +139,7 @@ public class LevelsPage_Controller : MonoBehaviour
 
         EventsManager.InvokeOnStartLevel(this, new GameState_EventArgs(levelNumber));
 
-        //menu_UIConnector.menu_VisualElement.style.display = DisplayStyle.Flex;
-        menu_UIConnector.pageHolder_VisualElement.style.display = DisplayStyle.None;
+        menu_UIConnector.SwitchPage(menu_UIConnector.menu_VisualElement_TemplateContainer);
     }
 
 

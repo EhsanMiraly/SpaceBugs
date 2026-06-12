@@ -204,12 +204,15 @@ public class SettingsPage_Controller : MonoBehaviour
     {
         language_VisualElement = previousNextSelector_VisualTreeAsset.Instantiate();
 
-        language_ChevronLeft_VisualElement = language_VisualElement.Q<VisualElement>("ChevronLeft_VisualElement");
-        language_Label = language_VisualElement.Q<Label>("Option_Label");
-        language_ChevronRight_VisualElement = language_VisualElement.Q<VisualElement>("ChevronRight_VisualElement");
-
+        language_VisualElement.style.marginBottom = 30;
         language_VisualElement.style.width = Length.Percent(100);
         language_VisualElement.style.height = 300;
+
+        language_ChevronLeft_VisualElement = language_VisualElement.Q<VisualElement>("ChevronLeft_VisualElement");
+        FixElementSize(language_ChevronLeft_VisualElement.Q<VisualElement>("ChevronLeft_TemplateContainer"));
+        language_Label = language_VisualElement.Q<Label>("Option_Label");
+        language_ChevronRight_VisualElement = language_VisualElement.Q<VisualElement>("ChevronRight_VisualElement");
+        FixElementSize(language_ChevronRight_VisualElement.Q<VisualElement>("ChevronRight_TemplateContainer"));
 
         menu_UIConnector.settings_ScrollView.Add(language_VisualElement);
 
@@ -248,12 +251,15 @@ public class SettingsPage_Controller : MonoBehaviour
     {
         fontSize_VisualElement = previousNextSelector_VisualTreeAsset.Instantiate();
 
-        fontSize_ChevronLeft_VisualElement = fontSize_VisualElement.Q<VisualElement>("ChevronLeft_VisualElement");
-        fontSize_Label = fontSize_VisualElement.Q<Label>("Option_Label");
-        fontSize_ChevronRight_VisualElement = fontSize_VisualElement.Q<VisualElement>("ChevronRight_VisualElement");
-
+        fontSize_VisualElement.style.marginBottom = 30;
         fontSize_VisualElement.style.width = Length.Percent(100);
         fontSize_VisualElement.style.height = 300;
+
+        fontSize_ChevronLeft_VisualElement = fontSize_VisualElement.Q<VisualElement>("ChevronLeft_VisualElement");
+        FixElementSize(fontSize_ChevronLeft_VisualElement.Q<VisualElement>("ChevronLeft_TemplateContainer"));
+        fontSize_Label = fontSize_VisualElement.Q<Label>("Option_Label");
+        fontSize_ChevronRight_VisualElement = fontSize_VisualElement.Q<VisualElement>("ChevronRight_VisualElement");
+        FixElementSize(fontSize_ChevronRight_VisualElement.Q<VisualElement>("ChevronRight_TemplateContainer"));
 
         menu_UIConnector.settings_ScrollView.Add(fontSize_VisualElement);
 
@@ -292,21 +298,25 @@ public class SettingsPage_Controller : MonoBehaviour
     {
         backgroundMusic_VisualElement = sound_VisualTreeAsset.Instantiate();
 
+        backgroundMusic_VisualElement.style.marginBottom = 30;
+        backgroundMusic_VisualElement.style.width = Length.Percent(100);
+        backgroundMusic_VisualElement.style.height = 600;
+
         backgroundMusic_WhatAmI_Label =
             backgroundMusic_VisualElement.Q<Label>("WhatAmI_Label");
         backgroundMusic_CheckMark_VisualElement =
             backgroundMusic_VisualElement.Q<VisualElement>("CheckMark_VisualElement");
+        FixElementSize(backgroundMusic_CheckMark_VisualElement.Q<VisualElement>("CheckMark_Template"));
         backgroundMusic_CheckMark_Foreground_VisualElement =
             backgroundMusic_CheckMark_VisualElement.Q<VisualElement>("Foreground_VisualElement");
         backgroundMusic_Minus_VisualElement =
             backgroundMusic_VisualElement.Q<VisualElement>("Minus_VisualElement");
+        FixElementSize(backgroundMusic_Minus_VisualElement.Q<VisualElement>("Minus_Template"));
         backgroundMusic_InvisibleForeground_VisualElement =
             backgroundMusic_VisualElement.Q<VisualElement>("InvisibleForeground_VisualElement");
         backgroundMusic_Plus_VisualElement =
             backgroundMusic_VisualElement.Q<VisualElement>("Plus_VisualElement");
-
-        backgroundMusic_VisualElement.style.width = Length.Percent(100);
-        backgroundMusic_VisualElement.style.height = 300;
+        FixElementSize(backgroundMusic_Plus_VisualElement.Q<VisualElement>("Plus_Template"));
 
         menu_UIConnector.settings_ScrollView.Add(backgroundMusic_VisualElement);
 
@@ -365,21 +375,25 @@ public class SettingsPage_Controller : MonoBehaviour
     {
         soundEffects_VisualElement = sound_VisualTreeAsset.Instantiate();
 
+        soundEffects_VisualElement.style.marginBottom = 30;
+        soundEffects_VisualElement.style.width = Length.Percent(100);
+        soundEffects_VisualElement.style.height = 600;
+
         soundEffects_WhatAmI_Label =
             soundEffects_VisualElement.Q<Label>("WhatAmI_Label");
         soundEffects_CheckMark_VisualElement =
             soundEffects_VisualElement.Q<VisualElement>("CheckMark_VisualElement");
+        FixElementSize(soundEffects_CheckMark_VisualElement.Q<VisualElement>("CheckMark_Template"));
         soundEffects_CheckMark_Foreground_VisualElement =
             soundEffects_CheckMark_VisualElement.Q<VisualElement>("Foreground_VisualElement");
         soundEffects_Minus_VisualElement =
             soundEffects_VisualElement.Q<VisualElement>("Minus_VisualElement");
+        FixElementSize(soundEffects_Minus_VisualElement.Q<VisualElement>("Minus_Template"));
         soundEffects_InvisibleForeground_VisualElement =
             soundEffects_VisualElement.Q<VisualElement>("InvisibleForeground_VisualElement");
         soundEffects_Plus_VisualElement =
             soundEffects_VisualElement.Q<VisualElement>("Plus_VisualElement");
-
-        soundEffects_VisualElement.style.width = Length.Percent(100);
-        soundEffects_VisualElement.style.height = 300;
+        FixElementSize(soundEffects_Plus_VisualElement.Q<VisualElement>("Plus_Template"));
 
         menu_UIConnector.settings_ScrollView.Add(soundEffects_VisualElement);
 
@@ -432,32 +446,14 @@ public class SettingsPage_Controller : MonoBehaviour
     #endregion
 
 
-    #region Save&Load
-
-    public void Save(ref Settings_SaveData settings_SaveData)
+    public void FixElementSize(VisualElement visualElement)
     {
-        settings_SaveData.currentLanguageIndex = SettingsData.currentLanguageIndex;
-        settings_SaveData.currentFontSizeIndex = SettingsData.currentFontSizeIndex;
+        float size = (Screen.safeArea.xMax - (2 * Screen.safeArea.xMin)) / 10;
 
-        settings_SaveData.isBackgroundMusicOn = SettingsData.isBackgroundMusicOn;
-        settings_SaveData.backgroundMusicVolume = SettingsData.backgroundMusicVolume;
-
-        settings_SaveData.isSoundEffectsOn = SettingsData.isSoundEffectsOn;
-        settings_SaveData.soundEffectsVolume = SettingsData.soundEffectsVolume;
+        visualElement.style.width = size;
+        visualElement.style.height = size;
     }
 
-    public void Load(Settings_SaveData settings_SaveData)
-    {
-        SettingsData.currentLanguageIndex = settings_SaveData.currentLanguageIndex;
-        SettingsData.currentFontSizeIndex = settings_SaveData.currentFontSizeIndex;
 
-        SettingsData.isBackgroundMusicOn = settings_SaveData.isBackgroundMusicOn;
-        SettingsData.backgroundMusicVolume = settings_SaveData.backgroundMusicVolume;
-
-        SettingsData.isSoundEffectsOn = settings_SaveData.isSoundEffectsOn;
-        SettingsData.soundEffectsVolume = settings_SaveData.soundEffectsVolume;
-    }
-
-    #endregion
 
 }

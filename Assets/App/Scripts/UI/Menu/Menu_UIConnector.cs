@@ -6,8 +6,11 @@ public class Menu_UIConnector : MonoBehaviour
     UIDocument uIDocument;
     VisualElement root;
 
-    //public VisualElement menu_VisualElement;
     public VisualElement pageHolder_VisualElement;
+
+    //Menu
+    public VisualElement menu_VisualElement_TemplateContainer;
+    public VisualElement menu_VisualElement;
 
     //MainPage
     public VisualElement mainPage_VisualElement;
@@ -58,9 +61,13 @@ public class Menu_UIConnector : MonoBehaviour
 
         ScreenSafeArea.RemoveUnSafeAreaFromUI(root);
 
-        //menu_VisualElement = root.Q<VisualElement>("Menu_VisualElement");
         pageHolder_VisualElement = root.Q<VisualElement>("PageHolder_VisualElement");
 
+        //Menu
+        menu_VisualElement_TemplateContainer = root.Q<VisualElement>("Menu_VisualElement_TemplateContainer");
+        menu_VisualElement = menu_VisualElement_TemplateContainer.Q<VisualElement>("Menu_VisualElement");
+
+        //MainPage
         mainPage_VisualElement = root.Q<VisualElement>("MainPage_VisualElement");
         resume_Button = mainPage_VisualElement.Q<Button>("Resume_Button");
         levels_Button = mainPage_VisualElement.Q<Button>("Levels_Button");
@@ -99,9 +106,7 @@ public class Menu_UIConnector : MonoBehaviour
         settings_ScrollView = settingsPage_VisualElement.Q<ScrollView>("Settings_ScrollView");
         ScrollViewController.InitializeScrollView(settings_ScrollView);
 
-
-        //Add Functionality To menu_VisualElement
-        //menu_VisualElement.RegisterCallback<ClickEvent>(OnMenuSelected);
+        menu_VisualElement.RegisterCallback<ClickEvent>(OnMenuSelected);
 
         GetComponent<MainPage_Controller>().Initialize(this);
         GetComponent<LevelsPage_Controller>().Initialize(this);
@@ -113,14 +118,11 @@ public class Menu_UIConnector : MonoBehaviour
 
     private void OnDisable()
     {
-        //menu_VisualElement.UnregisterCallback<ClickEvent>(OnMenuSelected);
+        menu_VisualElement.UnregisterCallback<ClickEvent>(OnMenuSelected);
     }
 
     public void InitialPage()
     {
-        //menu_VisualElement.style.display = DisplayStyle.None;
-
-        pageHolder_VisualElement.style.display = DisplayStyle.Flex;
         resume_Button.style.display = DisplayStyle.None;
 
         SwitchPage(mainPage_VisualElement);
@@ -128,9 +130,6 @@ public class Menu_UIConnector : MonoBehaviour
 
     private void OnMenuSelected(ClickEvent clickEvent)
     {
-        //menu_VisualElement.style.display = DisplayStyle.None;
-        pageHolder_VisualElement.style.display = DisplayStyle.Flex;
-
         EventsManager.InvokeOnPauseLevel();
 
         resume_Button.style.display = DisplayStyle.Flex;
@@ -139,6 +138,7 @@ public class Menu_UIConnector : MonoBehaviour
 
     public void SwitchPage(VisualElement page)
     {
+        menu_VisualElement_TemplateContainer.style.display = DisplayStyle.None;
         mainPage_VisualElement.style.display = DisplayStyle.None;
         levelsPage_VisualElement.style.display = DisplayStyle.None;
         inventoryShopPage_VisualElement.style.display = DisplayStyle.None;
