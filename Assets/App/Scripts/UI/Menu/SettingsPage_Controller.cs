@@ -204,9 +204,7 @@ public class SettingsPage_Controller : MonoBehaviour
     {
         language_VisualElement = previousNextSelector_VisualTreeAsset.Instantiate();
 
-        language_VisualElement.style.marginBottom = 30;
-        language_VisualElement.style.width = Length.Percent(100);
-        language_VisualElement.style.height = 300;
+        FixSettingItemSizeOneRow(language_VisualElement);
 
         language_ChevronLeft_VisualElement = language_VisualElement.Q<VisualElement>("ChevronLeft_VisualElement");
         FixElementSize(language_ChevronLeft_VisualElement.Q<VisualElement>("ChevronLeft_TemplateContainer"));
@@ -251,9 +249,7 @@ public class SettingsPage_Controller : MonoBehaviour
     {
         fontSize_VisualElement = previousNextSelector_VisualTreeAsset.Instantiate();
 
-        fontSize_VisualElement.style.marginBottom = 30;
-        fontSize_VisualElement.style.width = Length.Percent(100);
-        fontSize_VisualElement.style.height = 300;
+        FixSettingItemSizeOneRow(fontSize_VisualElement);
 
         fontSize_ChevronLeft_VisualElement = fontSize_VisualElement.Q<VisualElement>("ChevronLeft_VisualElement");
         FixElementSize(fontSize_ChevronLeft_VisualElement.Q<VisualElement>("ChevronLeft_TemplateContainer"));
@@ -298,9 +294,7 @@ public class SettingsPage_Controller : MonoBehaviour
     {
         backgroundMusic_VisualElement = sound_VisualTreeAsset.Instantiate();
 
-        backgroundMusic_VisualElement.style.marginBottom = 30;
-        backgroundMusic_VisualElement.style.width = Length.Percent(100);
-        backgroundMusic_VisualElement.style.height = 600;
+        FixSettingItemTwoRow(backgroundMusic_VisualElement);
 
         backgroundMusic_WhatAmI_Label =
             backgroundMusic_VisualElement.Q<Label>("WhatAmI_Label");
@@ -375,9 +369,7 @@ public class SettingsPage_Controller : MonoBehaviour
     {
         soundEffects_VisualElement = sound_VisualTreeAsset.Instantiate();
 
-        soundEffects_VisualElement.style.marginBottom = 30;
-        soundEffects_VisualElement.style.width = Length.Percent(100);
-        soundEffects_VisualElement.style.height = 600;
+        FixSettingItemTwoRow(soundEffects_VisualElement);
 
         soundEffects_WhatAmI_Label =
             soundEffects_VisualElement.Q<Label>("WhatAmI_Label");
@@ -452,6 +444,30 @@ public class SettingsPage_Controller : MonoBehaviour
 
         visualElement.style.width = size;
         visualElement.style.height = size;
+    }
+
+    public void FixSettingItemSizeOneRow(VisualElement visualElement)
+    {
+        float size = (Screen.safeArea.xMax - (2 * Screen.safeArea.xMin)) / 20;
+        float margin = (Screen.safeArea.xMax - (2 * Screen.safeArea.xMin)) / 100;
+
+        visualElement.style.width = Length.Percent(100);
+        visualElement.style.height = 3 * size;
+
+        visualElement.style.marginTop = margin;
+        visualElement.style.marginBottom = margin;
+    }
+
+    public void FixSettingItemTwoRow(VisualElement visualElement)
+    {
+        float size = (Screen.safeArea.xMax - (2 * Screen.safeArea.xMin)) / 10;
+        float margin = (Screen.safeArea.xMax - (2 * Screen.safeArea.xMin)) / 100;
+
+        visualElement.style.width = Length.Percent(100);
+        visualElement.style.height = 3 * size;
+
+        visualElement.style.marginTop = margin;
+        visualElement.style.marginBottom = margin;
     }
 
 

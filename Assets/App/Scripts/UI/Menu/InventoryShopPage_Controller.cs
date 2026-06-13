@@ -75,6 +75,10 @@ public class InventoryShopPage_Controller : MonoBehaviour
             itemImage_VisualElement.style.backgroundImage =
                 Resources.Load<Texture2D>("InventoryShopItems_Images/" +
                     InventoryShopData.InventoryShopItems[i].ItemName[0]);
+            if (InventoryShopData.InventoryShopItems[i].ItemName[0] == "Health")
+            {
+                itemImage_VisualElement.style.unityBackgroundImageTintColor = Color.red;
+            }
 
             VisualElement itemCurrencyImage_VisualElement =
                 inventoryShopItem_VisualElement.Q<VisualElement>("ItemCurrencyImage_VisualElement");

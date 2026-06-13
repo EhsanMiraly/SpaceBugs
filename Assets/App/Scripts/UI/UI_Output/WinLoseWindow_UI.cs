@@ -14,7 +14,8 @@ public class WinLoseWindow_UI
     VisualElement root;
 
     Label winLose_Label;
-    Button oK_Button;
+    VisualElement oK_Button_TemplateContainer;
+    Label oK_Label;
 
     Menu_UIConnector menu_UIConnector;
 
@@ -40,7 +41,8 @@ public class WinLoseWindow_UI
         ScreenSafeArea.RemoveUnSafeAreaFromUI(root);
 
         winLose_Label = root.Q<Label>("WinLose_Label");
-        oK_Button = root.Q<Button>("OK_Button");
+        oK_Button_TemplateContainer = root.Q<VisualElement>("OK_Button_TemplateContainer");
+        oK_Label = oK_Button_TemplateContainer.Q<Label>();
 
         #region WinLose Label
         if (winOrLose)
@@ -62,19 +64,19 @@ public class WinLoseWindow_UI
         #endregion
 
         #region OK Button
-        oK_Button.text =
+        oK_Label.text =
             LanguageTextsData.ok[SettingsData.currentLanguageIndex];
-        oK_Button.languageDirection =
+        oK_Label.languageDirection =
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
-        oK_Button.style.unityFont =
+        oK_Label.style.unityFont =
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
-        oK_Button.style.fontSize =
+        oK_Label.style.fontSize =
             LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
         #endregion
 
         menu_UIConnector = UnityEngine.Object.FindAnyObjectByType<Menu_UIConnector>().GetComponent<Menu_UIConnector>();
 
-        oK_Button.RegisterCallback<ClickEvent>(evt =>
+        oK_Button_TemplateContainer.RegisterCallback<ClickEvent>(evt =>
         {
             if (winOrLose)
             {
@@ -102,7 +104,7 @@ public class WinLoseWindow_UI
             uIDocument = null;
             root = null;
             winLose_Label = null;
-            oK_Button = null;
+            oK_Button_TemplateContainer = null;
             menu_UIConnector = null;
         }
     }

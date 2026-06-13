@@ -16,11 +16,11 @@ public class MainPage_Controller : MonoBehaviour
 
         this.menu_UIConnector = menu_UIConnector;
 
-        menu_UIConnector.resume_Button.RegisterCallback<ClickEvent>(OnResume_ButtonSelected);
-        menu_UIConnector.levels_Button.RegisterCallback<ClickEvent>(OnLevels_ButtonSelected);
-        menu_UIConnector.inventoryShop_Button.RegisterCallback<ClickEvent>(OnInventoryShop_ButtonSelected);
-        menu_UIConnector.settings_Button.RegisterCallback<ClickEvent>(OnSettings_ButtonSelected);
-        menu_UIConnector.exit_Button.RegisterCallback<ClickEvent>(OnExit_ButtonSelected);
+        menu_UIConnector.resume_Button_TemplateContainer.RegisterCallback<ClickEvent>(OnResume_ButtonSelected);
+        menu_UIConnector.levels_Button_TemplateContainer.RegisterCallback<ClickEvent>(OnLevels_ButtonSelected);
+        menu_UIConnector.inventoryShop_Button_TemplateContainer.RegisterCallback<ClickEvent>(OnInventoryShop_ButtonSelected);
+        menu_UIConnector.settings_Button_TemplateContainer.RegisterCallback<ClickEvent>(OnSettings_ButtonSelected);
+        menu_UIConnector.exit_Button_TemplateContainer.RegisterCallback<ClickEvent>(OnExit_ButtonSelected);
 
         OnLanguageChanged();
         OnFontSizeChanged();
@@ -38,47 +38,52 @@ public class MainPage_Controller : MonoBehaviour
     private void OnLanguageChanged()
     {
         #region Resume
-        menu_UIConnector.resume_Button.text =
+        Label resume_Label = menu_UIConnector.resume_Button_TemplateContainer.Q<Label>();
+        resume_Label.text =
             LanguageTextsData.resume[SettingsData.currentLanguageIndex];
-        menu_UIConnector.resume_Button.languageDirection =
+        resume_Label.languageDirection =
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
-        menu_UIConnector.resume_Button.style.unityFont =
+        resume_Label.style.unityFont =
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
         #endregion
 
         #region Levels
-        menu_UIConnector.levels_Button.text =
+        Label levels_Label = menu_UIConnector.levels_Button_TemplateContainer.Q<Label>();
+        levels_Label.text =
             LanguageTextsData.levels[SettingsData.currentLanguageIndex];
-        menu_UIConnector.levels_Button.languageDirection =
+        levels_Label.languageDirection =
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
-        menu_UIConnector.levels_Button.style.unityFont =
+        levels_Label.style.unityFont =
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
         #endregion
 
         #region InventoryShop
-        menu_UIConnector.inventoryShop_Button.text =
+        Label inventoryShop_Label = menu_UIConnector.inventoryShop_Button_TemplateContainer.Q<Label>();
+        inventoryShop_Label.text =
             LanguageTextsData.inventoryShop[SettingsData.currentLanguageIndex];
-        menu_UIConnector.inventoryShop_Button.languageDirection =
+        inventoryShop_Label.languageDirection =
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
-        menu_UIConnector.inventoryShop_Button.style.unityFont =
+        inventoryShop_Label.style.unityFont =
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
         #endregion
 
         #region Settings
-        menu_UIConnector.settings_Button.text =
+        Label settings_Label = menu_UIConnector.settings_Button_TemplateContainer.Q<Label>();
+        settings_Label.text =
             LanguageTextsData.settings[SettingsData.currentLanguageIndex];
-        menu_UIConnector.settings_Button.languageDirection =
+        settings_Label.languageDirection =
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
-        menu_UIConnector.settings_Button.style.unityFont =
+        settings_Label.style.unityFont =
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
         #endregion
 
         #region Exit
-        menu_UIConnector.exit_Button.text =
+        Label exit_Label = menu_UIConnector.exit_Button_TemplateContainer.Q<Label>();
+        exit_Label.text =
             LanguageTextsData.exit[SettingsData.currentLanguageIndex];
-        menu_UIConnector.exit_Button.languageDirection =
+        exit_Label.languageDirection =
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
-        menu_UIConnector.exit_Button.style.unityFont =
+        exit_Label.style.unityFont =
             LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
         #endregion
     }
@@ -86,27 +91,32 @@ public class MainPage_Controller : MonoBehaviour
     private void OnFontSizeChanged()
     {
         #region Resume
-        menu_UIConnector.resume_Button.style.fontSize =
+        Label resume_Label = menu_UIConnector.resume_Button_TemplateContainer.Q<Label>();
+        resume_Label.style.fontSize =
             LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
         #endregion
 
         #region Levels
-        menu_UIConnector.levels_Button.style.fontSize =
+        Label levels_Label = menu_UIConnector.levels_Button_TemplateContainer.Q<Label>();
+        levels_Label.style.fontSize =
             LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
         #endregion
 
         #region InventoryShop
-        menu_UIConnector.inventoryShop_Button.style.fontSize =
+        Label inventoryShop_Label = menu_UIConnector.inventoryShop_Button_TemplateContainer.Q<Label>();
+        inventoryShop_Label.style.fontSize =
             LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
         #endregion
 
         #region Settings
-        menu_UIConnector.settings_Button.style.fontSize =
+        Label settings_Label = menu_UIConnector.settings_Button_TemplateContainer.Q<Label>();
+        settings_Label.style.fontSize =
             LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
         #endregion
 
         #region Exit
-        menu_UIConnector.exit_Button.style.fontSize =
+        Label exit_Label = menu_UIConnector.exit_Button_TemplateContainer.Q<Label>();
+        exit_Label.style.fontSize =
             LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
         #endregion
     }
@@ -122,14 +132,14 @@ public class MainPage_Controller : MonoBehaviour
 
     private void OnLevels_ButtonSelected(ClickEvent clickEvent)
     {
-        menu_UIConnector.resume_Button.style.display = DisplayStyle.None;
+        menu_UIConnector.resume_Button_TemplateContainer.style.display = DisplayStyle.None;
         menu_UIConnector.SwitchPage(menu_UIConnector.levelsPage_VisualElement);
         EventsManager.InvokeOnStopLevel();
     }
 
     private void OnInventoryShop_ButtonSelected(ClickEvent clickEvent)
     {
-        menu_UIConnector.resume_Button.style.display = DisplayStyle.None;
+        menu_UIConnector.resume_Button_TemplateContainer.style.display = DisplayStyle.None;
         menu_UIConnector.SwitchPage(menu_UIConnector.inventoryShopPage_VisualElement);
         EventsManager.InvokeOnStopLevel();
     }

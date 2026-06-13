@@ -14,11 +14,11 @@ public class Menu_UIConnector : MonoBehaviour
 
     //MainPage
     public VisualElement mainPage_VisualElement;
-    public Button resume_Button;
-    public Button levels_Button;
-    public Button inventoryShop_Button;
-    public Button settings_Button;
-    public Button exit_Button;
+    public VisualElement resume_Button_TemplateContainer;
+    public VisualElement levels_Button_TemplateContainer;
+    public VisualElement inventoryShop_Button_TemplateContainer;
+    public VisualElement settings_Button_TemplateContainer;
+    public VisualElement exit_Button_TemplateContainer;
 
     //LevelsPage
     public VisualElement levelsPage_VisualElement;
@@ -69,11 +69,11 @@ public class Menu_UIConnector : MonoBehaviour
 
         //MainPage
         mainPage_VisualElement = root.Q<VisualElement>("MainPage_VisualElement");
-        resume_Button = mainPage_VisualElement.Q<Button>("Resume_Button");
-        levels_Button = mainPage_VisualElement.Q<Button>("Levels_Button");
-        inventoryShop_Button = mainPage_VisualElement.Q<Button>("Shop_Button");
-        settings_Button = mainPage_VisualElement.Q<Button>("Settings_Button");
-        exit_Button = mainPage_VisualElement.Q<Button>("Exit_Button");
+        resume_Button_TemplateContainer = mainPage_VisualElement.Q<VisualElement>("Resume_Button_TemplateContainer");
+        levels_Button_TemplateContainer = mainPage_VisualElement.Q<VisualElement>("Levels_Button_TemplateContainer");
+        inventoryShop_Button_TemplateContainer = mainPage_VisualElement.Q<VisualElement>("Shop_Button_TemplateContainer");
+        settings_Button_TemplateContainer = mainPage_VisualElement.Q<VisualElement>("Settings_Button_TemplateContainer");
+        exit_Button_TemplateContainer = mainPage_VisualElement.Q<VisualElement>("Exit_Button_TemplateContainer");
 
         //LevelsPage
         levelsPage_VisualElement = root.Q<VisualElement>("LevelsPage_VisualElement");
@@ -123,7 +123,7 @@ public class Menu_UIConnector : MonoBehaviour
 
     public void InitialPage()
     {
-        resume_Button.style.display = DisplayStyle.None;
+        resume_Button_TemplateContainer.style.display = DisplayStyle.None;
 
         SwitchPage(mainPage_VisualElement);
     }
@@ -132,7 +132,7 @@ public class Menu_UIConnector : MonoBehaviour
     {
         EventsManager.InvokeOnPauseLevel();
 
-        resume_Button.style.display = DisplayStyle.Flex;
+        resume_Button_TemplateContainer.style.display = DisplayStyle.Flex;
         SwitchPage(mainPage_VisualElement);
     }
 

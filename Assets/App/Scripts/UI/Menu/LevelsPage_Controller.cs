@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -6,6 +7,7 @@ public class LevelsPage_Controller : MonoBehaviour
 {
     Menu_UIConnector menu_UIConnector;
 
+    VisualTreeAsset levelsHolderHorizontal_VisulaElement_Template;
     VisualTreeAsset level_Template;
     List<VisualElement> levels_VisualElement_List;
 
@@ -21,6 +23,10 @@ public class LevelsPage_Controller : MonoBehaviour
 
         this.menu_UIConnector = menu_UIConnector;
 
+        levelsHolderHorizontal_VisulaElement_Template =
+            Resources.Load<VisualTreeAsset>(
+            "UI/BasicElements/LevelsHolderHorizontal_VisulaElement/LevelsHolderHorizontal_VisulaElement_Template"
+            );
         level_Template = Resources.Load<VisualTreeAsset>("UI/Basic_Templates/Level/Level_Template");
         levels_VisualElement_List = new List<VisualElement>();
 
@@ -67,17 +73,24 @@ public class LevelsPage_Controller : MonoBehaviour
 
     private void FillLevelsScrollView()
     {
+        VisualElement levelsHolderHorizontal_VisulaElement =
+                                levelsHolderHorizontal_VisulaElement_Template.Instantiate();
+
         for (int i = 0; i < LevelsData.Levels.Length; i++)
         {
+            if (i % 3 == 0)
+            {
+                levelsHolderHorizontal_VisulaElement =
+                                levelsHolderHorizontal_VisulaElement_Template.Instantiate();
+
+                FixLevelsHolderSize(levelsHolderHorizontal_VisulaElement);
+
+                menu_UIConnector.levels_ScrollView.Add(levelsHolderHorizontal_VisulaElement);
+            }
+
             VisualElement level_VisualElement = level_Template.Instantiate();
 
-            level_VisualElement.style.width = Screen.width / 10;
-            level_VisualElement.style.height = Screen.width / 10;
-
-            level_VisualElement.style.marginLeft = Screen.width / 100;
-            level_VisualElement.style.marginTop = Screen.width / 100;
-            level_VisualElement.style.marginRight = Screen.width / 100;
-            level_VisualElement.style.marginBottom = Screen.width / 100;
+            FixLevelSize(level_VisualElement);
 
             Label label = level_VisualElement.Q<Label>("LevelNumber_Label");
             label.text = "Level " + (i + 1);
@@ -94,7 +107,8 @@ public class LevelsPage_Controller : MonoBehaviour
                 lock_VisualElement.style.display = DisplayStyle.Flex;
             }
 
-            menu_UIConnector.levels_ScrollView.Add(level_VisualElement);
+            levelsHolderHorizontal_VisulaElement.
+                Q<VisualElement>("Parent_VisualElement").Add(level_VisualElement);
 
             levels_VisualElement_List.Add(level_VisualElement);
         }
@@ -170,5 +184,21 @@ public class LevelsPage_Controller : MonoBehaviour
     }
 
     #endregion
+
+    private void FixLevelsHolderSize(VisualElement visualElement)
+    {
+        visualElement.style.flexGrow = 0;
+        visualElement.style.flexShrink = 0;
+        visualElement.style.width = Length.Percent(100);
+        visualElement.style.height = (Screen.safeArea.xMax - (2 * Screen.safeArea.xMin)) / 4;
+    }
+
+    private void FixLevelSize(VisualElement visualElement)
+    {
+        visualElement.style.flexGrow = 0;
+        visualElement.style.flexShrink = 0;
+        visualElement.style.width = (Screen.safeArea.xMax - (2 * Screen.safeArea.xMin)) / 5;
+        visualElement.style.height = (Screen.safeArea.xMax - (2 * Screen.safeArea.xMin)) / 5;
+    }
 
 }
