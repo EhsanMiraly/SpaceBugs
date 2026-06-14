@@ -21,6 +21,10 @@ public class PlayerCombatInfo_UI : MonoBehaviour
         EventsManager.OnLanguageChanged_Event += OnLanguageChanged;
         EventsManager.OnFontSizeChanged_Event += OnFontSizeChanged;
 
+        EventsManager.OnHealthChanged_Event += UpdateHealthInUI;
+        EventsManager.OnScoreChanged_Event += UpdateScoreInUI;
+        EventsManager.OnBulletsChanged_Event += UpdateBulletsInUI;
+
         ConnectUI();
         InitializeUI();
     }
@@ -29,6 +33,10 @@ public class PlayerCombatInfo_UI : MonoBehaviour
     {
         EventsManager.OnLanguageChanged_Event -= OnLanguageChanged;
         EventsManager.OnFontSizeChanged_Event -= OnFontSizeChanged;
+
+        EventsManager.OnHealthChanged_Event -= UpdateHealthInUI;
+        EventsManager.OnScoreChanged_Event -= UpdateScoreInUI;
+        EventsManager.OnBulletsChanged_Event -= UpdateBulletsInUI;
     }
 
     private void ConnectUI()

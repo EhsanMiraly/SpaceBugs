@@ -138,6 +138,26 @@ public class EventsManager
 
     #endregion
 
+    #region UI Events
 
+    public static event OnNotify OnHealthChanged_Event;
+    public static void InvokeOnHealthChanged()
+    {
+        OnHealthChanged_Event?.Invoke();
+    }
+
+    public static event OnNotify OnScoreChanged_Event;
+    public static void InvokeOnScoreChanged()
+    {
+        OnScoreChanged_Event?.Invoke();
+    }
+
+    public static event OnNotify OnBulletsChanged_Event;
+    public static void InvokeOnBulletsChanged()
+    {
+        OnBulletsChanged_Event?.Invoke();
+    }
+
+    #endregion
 
 }

@@ -5,7 +5,15 @@ public class LevelsData
     public static Level[] Levels = new Level[]
     {
         new Level(true, 0, 3),
-        new Level(false, 0, 6)
+        new Level(false, 0, 6),
+        new Level(false, 0, 9),
+        new Level(false, 0, 12),
+        new Level(false, 0, 15),
+        new Level(false, 0, 18),
+        new Level(false, 0, 21),
+        new Level(false, 0, 24),
+        new Level(false, 0, 27),
+        new Level(false, 0, 30)
     };
 
 

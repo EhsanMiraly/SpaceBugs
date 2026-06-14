@@ -8,8 +8,6 @@ public class LevelManager : MonoBehaviour
 
     public void Initialize()
     {
-        screen_UI = FindAnyObjectByType<PlayerCombatInfo_UI>().GetComponent<PlayerCombatInfo_UI>();
-
         EventsManager.OnFired_Event += OnUpdateBulletsMinus;
         EventsManager.OnBulletDestroyed_Event += OnUpdateBulletsPlus;
         EventsManager.OnMove_Event += OnMoveState;
@@ -18,9 +16,9 @@ public class LevelManager : MonoBehaviour
         EventsManager.OnEnemyDied_Event += OnUpdateProgress;
         EventsManager.OnEnemyPassedLine_Event += OnUpdateHealth;
 
-        screen_UI.UpdateHealthInUI();
-        screen_UI.UpdateScoreInUI();
-        screen_UI.UpdateBulletsInUI();
+        EventsManager.InvokeOnHealthChanged();
+        EventsManager.InvokeOnScoreChanged();
+        EventsManager.InvokeOnBulletsChanged();
     }
 
     private void OnDisable()
@@ -45,7 +43,7 @@ public class LevelManager : MonoBehaviour
             EventsManager.InvokeOnCanFire(this, new PlayerFireInput_EventArgs(false));
         }
 
-        screen_UI.UpdateBulletsInUI();
+        EventsManager.InvokeOnBulletsChanged();
     }
 
     public void OnUpdateBulletsPlus()
@@ -57,7 +55,7 @@ public class LevelManager : MonoBehaviour
             EventsManager.InvokeOnCanFire(this, new PlayerFireInput_EventArgs(true));
         }
 
-        screen_UI.UpdateBulletsInUI();
+        EventsManager.InvokeOnBulletsChanged();
     }
 
     public void OnMoveState(object o, PlayerMoveInput_EventArgs e)
@@ -78,7 +76,7 @@ public class LevelManager : MonoBehaviour
             WinLoseWindow_UI winLoseWindow_UI = new WinLoseWindow_UI(new GameObject(), true);
         }
 
-        screen_UI.UpdateScoreInUI();
+        EventsManager.InvokeOnScoreChanged();
     }
 
     public void OnUpdateProgress(object sender, EnemyData_EventArgs e)
@@ -97,7 +95,7 @@ public class LevelManager : MonoBehaviour
             WinLoseWindow_UI winLoseWindow_UI = new WinLoseWindow_UI(new GameObject(), false);
         }
 
-        screen_UI.UpdateHealthInUI();
+        EventsManager.InvokeOnHealthChanged();
     }
 
 }

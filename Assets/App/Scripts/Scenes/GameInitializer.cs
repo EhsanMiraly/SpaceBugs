@@ -87,37 +87,37 @@ public class GameInitializer : MonoBehaviour
         GameObject leftWall = new GameObject();
         leftWall.layer = LayerMask.NameToLayer("Wall");
         leftWall.transform.parent = parentGameObject.transform;
-        leftWall.transform.localScale = new Vector3(1, (XY.y - ZeroPoint.y), 1);
+        leftWall.transform.localScale = new Vector3(2, (XY.y - ZeroPoint.y), 1);
         leftWall.AddComponent<BoxCollider2D>();
-        leftWall.transform.localPosition = new Vector3(ZeroPoint.x - 0.5f, 0, 0);
+        leftWall.transform.localPosition = new Vector3(ZeroPoint.x - 1f, 0, 0);
 
         //RightWall
         GameObject rightWall = new GameObject();
         rightWall.layer = LayerMask.NameToLayer("Wall");
         rightWall.transform.parent = parentGameObject.transform;
-        rightWall.transform.localScale = new Vector3(1, (XY.y - ZeroPoint.y), 1);
+        rightWall.transform.localScale = new Vector3(2, (XY.y - ZeroPoint.y), 1);
         rightWall.AddComponent<BoxCollider2D>();
-        rightWall.transform.localPosition = new Vector3(XY.x + 0.5f, 0, 0);
+        rightWall.transform.localPosition = new Vector3(XY.x + 1f, 0, 0);
 
         //TopWall
         GameObject topWall = new GameObject();
         topWall.layer = LayerMask.NameToLayer("Wall");
         topWall.transform.parent = parentGameObject.transform;
-        topWall.transform.localScale = new Vector3((XY.x - ZeroPoint.x), 1, 1);
+        topWall.transform.localScale = new Vector3((XY.x - ZeroPoint.x), 2, 1);
         topWall.AddComponent<BoxCollider2D>();
-        topWall.transform.localPosition = new Vector3(0, XY.y + 0.5f, 0);
+        topWall.transform.localPosition = new Vector3(0, XY.y + 1f, 0);
 
         //DownWall
         GameObject downWall = new GameObject();
         downWall.layer = LayerMask.NameToLayer("EndOfLine");
         downWall.tag = "EndOfLine";
         downWall.transform.parent = parentGameObject.transform;
-        downWall.transform.localScale = new Vector3((XY.x - ZeroPoint.x), 1, 1);
+        downWall.transform.localScale = new Vector3((XY.x - ZeroPoint.x), 2, 1);
         downWall.AddComponent<BoxCollider2D>();
         Rigidbody2D rigidbody2D = downWall.AddComponent<Rigidbody2D>();
         rigidbody2D.gravityScale = 0;
         rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
-        downWall.transform.localPosition = new Vector3(0, ZeroPoint.y - 0.5f, 0);
+        downWall.transform.localPosition = new Vector3(0, ZeroPoint.y - 1f, 0);
     }
 
 

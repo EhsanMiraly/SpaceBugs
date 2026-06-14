@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0afdbf20d21cce4b8c4c2e25a14a3c2, type: 3}
+  m_Name: LevelData_10
+  m_EditorClassIdentifier: Assembly-CSharp::LevelData_SO
+  scoreNeeded: 30
+  enemyGenerationRate: 15
+  enemies:
+  - {fileID: 11400000, guid: 3b6b3f6027d69164183eeafd6fdcbf07, type: 2}
+  - {fileID: 11400000, guid: 26c0e89f210d6bf47bba132940f51598, type: 2}
+  - {fileID: 11400000, guid: 1857e67ee68fe4f4bba63a2f3adf3187, type: 2}
+  - {fileID: 11400000, guid: 229406ff1d15a29439aff58ec4646889, type: 2}
+  - {fileID: 11400000, guid: 8f6594e58f0d4d84d8f86279867571ad, type: 2}
+  - {fileID: 11400000, guid: d050af6ad43b20f408a50cfb60107b4f, type: 2}
+  - {fileID: 11400000, guid: 1fdb2d586dbeb284e8253ea426c57043, type: 2}
+  - {fileID: 11400000, guid: de1d4f6724ef92d4c93e86cd944b3006, type: 2}
+  - {fileID: 11400000, guid: 505fc8032a4a53b4f9d89db4aa0b33bf, type: 2}
+  - {fileID: 11400000, guid: beb6157888f70c547bb7353e35a252c6, type: 2}

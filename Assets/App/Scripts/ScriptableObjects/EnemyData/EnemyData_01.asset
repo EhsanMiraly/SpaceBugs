@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData_SO
   respawnPossibility: 100
   maxInPool: 10
-  color: {r: 1, g: 1, b: 1, a: 1}
-  size: 0.25
+  color: {r: 0, g: 0, b: 1, a: 1}
+  size: 0.225
   maxHealth: 1
-  moveSpeed: 0.5
-  timeBetweenChangingDirection: 5
+  moveSpeed: 0.225
+  timeBetweenChangingDirection: 10
   rayDistance: 0.05
-  rayDistanceFromOrigin: 0.52
-  rayDistanceFromSide: 0.48
+  rayDistanceFromOrigin: 0.475
+  rayDistanceFromSide: 0.475

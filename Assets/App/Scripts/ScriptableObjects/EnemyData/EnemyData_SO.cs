@@ -37,11 +37,11 @@ public class EnemyData_SO : ScriptableObject
     [SerializeField] private float rayDistance;
     public float RayDistance => rayDistance;
 
-    [Range(0.01f, 1f)]
+    [Range(0.01f, 1.5f)]
     [SerializeField] private float rayDistanceFromOrigin;
     public float RayDistanceFromOrigin => rayDistanceFromOrigin;
 
-    [Range(0.01f, 1f)]
+    [Range(0.01f, 1.5f)]
     [SerializeField] private float rayDistanceFromSide;
     public float RayDistanceFromSide => rayDistanceFromSide;
 }
