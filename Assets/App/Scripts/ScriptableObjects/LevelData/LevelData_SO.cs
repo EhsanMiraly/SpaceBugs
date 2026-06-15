@@ -8,9 +8,11 @@ public class LevelData_SO : ScriptableObject
     [SerializeField] private int scoreNeeded;
     public int ScoreNeeded => scoreNeeded;
 
-    [Range(1, 15)]
-    [SerializeField] private int enemyGenerationRate;
-    public int EnemyGenerationRate => enemyGenerationRate;
+
+    [Range(1, 10)]
+    [SerializeField] private int enemyGenerationDelay;
+    public int EnemyGenerationDelay => enemyGenerationDelay;
+
 
     [SerializeField] private List<EnemyData_SO> enemies;
     public List<EnemyData_SO> Enemies => enemies;

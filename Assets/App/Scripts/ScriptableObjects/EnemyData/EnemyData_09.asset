@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: EnemyData_09
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData_SO
   respawnPossibility: 20
+  enemyGenerationDelay: 9
   maxInPool: 2
   color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   size: 0.6
   maxHealth: 9
   moveSpeed: 0.6
   timeBetweenChangingDirection: 2
-  rayDistance: 0.05
-  rayDistanceFromOrigin: 1.125
-  rayDistanceFromSide: 1.125
+  rayDistance: 0.125
+  rayDistanceFromOrigin: 1.25
+  rayDistanceFromSide: 1.25

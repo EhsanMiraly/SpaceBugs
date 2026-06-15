@@ -109,27 +109,36 @@ public class Enemy : MonoBehaviour, IObjectInPool
 
         RaycastHit2D leftRayUp = Physics2D.Raycast(leftOrigin + new Vector2(0, EnemyData.RayDistanceFromSide),
                                                     new Vector2(-1, 0), EnemyData.RayDistance, layerMask);
+        RaycastHit2D leftRayMiddle = Physics2D.Raycast(leftOrigin,
+                                                    new Vector2(-1, 0), EnemyData.RayDistance, layerMask);
         RaycastHit2D leftRayDown = Physics2D.Raycast(leftOrigin + new Vector2(0, -EnemyData.RayDistanceFromSide),
                                                     new Vector2(-1, 0), EnemyData.RayDistance, layerMask);
-        if (leftRayUp.collider != null || leftRayDown.collider != null)
+
+        if (leftRayUp.collider != null || leftRayMiddle.collider != null || leftRayDown.collider != null)
         {
             movableDirections[0] = false;
         }
 
         RaycastHit2D downRayLeft = Physics2D.Raycast(downOrigin + new Vector2(-EnemyData.RayDistanceFromSide, 0),
                                                     new Vector2(0, -1), EnemyData.RayDistance, layerMask);
+        RaycastHit2D downRayMiddle = Physics2D.Raycast(downOrigin,
+                                                    new Vector2(0, -1), EnemyData.RayDistance, layerMask);
         RaycastHit2D downRayRight = Physics2D.Raycast(downOrigin + new Vector2(EnemyData.RayDistanceFromSide, 0),
                                                     new Vector2(0, -1), EnemyData.RayDistance, layerMask);
-        if (downRayLeft.collider != null || downRayRight.collider != null)
+
+        if (downRayLeft.collider != null || downRayMiddle.collider != null || downRayRight.collider != null)
         {
             movableDirections[1] = false;
         }
 
         RaycastHit2D rightRayUp = Physics2D.Raycast(rightOrigin + new Vector2(0, EnemyData.RayDistanceFromSide),
                                                     new Vector2(1, 0), EnemyData.RayDistance, layerMask);
+        RaycastHit2D rightRayMiddle = Physics2D.Raycast(rightOrigin,
+                                                    new Vector2(1, 0), EnemyData.RayDistance, layerMask);
         RaycastHit2D rightRayDown = Physics2D.Raycast(rightOrigin + new Vector2(0, -EnemyData.RayDistanceFromSide),
                                                     new Vector2(1, 0), EnemyData.RayDistance, layerMask);
-        if (rightRayUp.collider != null || rightRayDown.collider != null)
+
+        if (rightRayUp.collider != null || rightRayMiddle.collider != null || rightRayDown.collider != null)
         {
             movableDirections[2] = false;
         }
@@ -139,12 +148,16 @@ public class Enemy : MonoBehaviour, IObjectInPool
         {
             Debug.DrawRay(leftOrigin + new Vector2(0, EnemyData.RayDistanceFromSide),
                             new Vector2(-1, 0), Color.green, Time.deltaTime);
+            Debug.DrawRay(leftOrigin,
+                            new Vector2(-1, 0), Color.green, Time.deltaTime);
             Debug.DrawRay(leftOrigin + new Vector2(0, -EnemyData.RayDistanceFromSide),
                             new Vector2(-1, 0), Color.green, Time.deltaTime);
         }
         else
         {
             Debug.DrawRay(leftOrigin + new Vector2(0, EnemyData.RayDistanceFromSide),
+                            new Vector2(-1, 0), Color.red, Time.deltaTime);
+            Debug.DrawRay(leftOrigin,
                             new Vector2(-1, 0), Color.red, Time.deltaTime);
             Debug.DrawRay(leftOrigin + new Vector2(0, -EnemyData.RayDistanceFromSide),
                             new Vector2(-1, 0), Color.red, Time.deltaTime);
@@ -154,12 +167,16 @@ public class Enemy : MonoBehaviour, IObjectInPool
         {
             Debug.DrawRay(downOrigin + new Vector2(-EnemyData.RayDistanceFromSide, 0),
                             new Vector2(0, -1), Color.green, Time.deltaTime);
+            Debug.DrawRay(downOrigin,
+                            new Vector2(0, -1), Color.green, Time.deltaTime);
             Debug.DrawRay(downOrigin + new Vector2(EnemyData.RayDistanceFromSide, 0),
                             new Vector2(0, -1), Color.green, Time.deltaTime);
         }
         else
         {
             Debug.DrawRay(downOrigin + new Vector2(-EnemyData.RayDistanceFromSide, 0),
+                            new Vector2(0, -1), Color.red, Time.deltaTime);
+            Debug.DrawRay(downOrigin,
                             new Vector2(0, -1), Color.red, Time.deltaTime);
             Debug.DrawRay(downOrigin + new Vector2(EnemyData.RayDistanceFromSide, 0),
                             new Vector2(0, -1), Color.red, Time.deltaTime);
@@ -169,12 +186,16 @@ public class Enemy : MonoBehaviour, IObjectInPool
         {
             Debug.DrawRay(rightOrigin + new Vector2(0, EnemyData.RayDistanceFromSide),
                             new Vector2(1, 0), Color.green, Time.deltaTime);
+            Debug.DrawRay(rightOrigin,
+                            new Vector2(1, 0), Color.green, Time.deltaTime);
             Debug.DrawRay(rightOrigin + new Vector2(0, -EnemyData.RayDistanceFromSide),
                             new Vector2(1, 0), Color.green, Time.deltaTime);
         }
         else
         {
             Debug.DrawRay(rightOrigin + new Vector2(0, EnemyData.RayDistanceFromSide),
+                            new Vector2(1, 0), Color.red, Time.deltaTime);
+            Debug.DrawRay(rightOrigin,
                             new Vector2(1, 0), Color.red, Time.deltaTime);
             Debug.DrawRay(rightOrigin + new Vector2(0, -EnemyData.RayDistanceFromSide),
                             new Vector2(1, 0), Color.red, Time.deltaTime);

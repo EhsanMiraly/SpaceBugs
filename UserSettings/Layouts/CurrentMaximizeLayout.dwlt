@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 32334
+  controlID: 6579
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -93,8 +93,8 @@ MonoBehaviour:
     - '{"m_SerializationStates":{"thermalFoldout":false,"performanceFoldout":false,"developerFoldout":false,"indexerFoldout":false,"scalersFoldout":false,"deviceSettingsFoldout":false}}'
     - '{}'
     - '{}'
-    scale: 33
-    fitToScreenEnabled: 0
+    scale: 36
+    fitToScreenEnabled: 1
     rotationDegree: 270
     highlightSafeAreaEnabled: 0
     friendlyName: Punch Hole Left (1080x2340)
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 112}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 32335
+  controlID: 6580
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 32336
+  controlID: 6581
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -778,9 +778,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 0.19299483, y: 0.22698429, z: -0.10670578}
+    m_Target: {x: 6.2610526, y: -0.21603341, z: -0.09055562}
     speed: 2
-    m_Value: {x: 0.19299483, y: 0.22698429, z: -0.10670578}
+    m_Value: {x: 6.2610526, y: -0.21603341, z: -0.09055562}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -830,9 +830,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 12.229234
+    m_Target: 10.864073
     speed: 2
-    m_Value: 12.229234
+    m_Value: 10.864073
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -944,7 +944,7 @@ MonoBehaviour:
     m_DynamicPanelBehavior: 0
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -151468
+  m_LastSelectedObjectID: 0
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1192,76 +1192,16 @@ MonoBehaviour:
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -150600
-      - m_Data: -90642
-      - m_Data: -90622
-      - m_Data: -87174
-      - m_Data: -87154
-      - m_Data: -85556
-      - m_Data: -85536
-      - m_Data: -71184
-      - m_Data: -71162
-      - m_Data: -71106
-      - m_Data: -71086
-      - m_Data: -63952
-      - m_Data: -63930
-      - m_Data: -63874
-      - m_Data: -63854
-      - m_Data: -62506
-      - m_Data: -62428
-      - m_Data: -62408
-      - m_Data: -61116
-      - m_Data: -61038
-      - m_Data: -61018
-      - m_Data: -58558
-      - m_Data: -58538
-      - m_Data: -56932
-      - m_Data: -56912
-      - m_Data: -55092
-      - m_Data: -55072
-      - m_Data: -51846
-      - m_Data: -51826
-      - m_Data: -50052
-      - m_Data: -49902
-      - m_Data: -49752
-      - m_Data: -49602
-      - m_Data: -49452
-      - m_Data: -49302
-      - m_Data: -49152
-      - m_Data: -49002
-      - m_Data: -48852
-      - m_Data: -48710
-      - m_Data: -48568
-      - m_Data: -48418
-      - m_Data: -48266
-      - m_Data: -48116
-      - m_Data: -47936
-      - m_Data: -47878
-      - m_Data: -47820
-      - m_Data: -47762
-      - m_Data: -47704
-      - m_Data: -47646
-      - m_Data: -44526
-      - m_Data: -44506
-      - m_Data: -41412
-      - m_Data: -39432
-      - m_Data: -38456
-      - m_Data: -34652
-      - m_Data: -34630
-      - m_Data: -23814
-      - m_Data: -23792
-      - m_Data: -22782
-      - m_Data: -22760
-      - m_Data: -14234
-      - m_Data: -11736
-      - m_Data: -8812
-      - m_Data: -8614
-      - m_Data: -7088
-      - m_Data: -7068
-      - m_Data: -6372
-      - m_Data: -4032
-      - m_Data: -3958
-      - m_Data: -3900
+      - m_Data: -59454
+      - m_Data: -59426
+      - m_Data: -56070
+      - m_Data: -56048
+      - m_Data: -55950
+      - m_Data: -55922
+      - m_Data: -28270
+      - m_Data: -28240
+      - m_Data: -20158
+      - m_Data: -20130
       - m_Data: -1364
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -1364,7 +1304,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/App/Scripts/Scenes
+    - Assets/App/Scripts/ScriptableObjects/EnemyData
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1374,23 +1314,24 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/App/Scripts/Scenes
+  - Assets/App/Scripts/ScriptableObjects/EnemyData
   m_LastFoldersGridSize: 96
   m_LastProjectPath: D:\UnityProjects\SpaceBugs
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 242}
+    scrollPos: {x: 0, y: 162}
     m_SelectedIDs:
-    - m_Data: 61310
+    - m_Data: 61518
     m_LastClickedID:
-      m_Data: 61310
+      m_Data: 61518
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 60378
-    - m_Data: 60892
-    - m_Data: 60988
+    - m_Data: 60420
+    - m_Data: 60924
+    - m_Data: 60940
+    - m_Data: 60962
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1424,7 +1365,7 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 60378
+    - m_Data: 60420
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0

@@ -8,6 +8,10 @@ public class EnemyData_SO : ScriptableObject
     public int RespawnPossibility => respawnPossibility;
 
     [Range(1, 10)]
+    [SerializeField] private int enemyGenerationDelay;
+    public int EnemyGenerationDelay => enemyGenerationDelay;
+
+    [Range(1, 10)]
     [SerializeField] private int maxInPool;
     public int MaxInPool => maxInPool;
 

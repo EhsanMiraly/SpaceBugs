@@ -47,7 +47,8 @@ public class EnemyGenerator : MonoBehaviour
                 enemy.GetComponent<Enemy>().Initialize();
                 enemy.GetComponent<Enemy>().StartMoving();
 
-                await Awaitable.WaitForSecondsAsync(GameData.currentLevelData.EnemyGenerationRate);
+                await Awaitable.WaitForSecondsAsync(enemy.GetComponent<Enemy>().EnemyData.EnemyGenerationDelay +
+                                                      GameData.currentLevelData.EnemyGenerationDelay);
             }
             else
             {
