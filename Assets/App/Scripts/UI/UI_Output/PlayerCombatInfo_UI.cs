@@ -1,22 +1,72 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class PlayerCombatInfo_UI : MonoBehaviour
 {
-    UIDocument uIDocument;
-    VisualElement root;
-
-    VisualElement healthBarBackground_VisualElement;
-    VisualElement healthBarForeground_VisualElement;
-
-    Label score_Label;
-    Label bullets_Label;
+    PanelRenderer panelRenderer;
 
 
+    VisualElement health_VisualElement;
+    VisualElement bullets_VisualElement;
+    Label progress_Label;
+
+    VisualTreeAsset health_VisualTreeAsset;
+    VisualTreeAsset bullet_VisualTreeAsset;
+
+    List<VisualElement> health_List;
+    List<VisualElement> bullets_List;
 
 
-    public void Initialize()
+
+    public void OnEnable()
+    {
+        panelRenderer = GetComponent<PanelRenderer>();
+        panelRenderer.RegisterUIReloadCallback(OnUIReloadCallback);
+
+        health_VisualTreeAsset =
+        Resources.Load<VisualTreeAsset>("UI/Basic_Templates/PlayerCombatInfo/Health_Template");
+        bullet_VisualTreeAsset =
+                Resources.Load<VisualTreeAsset>("UI/Basic_Templates/PlayerCombatInfo/Bullet_Template");
+
+
+        ConnctEvents();
+    }
+
+    private void OnDisable()
+    {
+        DisconnctEvents();
+
+        panelRenderer.UnregisterUIReloadCallback(OnUIReloadCallback);
+    }
+
+
+    private void OnUIReloadCallback(PanelRenderer panelRenderer, VisualElement root)
+    {
+        ScreenSafeArea.RemoveUnSafeAreaFromUI(root);
+
+        health_VisualElement = root.Q<VisualElement>("Health_VisualElement");
+        bullets_VisualElement = root.Q<VisualElement>("Bullets_VisualElement");
+        progress_Label = root.Q<Label>("Progress_Label");
+
+        UI_Utilities.FixCombatInfoSize(health_VisualElement, bullets_VisualElement, progress_Label);
+
+        health_List = new List<VisualElement>();
+        FillHealth();
+
+        bullets_List = new List<VisualElement>();
+        FillBullets();
+
+        OnLanguageChanged();
+        OnFontSizeChanged();
+    }
+
+
+
+    #region Events Manager
+
+    private void ConnctEvents()
     {
         EventsManager.OnLanguageChanged_Event += OnLanguageChanged;
         EventsManager.OnFontSizeChanged_Event += OnFontSizeChanged;
@@ -24,12 +74,9 @@ public class PlayerCombatInfo_UI : MonoBehaviour
         EventsManager.OnHealthChanged_Event += UpdateHealthInUI;
         EventsManager.OnScoreChanged_Event += UpdateScoreInUI;
         EventsManager.OnBulletsChanged_Event += UpdateBulletsInUI;
-
-        ConnectUI();
-        InitializeUI();
     }
 
-    private void OnDisable()
+    private void DisconnctEvents()
     {
         EventsManager.OnLanguageChanged_Event -= OnLanguageChanged;
         EventsManager.OnFontSizeChanged_Event -= OnFontSizeChanged;
@@ -39,94 +86,88 @@ public class PlayerCombatInfo_UI : MonoBehaviour
         EventsManager.OnBulletsChanged_Event -= UpdateBulletsInUI;
     }
 
-    private void ConnectUI()
-    {
-        uIDocument = GetComponent<UIDocument>();
-        root = uIDocument.rootVisualElement;
-
-        ScreenSafeArea.RemoveUnSafeAreaFromUI(root);
-
-        healthBarBackground_VisualElement = root.Q<VisualElement>("Background_VisualElement");
-        healthBarForeground_VisualElement = root.Q<VisualElement>("Foreground_VisualElement");
-        score_Label = root.Q<Label>("Score_Label");
-        bullets_Label = root.Q<Label>("Bullets_Label");
-    }
-
-    public void InitializeUI()
-    {
-        int x = (Screen.width / 100) * 20;
-        int y = (Screen.height / 100) * 5;
-
-        healthBarBackground_VisualElement.style.width = x;
-        healthBarBackground_VisualElement.style.height = y;
-
-        healthBarForeground_VisualElement.style.width = Length.Percent(100);
-        healthBarForeground_VisualElement.style.height = Length.Percent(100);
-
-        score_Label.style.width = x;
-        score_Label.style.height = y;
-
-        bullets_Label.style.width = x;
-        bullets_Label.style.height = y;
-
-        OnLanguageChanged();
-        OnFontSizeChanged();
-    }
-
-    public void UpdateHealthInUI()
-    {
-        float x = (100 * PlayerData.CurrentHealth) / AchievementsData.health;
-
-        healthBarForeground_VisualElement.style.width = Length.Percent(x);
-    }
-
-    public void UpdateScoreInUI()
-    {
-        score_Label.text =
-            LanguageTextsData.score[SettingsData.currentLanguageIndex] + PlayerData.Score
-            + " / " + GameData.currentLevelData.ScoreNeeded;
-    }
-
-    public void UpdateBulletsInUI()
-    {
-        bullets_Label.text =
-            LanguageTextsData.bullets[SettingsData.currentLanguageIndex] + PlayerData.CurrentBullets;
-    }
-
-
 
     private void OnLanguageChanged()
     {
-        #region Score
-        score_Label.text =
-            LanguageTextsData.score[SettingsData.currentLanguageIndex] + PlayerData.Score;
-        score_Label.languageDirection =
-            LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
-        score_Label.style.unityFont =
-            LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
-        #endregion
-
-        #region Bullets
-        bullets_Label.text =
-            LanguageTextsData.bullets[SettingsData.currentLanguageIndex] + PlayerData.CurrentBullets;
-        bullets_Label.languageDirection =
-            LanguageTextsData.languages[SettingsData.currentLanguageIndex].languageDirection;
-        bullets_Label.style.unityFont =
-            LanguageTextsData.languages[SettingsData.currentLanguageIndex].font;
+        #region Progress
+        if (GameData.currentLevelData != null)
+            progress_Label.text = PlayerData.Score + " / " + GameData.currentLevelData.ScoreNeeded;
+        progress_Label.languageDirection =
+            LanguageTextsData.languages[0].languageDirection;
+        progress_Label.style.unityFont =
+            LanguageTextsData.languages[0].font;
         #endregion
     }
 
     private void OnFontSizeChanged()
     {
-        #region Score
-        score_Label.style.fontSize =
-            LanguageTextsData.fontSize_CategorySmall[SettingsData.currentFontSizeIndex];
-        #endregion
-
-        #region Bullets
-        bullets_Label.style.fontSize =
+        #region Progress
+        progress_Label.style.fontSize =
             LanguageTextsData.fontSize_CategorySmall[SettingsData.currentFontSizeIndex];
         #endregion
     }
+
+
+    public void UpdateHealthInUI()
+    {
+        for (int i = 0; i < health_List.Count; i++)
+        {
+            if (i < PlayerData.CurrentHealth)
+            {
+                health_List[i].style.display = DisplayStyle.Flex;
+            }
+            else
+            {
+                health_List[i].style.display = DisplayStyle.None;
+            }
+        }
+    }
+
+    public void UpdateBulletsInUI()
+    {
+        for (int i = 0; i < bullets_List.Count; i++)
+        {
+            if (i < PlayerData.CurrentBullets)
+            {
+                bullets_List[i].style.display = DisplayStyle.Flex;
+            }
+            else
+            {
+                bullets_List[i].style.display = DisplayStyle.None;
+            }
+        }
+    }
+
+    public void UpdateScoreInUI()
+    {
+        progress_Label.text = PlayerData.Score + " / " + GameData.currentLevelData.ScoreNeeded;
+    }
+
+    #endregion
+
+
+    #region Utilities
+    private void FillHealth()
+    {
+        for (int i = 0; i < AchievementsData.health; i++)
+        {
+            VisualElement health = health_VisualTreeAsset.Instantiate();
+            UI_Utilities.FixCombatInfoItemSize(health);
+            health_VisualElement.Add(health);
+            health_List.Add(health);
+        }
+    }
+
+    private void FillBullets()
+    {
+        for (int i = 0; i < AchievementsData.bullets; i++)
+        {
+            VisualElement bullet = bullet_VisualTreeAsset.Instantiate();
+            UI_Utilities.FixCombatInfoItemSize(bullet);
+            bullets_VisualElement.Add(bullet);
+            bullets_List.Add(bullet);
+        }
+    }
+    #endregion
 
 }

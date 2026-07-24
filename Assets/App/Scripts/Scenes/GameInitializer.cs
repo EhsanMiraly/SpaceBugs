@@ -39,15 +39,12 @@ public class GameInitializer : MonoBehaviour
             loadingPage_UI.SetProgress(30);
 
             _menu = Instantiate(_menu);
-            _menu.GetComponent<Menu_UIConnector>().Initialize();
             loadingPage_UI.SetProgress(40);
 
             _playerHealthScoreBullets_UI = Instantiate(_playerHealthScoreBullets_UI);
-            _playerHealthScoreBullets_UI.GetComponent<PlayerCombatInfo_UI>().Initialize();
             loadingPage_UI.SetProgress(50);
 
             _playerInputUI = Instantiate(_playerInputUI);
-            _playerInputUI.GetComponent<PlayerInputUI_Controller>().Initialize();
             loadingPage_UI.SetProgress(60);
 
             MakeWallsAroundScreen();

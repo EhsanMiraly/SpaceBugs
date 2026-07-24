@@ -44,7 +44,7 @@ public class ScenesManager : MonoBehaviour
 
     public void OnPauseLevel()
     {
-        Time.timeScale = 0;
+        Time.timeScale = 0.01f;
     }
 
     public void OnResumeLevel()

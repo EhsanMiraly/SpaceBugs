@@ -24,7 +24,7 @@ public class LevelInitiator : MonoBehaviour
 
             _enemyGenerator = Instantiate(_enemyGenerator);
             SceneManager.MoveGameObjectToScene(_enemyGenerator, SceneManager.GetSceneByName(GameData.currentLevelName));
-            _enemyGenerator.GetComponent<EnemyGenerator>().Initialize();
+            //_enemyGenerator.GetComponent<EnemyGenerator>().Initialize();
             loadingPage_UI.SetProgress(20);
 
             await Awaitable.WaitForSecondsAsync(1f);
@@ -47,7 +47,8 @@ public class LevelInitiator : MonoBehaviour
 
         await Awaitable.WaitForSecondsAsync(3f);
         if (_enemyGenerator != null)
-            _enemyGenerator.GetComponent<EnemyGenerator>().GenerateEnemys();
+            EnemyGenerator.Instance.GenerateEnemys();
+        //_enemyGenerator.GetComponent<EnemyGenerator>().GenerateEnemys();
 
     }
 }

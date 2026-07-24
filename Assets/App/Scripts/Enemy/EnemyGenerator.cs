@@ -1,10 +1,7 @@
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyGenerator : MonoBehaviour
+public class EnemyGenerator : Singleton<EnemyGenerator>
 {
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] List<LevelData_SO> levelsData;
@@ -12,7 +9,7 @@ public class EnemyGenerator : MonoBehaviour
     List<Pool<Enemy>> enemyPoolsList;
 
 
-    public void Initialize()
+    private void OnEnable()
     {
         enemyPoolsList = new List<Pool<Enemy>>();
         GameData.currentLevelData = levelsData[GameData.CurrentLevelNumber - 1];
@@ -22,6 +19,17 @@ public class EnemyGenerator : MonoBehaviour
             enemyPoolsList.Add(new Pool<Enemy>(enemyPrefab, enemyData.MaxInPool));
         }
     }
+    /*
+    public void Initialize()
+    {
+        enemyPoolsList = new List<Pool<Enemy>>();
+        GameData.currentLevelData = levelsData[GameData.CurrentLevelNumber - 1];
+
+        foreach (EnemyData_SO enemyData in GameData.currentLevelData.Enemies)
+        {
+            enemyPoolsList.Add(new Pool<Enemy>(enemyPrefab, enemyData.MaxInPool));
+        }
+    }*/
 
 
     public async void GenerateEnemys()
@@ -32,18 +40,21 @@ public class EnemyGenerator : MonoBehaviour
             if (randomEnemyDataIndex <= -1 || randomEnemyDataIndex >= enemyPoolsList.Count)
             {
                 break;
-                //await Awaitable.WaitForSecondsAsync(0.1f);
-                //continue;
             }
 
             if (enemyPoolsList[randomEnemyDataIndex].CanGetGameObject())
             {
-                float x = Random.Range(-11f, 11f);
+                if (!this)
+                {
+                    break;
+                }
+
                 GameObject enemy = enemyPoolsList[randomEnemyDataIndex].GetGameObject();
+                enemy.transform.parent = this.transform;
+                float x = Random.Range(-11f, 11f);
                 enemy.GetComponent<Enemy>().EnemyData = GameData.currentLevelData.Enemies[randomEnemyDataIndex];
                 enemy.transform.position = transform.position + new Vector3(x, 0f, 0f);
                 enemy.transform.rotation = Quaternion.identity;
-                enemy.transform.parent = this.transform;
                 enemy.GetComponent<Enemy>().Initialize();
                 enemy.GetComponent<Enemy>().StartMoving();
 

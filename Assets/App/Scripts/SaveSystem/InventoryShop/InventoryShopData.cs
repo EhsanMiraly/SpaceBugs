@@ -5,9 +5,17 @@ public class InventoryShopData
 {
     public static InventoryShopItem[] InventoryShopItems = new InventoryShopItem[]
     {
-        new InventoryShopItem(false, new string[]{"Health","جان"}, 1),
-        new InventoryShopItem(false, new string[]{"Bullet","تیر"}, 1),
-        new InventoryShopItem(false, new string[]{"Bullet","تیر"}, 1)
+        new InventoryShopItem(false, new string[]{"Bullet","تیر"}, 10),
+        new InventoryShopItem(false, new string[]{"Bullet","تیر"}, 20),
+        new InventoryShopItem(false, new string[]{"Bullet","تیر"}, 30),
+        new InventoryShopItem(false, new string[]{"Bullet","تیر"}, 40),
+        new InventoryShopItem(false, new string[]{"Health","جان"}, 10),
+        new InventoryShopItem(false, new string[]{"Health","جان"}, 20),
+        new InventoryShopItem(false, new string[]{"Health","جان"}, 30),
+        new InventoryShopItem(false, new string[]{"Health","جان"}, 40),
+        new InventoryShopItem(false, new string[]{"Health","جان"}, 50),
+        new InventoryShopItem(false, new string[]{"Health","جان"}, 60),
+        new InventoryShopItem(false, new string[]{"Health","جان"}, 70),
     };
 
 

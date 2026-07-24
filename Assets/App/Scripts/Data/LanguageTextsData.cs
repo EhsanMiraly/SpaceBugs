@@ -22,6 +22,7 @@ public class LanguageTextsData
 
     #region LevelsPage
     public static List<string> level = new List<string> { "Level ", "لول " };
+    public static List<string> scoresNeeded = new List<string> { "Scores needed: ", "امتیاز مورد نیاز: " };
     #endregion
 
     #region InventoryShopPage
@@ -53,9 +54,9 @@ public class LanguageTextsData
         new FontSize("Font size: Big","اندازه فونت: بزرگ")
     };
 
-    public static List<int> fontSize_CategorySmall = new List<int> { 10, 20, 30 };
-    public static List<int> fontSize_CategoryAverage = new List<int> { 20, 40, 60 };
-    public static List<int> fontSize_CategoryBig = new List<int> { 40, 80, 120 };
+    public static List<int> fontSize_CategorySmall = new List<int> { 20, 30, 40 };
+    public static List<int> fontSize_CategoryAverage = new List<int> { 30, 50, 70 };
+    public static List<int> fontSize_CategoryBig = new List<int> { 50, 80, 110 };
 
     public static List<string> backgroundMusic = new List<string> { "Background music", "موزیک پس‌زمینه" };
     public static List<string> soundEffects = new List<string> { "Sound effects", "جلوه‌های صوتی" };

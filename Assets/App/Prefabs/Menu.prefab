@@ -9,12 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8150953058308605749}
-  - component: {fileID: 6796751069999381234}
-  - component: {fileID: -1268353525642536931}
-  - component: {fileID: -4962009173989963635}
-  - component: {fileID: -2378193094599764673}
-  - component: {fileID: 7866997061862836854}
-  - component: {fileID: 764115731183955861}
+  - component: {fileID: -607930256869210918}
+  - component: {fileID: 1767728548467372613}
+  - component: {fileID: 8204498138132446859}
+  - component: {fileID: 193764185578773833}
+  - component: {fileID: 1985268469821209211}
+  - component: {fileID: 2761869269720663841}
+  - component: {fileID: 3639898136056502808}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -37,30 +38,65 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6796751069999381234
-MonoBehaviour:
+--- !u!1931382934 &-607930256869210918
+PanelRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5791469827558440857}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
-  m_PanelSettings: {fileID: 11400000, guid: b543d8272a1baa441b9befb339100c74, type: 2}
-  m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: eecaec8fbc128b94f9168c3ccf3bfbd1, type: 3}
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Position: 0
+  m_MaskInteraction: 0
+  serializedVersion: 1
+  m_PanelSettings: {fileID: 11400000, guid: b543d8272a1baa441b9befb339100c74, type: 2}
+  sourceAsset: {fileID: 9197481963319205126, guid: eecaec8fbc128b94f9168c3ccf3bfbd1, type: 3}
+  m_ParentUI: {fileID: 0}
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920
   m_WorldSpaceHeight: 1080
   m_PivotReferenceSize: 0
   m_Pivot: 0
-  m_WorldSpaceCollider: {fileID: 0}
---- !u!114 &-1268353525642536931
+  m_Position: 0
+--- !u!114 &1767728548467372613
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -69,10 +105,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5791469827558440857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8524bead0b818f04b8f907d2991b0cfb, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f1516e9cdb53c343a228f13283d19e9, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Menu_UIConnector
---- !u!114 &-4962009173989963635
+  m_EditorClassIdentifier: Assembly-CSharp::Menu_VisualElement
+--- !u!114 &8204498138132446859
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -81,10 +117,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5791469827558440857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59b261246ae09794eb3fd57933b3c620, type: 3}
+  m_Script: {fileID: 11500000, guid: 79af876dd6db02247a7a7feaa07b5e74, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MainPage_Controller
---- !u!114 &-2378193094599764673
+  m_EditorClassIdentifier: Assembly-CSharp::MainPage
+--- !u!114 &193764185578773833
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,10 +129,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5791469827558440857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9940afb69b2999240a0cce16438fedad, type: 3}
+  m_Script: {fileID: 11500000, guid: 3fc5bf72e26abee4bbc899b3027a714b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LevelsPage_Controller
---- !u!114 &7866997061862836854
+  m_EditorClassIdentifier: Assembly-CSharp::LevelsPage
+--- !u!114 &1985268469821209211
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,10 +141,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5791469827558440857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4769c9b40138b7419965b63749649ba, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fdffb146ea7b9b4494717c1491ee5a6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SettingsPage_Controller
---- !u!114 &764115731183955861
+  m_EditorClassIdentifier: Assembly-CSharp::SettingsPage
+--- !u!114 &2761869269720663841
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,6 +153,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 5791469827558440857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fb9e4205fd65e348824e4ee2341d84d, type: 3}
+  m_Script: {fileID: 11500000, guid: cb6749cf0b2da4542b49670ddad554a6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventoryShopPage_Controller
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryShopPage
+--- !u!114 &3639898136056502808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5791469827558440857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a08cf163c49f7df40a7648dea1fe993a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Menu

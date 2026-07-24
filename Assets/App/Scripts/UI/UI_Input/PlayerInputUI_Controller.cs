@@ -4,8 +4,7 @@ using UnityEngine.UIElements;
 
 public class PlayerInputUI_Controller : MonoBehaviour
 {
-    UIDocument uIDocument;
-    VisualElement root;
+    PanelRenderer panelRenderer;
 
     VisualElement moveLeft_TemplateContainer;
     VisualElement moveRight_TemplateContainer;
@@ -17,64 +16,50 @@ public class PlayerInputUI_Controller : MonoBehaviour
 
 
 
-    public void Initialize()
+    public void OnEnable()
     {
-        ConnectUI();
-        RegisterEventsOnUI();
+        panelRenderer = GetComponent<PanelRenderer>();
+        panelRenderer.RegisterUIReloadCallback(OnUIReloadCallback);
     }
 
     private void OnDisable()
     {
-        EventsManager.OnCanFire_Event -= SetShoot_VisualElement;
+        RemoveFunctionality();
 
-        //Move Left
-        moveLeft_TemplateContainer.UnregisterCallback<PointerDownEvent>(MovinigLeft_PointerDown);
-        moveLeft_TemplateContainer.UnregisterCallback<PointerLeaveEvent>(MovinigLeft_PointerLeave);
-        moveLeft_TemplateContainer.UnregisterCallback<PointerUpEvent>(MovinigLeft_PointerUP);
+        DisconnctEvents();
 
-        //Move Right
-        moveRight_TemplateContainer.UnregisterCallback<PointerDownEvent>(MovinigRight_PointerDown);
-        moveRight_TemplateContainer.UnregisterCallback<PointerLeaveEvent>(MovinigRight_PointerLeave);
-        moveRight_TemplateContainer.UnregisterCallback<PointerUpEvent>(MovinigRight_PointerUP);
-
-        //Turn
-        turnLeft_TemplateContainer.UnregisterCallback<ClickEvent>(TurnLeft);
-        turnRight_TemplateContainer.UnregisterCallback<ClickEvent>(TurnRight);
-
-        //Fire
-        shoot_TemplateContainer.UnregisterCallback<ClickEvent>(TryedFire);
+        panelRenderer.UnregisterUIReloadCallback(OnUIReloadCallback);
     }
 
-
-
-    public void ConnectUI()
+    private void OnUIReloadCallback(PanelRenderer panelRenderer, VisualElement root)
     {
-        uIDocument = GetComponent<UIDocument>();
-        root = uIDocument.rootVisualElement;
-
         ScreenSafeArea.RemoveUnSafeAreaFromUI(root);
 
         moveLeft_TemplateContainer = root.Q<VisualElement>("MoveLeft_TemplateContainer");
-        FixElementSize(moveLeft_TemplateContainer);
+        UI_Utilities.FixPlayerInputUIElementSize(moveLeft_TemplateContainer);
 
         moveRight_TemplateContainer = root.Q<VisualElement>("MoveRight_TemplateContainer");
-        FixElementSize(moveRight_TemplateContainer);
+        UI_Utilities.FixPlayerInputUIElementSize(moveRight_TemplateContainer);
 
         shoot_TemplateContainer = root.Q<VisualElement>("Shoot_TemplateContainer");
-        FixElementSize(shoot_TemplateContainer);
+        UI_Utilities.FixPlayerInputUIElementSize(shoot_TemplateContainer);
 
         turnLeft_TemplateContainer = root.Q<VisualElement>("TurnLeft_TemplateContainer");
-        FixElementSize(turnLeft_TemplateContainer);
+        UI_Utilities.FixPlayerInputUIElementSize(turnLeft_TemplateContainer);
 
         turnRight_TemplateContainer = root.Q<VisualElement>("TurnRight_TemplateContainer");
-        FixElementSize(turnRight_TemplateContainer);
+        UI_Utilities.FixPlayerInputUIElementSize(turnRight_TemplateContainer);
+
+
+        AddFunctionality();
+        ConnctEvents();
     }
 
 
-    public void RegisterEventsOnUI()
-    {
-        EventsManager.OnCanFire_Event += SetShoot_VisualElement;
+    #region Functionality
 
+    private void AddFunctionality()
+    {
         //Move Left
         moveLeft_TemplateContainer.RegisterCallback<PointerDownEvent>(MovinigLeft_PointerDown);
         moveLeft_TemplateContainer.RegisterCallback<PointerLeaveEvent>(MovinigLeft_PointerLeave);
@@ -91,12 +76,26 @@ public class PlayerInputUI_Controller : MonoBehaviour
 
         //Fire
         shoot_TemplateContainer.RegisterCallback<ClickEvent>(TryedFire);
-
     }
 
-    public void SetShoot_VisualElement(object o, PlayerFireInput_EventArgs e)
+    private void RemoveFunctionality()
     {
-        shoot_TemplateContainer.SetEnabled(e.Fire);
+        //Move Left
+        moveLeft_TemplateContainer.UnregisterCallback<PointerDownEvent>(MovinigLeft_PointerDown);
+        moveLeft_TemplateContainer.UnregisterCallback<PointerLeaveEvent>(MovinigLeft_PointerLeave);
+        moveLeft_TemplateContainer.UnregisterCallback<PointerUpEvent>(MovinigLeft_PointerUP);
+
+        //Move Right
+        moveRight_TemplateContainer.UnregisterCallback<PointerDownEvent>(MovinigRight_PointerDown);
+        moveRight_TemplateContainer.UnregisterCallback<PointerLeaveEvent>(MovinigRight_PointerLeave);
+        moveRight_TemplateContainer.UnregisterCallback<PointerUpEvent>(MovinigRight_PointerUP);
+
+        //Turn
+        turnLeft_TemplateContainer.UnregisterCallback<ClickEvent>(TurnLeft);
+        turnRight_TemplateContainer.UnregisterCallback<ClickEvent>(TurnRight);
+
+        //Fire
+        shoot_TemplateContainer.UnregisterCallback<ClickEvent>(TryedFire);
     }
 
 
@@ -156,6 +155,8 @@ public class PlayerInputUI_Controller : MonoBehaviour
 
     #endregion
 
+    #region Fire
+
     public void TryedFire(ClickEvent clickEvent)
     {
         EventsManager.InvokeOnTryedFire();
@@ -177,12 +178,29 @@ public class PlayerInputUI_Controller : MonoBehaviour
         turnRight_TemplateContainer.SetEnabled(state);
     }
 
-    public void FixElementSize(VisualElement visualElement)
-    {
-        float size = (Screen.safeArea.xMax - (2 * Screen.safeArea.xMin)) / 10;
+    #endregion
 
-        visualElement.style.width = size;
-        visualElement.style.height = size;
+    #endregion
+
+
+
+    #region Events Manager
+
+    private void ConnctEvents()
+    {
+        EventsManager.OnCanFire_Event += SetShoot_VisualElement;
     }
+
+    private void DisconnctEvents()
+    {
+        EventsManager.OnCanFire_Event -= SetShoot_VisualElement;
+    }
+
+    public void SetShoot_VisualElement(object o, PlayerFireInput_EventArgs e)
+    {
+        shoot_TemplateContainer.SetEnabled(e.Fire);
+    }
+
+    #endregion
 
 }

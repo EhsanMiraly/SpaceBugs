@@ -17,7 +17,7 @@ public class WinLoseWindow_UI
     VisualElement oK_Button_TemplateContainer;
     Label oK_Label;
 
-    Menu_UIConnector menu_UIConnector;
+    Menu menu;
 
 
     public WinLoseWindow_UI(GameObject parent, bool winOrLose)
@@ -74,7 +74,7 @@ public class WinLoseWindow_UI
             LanguageTextsData.fontSize_CategoryAverage[SettingsData.currentFontSizeIndex];
         #endregion
 
-        menu_UIConnector = UnityEngine.Object.FindAnyObjectByType<Menu_UIConnector>().GetComponent<Menu_UIConnector>();
+        menu = UnityEngine.Object.FindAnyObjectByType<Menu>().GetComponent<Menu>();
 
         oK_Button_TemplateContainer.RegisterCallback<ClickEvent>(evt =>
         {
@@ -87,7 +87,7 @@ public class WinLoseWindow_UI
                 EventsManager.InvokeOnLoseLevel();
             }
             EventsManager.InvokeOnStopLevel();
-            menu_UIConnector.InitialPage();
+            menu.SwitchPage(menu.mainPage_VisualElement);
             Dispose();
         });
     }
@@ -105,7 +105,7 @@ public class WinLoseWindow_UI
             root = null;
             winLose_Label = null;
             oK_Button_TemplateContainer = null;
-            menu_UIConnector = null;
+            menu = null;
         }
     }
 }

@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour, IObjectInPool
     #endregion
 
 
-    [HideInInspector] public EventsManager eventsManager;
+    private EventsManager eventsManager;
 
     public EnemyData_SO EnemyData { get; set; }
 
