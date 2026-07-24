@@ -12,6 +12,8 @@ public class GameInitializer : MonoBehaviour
 
     [SerializeField] private GameObject _backgroundMusicPlayer;
 
+    [SerializeField] private GameObject tapsellAd;
+
 
 
 
@@ -54,7 +56,8 @@ public class GameInitializer : MonoBehaviour
             _backgroundMusicPlayer.GetComponent<BackgroundMusicPlayer>().Initialize();
             loadingPage_UI.SetProgress(80);
 
-
+            tapsellAd = Instantiate(tapsellAd);
+            loadingPage_UI.SetProgress(80);
 
             loadingPage_UI.SetProgress(100);
 

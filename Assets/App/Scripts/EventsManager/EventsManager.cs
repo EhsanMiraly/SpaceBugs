@@ -6,6 +6,17 @@ public delegate void OnNotify();
 
 public class EventsManager
 {
+    #region TapsellAd
+
+    public static event OnNotify OnShowAd_Event;
+    public static void InvokeOnShowAd()
+    {
+        OnShowAd_Event?.Invoke();
+    }
+
+    #endregion
+
+
     #region Bullet Events
 
     public static event OnNotify OnBulletDestroyed_Event;

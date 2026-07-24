@@ -170,6 +170,7 @@ MonoBehaviour:
   _playerHealthScoreBullets_UI: {fileID: 8339402421884921863, guid: 83218bb44ba23a949afff915ec837402, type: 3}
   _playerInputUI: {fileID: 5844884127228364789, guid: f4a268689ec616b42a755f27383b6e83, type: 3}
   _backgroundMusicPlayer: {fileID: 4201515926485887634, guid: 37824c090fea1cd418c72952f5ea5de1, type: 3}
+  tapsellAd: {fileID: 7370738379010027480, guid: 1a3c3ae3b02923446bbfce11e257c846, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

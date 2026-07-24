@@ -130,6 +130,7 @@ public class InventoryShopPage : MonoBehaviour
     private void OnWatchAd_TemplateContainerSelected(ClickEvent clickEvent)
     {
         Debug.Log("Watch Ad.");
+        EventsManager.InvokeOnShowAd();
     }
 
 
